@@ -42,8 +42,9 @@
     background-color: rgba(13, 12, 26, 0.6);
     padding: 2rem;
     border-radius: 8px;
-    max-width: 800px;
+    width: 800px;
     margin: 2rem auto;
+    box-sizing: border-box;
   }
 
   p, span, li {
