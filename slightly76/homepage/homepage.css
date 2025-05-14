@@ -10,8 +10,8 @@
 .Lacquer {
   font-family: "Lacquer", sans-serif;
 }
-.Coral-Pixels {
-  font-family: "Coral Pixels", sans-serif;
+.Silkscreen {
+  font-family: "Silkscreen", sans-serif;
 }
 
 
@@ -55,7 +55,8 @@ body {
   box-sizing: border-box;
   text-align: center;
   align-items: center;
-  text-align: center;
+  justify-content: space-evenly;
+  
 }
 
 .panel.in-view {
@@ -76,6 +77,7 @@ body {
   border-radius: 6px;
   object-fit: cover;
   text-align: left;
+  justify-content: space-evenly;
   
 }
 
@@ -94,13 +96,16 @@ h2 {
   line-height: 1;
 }
 h3 {
+  font-family: "Silkscreen";
   color: #f694ff;
-  font-size: clamp(0.5rem, 4vw, 1rem);
+  font-size: clamp(0.7rem, 4vw, 1.2rem);
   line-height: 1.6;
   margin-bottom: 0.6rem;
   text-align: left;
 }
-p, span, li {
+
+.homepage p
+ { 
   color: #a277ff;
   font-size: clamp(0.5rem, 4vw, 0.7rem);
   margin-top: 1.5rem;
@@ -120,6 +125,7 @@ a:hover {
 }
 
 .skills-list {
+  font-family: 'Silkscreen';
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -153,25 +159,20 @@ button:hover {
 .header-panel {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 2rem;
   max-width: 100%;
-  
- 
-}
-
-.image-wrapper, .header-text {
-  flex: 1;
-  min-width: 150px;
+   
 }
 
 .header-text {
   display: flex;
-  flex :2;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  text-align: left;
   gap: 0.5rem;
   
 }
@@ -179,15 +180,15 @@ button:hover {
 .header-top {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
   gap: 2rem;
 }
 
 .header-text h1  {
   margin: 0;
   line-height: 1.2;
-  
- 
+   
 }
 
 header-text h2 {
@@ -199,27 +200,29 @@ header-text h2 {
 
 .image-wrapper {
   display: flex;
-  flex: 1;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   position: relative;
   padding: 0;
   margin: 0;
   width: 150px;
-  height: 150px;
-  aspect-ratio: 1 / 1;
+  height:150px;
+  object-fit: cover;
   overflow: hidden;
   border-radius: 8px;
-  max-width: 150px;
+
   }
 
 
 
 .hover-image {
-  
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  vertical-align: middle;
+  justify-content: center;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -232,10 +235,8 @@ header-text h2 {
 }
 
 .hover-image.hover {
- 
   opacity: 0;
   z-index: 2;
-  
 }
 
 .header-panel:hover .hover-image.hover {
@@ -246,41 +247,172 @@ header-text h2 {
   opacity: 0;
 }
 
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: center;
+  padding-top: 1rem;
+}
 
+.icon-grid i {
+  font-size: 2.5rem;
+  color: #a277ff;
+  transition: transform 0.2s ease;
+}
 
+.icon-grid i:hover {
+  transform: scale(1.2);
+  color: #4dffca;
+}
 
+.icon-grid img.tech-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  
+  color: #a277ff;
+  fill: currentColor;
+  transition: transform 0.2s ease;
+}
 
+.icon-grid img.tech-icon:hover {
+  transform: scale(1.2);
+  
+  color: #4dffca;
+  fill: currentColor;
+}
 
+.icon-grid > :last-child:nth-child(odd) {
+  grid-column: span 2;
+  justify-self: center;
+}
+
+.tech-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #a277ff;
+  
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.devicon-react-original {
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 1;
+}
+
+.phaser-logo {
+  transform: scale(1.2) translateX(-0.2rem) translateY(0.2rem);
+  
+}
+
+.tech-icon:hover {
+  transform: scale(1.2);
+  color: #4dffca;
+}
+
+.phaser-logo:hover {
+  transform: scale(1.4) translateX(-0.2rem) translateY(0.2rem);
+  
+}
+
+.grid-divider {
+  grid-column: span 3; 
+  height: 2px;
+  background-color: #4dffca;
+  width: 60%;
+  justify-self: center; 
+  margin: 1rem 0;
+}
+
+.custom-tooltip {
+  background-color: #281d3f !important;
+  color: #4dffca !important;
+  font-family: 'Cascadia Code', monospace !important;
+  font-size: 0.6rem !important;
+  border-radius: 4px !important;
+  padding: 0.5rem !important;
+  max-width: 200px !important;
+  line-height: 1.2 !important;
+  box-shadow: 0 0 20px 5px rgba(246, 148, 255, 0.6) !important;
+}
+
+.custom-tooltip span {
+  color: #4dffca !important;
+}
+
+.tooltip-trigger {
+  position: relative;
+  z-index: 1;
+  color: #4dffca;
+  font-family: 'Cascadia Code', monospace;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
 @media (max-width: 768px) {
   .header-panel {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    gap: 0.5rem;
     
-    
+        
   }
+
+  .image-wrapper {
+  display: flex;
+  flex-shrink: 0;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  margin-right: -35px;
+  width: 125px;
+  height:125px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+
+  }
+
+.hover-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  transition: opacity 0.3s ease;
+  border-radius: 14px;
+  
+
+  
+}
 
   .header-text {
     align-items: center;
-  }
-  .header-text h1 {
-    font-size: 1.2rem;
-    
+    text-align: left;
+    margin-top: -20px;
   }
 
-  .header-text h2 {
-    font-size: 1.0rem;
-    
-  }
+
 
   .panel {
     flex-direction: column;
     align-items: center;
     width: 80vw;
     max-width: none;
-    margin: 2rem 1rem;
-    padding: 1.5rem;
+    margin-bottom: 20rem;
+    margin-left: 1.2rem;
+    margin-top: 1rem;
+    
+    padding: 2.5rem;
   }
 
   .panel > .text-content {
@@ -295,14 +427,40 @@ header-text h2 {
     padding: 2rem 0;
   }
 
-  h1, h2, h3 {
-    font-size: clamp(0.7rem, 4vw, 1.4rem);
+  h1, h2 {
+    font-size: clamp(0.8rem, 4vw, 1.4rem);
+    line-height: 0.8rem;
+    margin-top: -5px;
+  }
+
+  .skills-list {
+    gap: 0rem;
+  }
+  h3 {
+  line-height: 1.0rem;
+  font-size: 0.6rem;
+
   }
 
   p {
     font-size: clamp(0.5rem, 4vw, 0.875rem);
   }
 
+      .icon-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .icon-grid > :last-child:nth-child(odd) {
+      grid-column: span 2;
+      justify-self: center;
+    }
+  
+    .grid-divider {
+      grid-column: span 2; 
+      width: 80%;
+      height: 1px;
+    }
+  
 
 }
 
