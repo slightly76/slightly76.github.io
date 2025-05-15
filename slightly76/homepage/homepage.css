@@ -14,7 +14,6 @@
   font-family: "Silkscreen", sans-serif;
 }
 
-
 html {
   font-size: 22px;
 }
@@ -30,57 +29,65 @@ body {
   background-repeat: repeat;
   background-size: auto;
   background-attachment: fixed;
- 
 }
-
-
 
 .homepage {
- 
   padding: 4rem 0;
- 
 }
 
+.panel-anchor {
+  position: relative;
+  top: -30vh;
+  height: 1px;
+  width: 100%;
+}
 .panel {
-  background-color: rgba(13, 12, 26, 0.6);
-  padding: 2rem;
+  background-color: rgba(40, 29, 63, 0.95);
+  padding: 2.5rem 1rem 1rem;
   border-radius: 8px;
   max-width: 1200px;
-  margin: 4rem auto;
+  margin: 0 auto;
   display: flex;
-  flex-direction: columns;
-  flex-wrap: wrap;
-  gap: 1rem;
-  transition: all 1s ease;
-  box-sizing: border-box;
+  flex-direction: column;
   text-align: center;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   box-shadow: 0 0 20px 5px rgba(130, 226, 255, 0.6);
   position: sticky;
-  will-change: transform;
-  top: 5vh; /*adjust for overlap*/
   height: 90vh;
-  margin-bottom: 2vh;
-  background: rgba(40, 29, 63, 0.8);
-  overflow: hidden;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  
+  will-change: transform;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+  overflow: visible;
 }
 
-.panel.behind .panel-content {
-  display: none;
-}
-
-.panel-content {
-  padding: 2rem;
-  overflow-y: auto;
-  max-height: 100%;
+.panel.in-view {
+  box-shadow: 0 0 20px 5px rgba(130, 226, 255, 0.6);
+  z-index: 1;
 }
 
 .panel.behind {
-  filter: blur(2px);
-  opacity: 0.5;
+  transform: translateY(12px);
+  
+  pointer-events: none;
+}
+
+.panel.behind::before {
+  opacity: 0.8;
+  filter: blur(0);
+  background: rgba(20, 20, 40, 0.85);
+  font-weight: bold;
+}
+
+.panel-inner {
+  pointer-events: auto;
+  transition: transform 0.3s ease;
+  min-height: 60vh;
+  color: #fff
+}
+
+.panel.behind .panel-inner {
+ 
   pointer-events: none;
 }
 
@@ -90,17 +97,14 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   background: rgba(20, 20, 40, 0.9);
   font-family: 'Cascadia Code', monospace;
-  font-size: 0.8rem;
-  color: #4dffca;
-  z-index: 1;
-}
-
-.panel.in-view {
-  box-shadow: 0 0 20px 5px rgba(130, 226, 255, 0.6);
-  z-index: 1;
+  font-size: 0.6rem;
+  color: #f694ff;
+  border-bottom: 1px solid #4dffca;
+  z-index: 10;
+  text-align: left;
 }
 
 .panel > .text-content {
@@ -117,17 +121,13 @@ body {
   object-fit: cover;
   text-align: left;
   justify-content: space-evenly;
-  
 }
-
 
 h1 {
   color: #4dffca;
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   text-shadow: 2px 2px 4px rgba(162, 119, 255, 1);
   margin-bottom: 0.3rem;
-  
-  
 }
 h2 {
   color: #f694ff;
@@ -143,14 +143,12 @@ h3 {
   text-align: left;
 }
 
-.homepage p
- { 
+.homepage p {
   color: #a277ff;
   font-size: clamp(0.5rem, 4vw, 0.7rem);
   margin-top: 1.5rem;
   margin-bottom: 0.1rem;
   text-align: left;
-  
 }
 
 a {
@@ -168,13 +166,11 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem; 
+  gap: 1rem;
 }
-
 .skills-list h3 {
   text-align: left;
 }
-
 
 button {
   background-color: #a277ff;
@@ -191,19 +187,13 @@ button:hover {
   background-color: #f694ff;
 }
 
-/*.header-panel, .image-wrapper, .header-text {
-  outline: 1px solid rgba(255, 255, 255, 0.2);
-}*/
-
 .header-panel {
   display: flex;
   flex-direction: column;
-  display: flex;
   align-items: center;
   justify-content: space-evenly;
   gap: 2rem;
   max-width: 100%;
-   
 }
 
 .header-text {
@@ -213,7 +203,6 @@ button:hover {
   justify-content: space-evenly;
   text-align: left;
   gap: 0.5rem;
-  
 }
 
 .header-top {
@@ -224,17 +213,9 @@ button:hover {
   gap: 2rem;
 }
 
-.header-text h1  {
+.header-text h1 {
   margin: 0;
   line-height: 1.2;
-   
-}
-
-header-text h2 {
-  margin: 0;
-  line-height: 1.2;
-  text-align: center;
-  
 }
 
 .image-wrapper {
@@ -243,17 +224,12 @@ header-text h2 {
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 0;
-  margin: 0;
   width: 150px;
-  height:150px;
+  height: 150px;
   object-fit: cover;
   overflow: hidden;
   border-radius: 8px;
-
-  }
-
-
+}
 
 .hover-image {
   position: absolute;
@@ -261,30 +237,18 @@ header-text h2 {
   left: 50%;
   transform: translate(-50%, -50%);
   vertical-align: middle;
-  justify-content: center;
   width: 100%;
   height: 100%;
   object-fit: cover;
   image-rendering: pixelated;
-  transition: opacity 0.3s ease;
-  border-radius: 14px;
-  
-
-  
+    border-radius: 14px;
 }
-
 .hover-image.hover {
-  opacity: 0;
+ 
   z-index: 2;
 }
 
-.header-panel:hover .hover-image.hover {
-  opacity: 1;
-}
 
-.header-panel:hover .hover-image.base {
-  opacity: 0;
-}
 
 .icon-grid {
   display: grid;
@@ -294,75 +258,54 @@ header-text h2 {
   align-items: center;
   padding-top: 1rem;
 }
-
 .icon-grid i {
   font-size: 2.5rem;
   color: #a277ff;
   transition: transform 0.2s ease;
 }
-
 .icon-grid i:hover {
   transform: scale(1.2);
   color: #4dffca;
 }
-
 .icon-grid img.tech-icon {
   width: 2.5rem;
   height: 2.5rem;
-  
   color: #a277ff;
   fill: currentColor;
   transition: transform 0.2s ease;
 }
-
 .icon-grid img.tech-icon:hover {
   transform: scale(1.2);
-  
   color: #4dffca;
   fill: currentColor;
 }
-
 .icon-grid > :last-child:nth-child(odd) {
   grid-column: span 2;
   justify-self: center;
 }
-
 .tech-icon {
   width: 2.5rem;
   height: 2.5rem;
   color: #a277ff;
-  
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
-.devicon-react-original {
-  position: relative;
-  margin-bottom: 1rem;
-  z-index: 1;
-}
-
 .phaser-logo {
   transform: scale(1.2) translateX(-0.2rem) translateY(0.2rem);
-  
 }
-
 .tech-icon:hover {
   transform: scale(1.2);
   color: #4dffca;
 }
-
 .phaser-logo:hover {
   transform: scale(1.4) translateX(-0.2rem) translateY(0.2rem);
-  
 }
-
 .grid-divider {
-  grid-column: span 3; 
+  grid-column: span 3;
   height: 2px;
   background-color: #4dffca;
   width: 60%;
-  justify-self: center; 
+  justify-self: center;
   margin: 1rem 0;
 }
 
@@ -377,11 +320,9 @@ header-text h2 {
   line-height: 1.2 !important;
   box-shadow: 0 0 20px 5px rgba(246, 148, 255, 0.6) !important;
 }
-
 .custom-tooltip span {
   color: #4dffca !important;
 }
-
 .tooltip-trigger {
   position: relative;
   z-index: 1;
@@ -391,48 +332,20 @@ header-text h2 {
   cursor: pointer;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .header-panel {
     flex-direction: column;
     justify-content: space-evenly;
     gap: 0.5rem;
-    
-        
   }
 
   .image-wrapper {
-  display: flex;
-  flex-shrink: 0;
-  position: relative;
-  padding: 0;
-  margin: 0;
-  margin-right: -35px;
-  width: 125px;
-  height:125px;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 8px;
-
+    width: 125px;
+    height: 125px;
+    margin-right: -35px;
+    aspect-ratio: 1 / 1;
   }
-
-.hover-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  vertical-align: middle;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  image-rendering: pixelated;
-  transition: opacity 0.3s ease;
-  border-radius: 14px;
-  
-
-  
-}
 
   .header-text {
     align-items: center;
@@ -440,30 +353,17 @@ header-text h2 {
     margin-top: -20px;
   }
 
-
-
   .panel {
     flex-direction: column;
     align-items: center;
     width: 80vw;
     max-width: none;
-    margin-bottom: 20rem;
-    margin-left: 1.2rem;
-    margin-top: 1rem;
-    
+    margin: 1rem 0 20rem;
     padding: 2.5rem;
   }
 
   .panel > .text-content {
     min-width: 100%;
-  }
-
-  .image-wrapper {
-    margin-bottom: 1rem;
-  }
-
-  .homepage {
-    padding: 2rem 0;
   }
 
   h1, h2 {
@@ -475,31 +375,28 @@ header-text h2 {
   .skills-list {
     gap: 0rem;
   }
-  h3 {
-  line-height: 1.0rem;
-  font-size: 0.6rem;
 
+  h3 {
+    line-height: 1.0rem;
+    font-size: 0.6rem;
   }
 
   p {
     font-size: clamp(0.5rem, 4vw, 0.875rem);
   }
 
-      .icon-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .icon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    .icon-grid > :last-child:nth-child(odd) {
-      grid-column: span 2;
-      justify-self: center;
-    }
-  
-    .grid-divider {
-      grid-column: span 2; 
-      width: 80%;
-      height: 1px;
-    }
-  
+  .icon-grid > :last-child:nth-child(odd) {
+    grid-column: span 2;
+    justify-self: center;
+  }
 
+  .grid-divider {
+    grid-column: span 2;
+    width: 80%;
+    height: 1px;
+  }
 }
-

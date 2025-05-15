@@ -14,24 +14,32 @@ import TrelloLogo from '/assets/logos/trello-logo.svg?react';
 
 function Homepage() {
 	const panelsRef = useRef([]);
+	const observerRefs = useRef([]);
 	const [visibleIndex, setVisibleIndex] = useState(0);
 
 	useEffect(() => {
-		const handleScroll = () => {
-			const panelOffsets = panelsRef.current.map((panel) => {
-				if (!panel) return Infinity;
-				const rect = panel.getBoundingClientRect();
-				return Math.abs(rect.top);
-			});
+		const observers = [];
 
-			const newIndex = panelOffsets.indexOf(Math.min(...panelOffsets));
-			setVisibleIndex(newIndex);
+		observerRefs.current.forEach((el, index) => {
+			if (!el) return;
+			const observer = new IntersectionObserver(
+				([entry]) => {
+					if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+						setVisibleIndex(index);
+					}
+				},
+				{
+					threshold: [0.5],
+					rootMargin: '-20% 0px -60% 0px',
+				}
+			);
+			observer.observe(el);
+			observers.push(observer);
+		});
+
+		return () => {
+			observers.forEach((observer) => observer.disconnect());
 		};
-
-		window.addEventListener('scroll', handleScroll, { passive: true });
-		handleScroll();
-
-		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
 	const motionPanelProps = {
@@ -43,6 +51,7 @@ function Homepage() {
 
 	const panels = [
 		{
+			title: '//welcome',
 			content: (
 				<div className='header-panel'>
 					<div className='header-top'>
@@ -74,6 +83,7 @@ function Homepage() {
 			),
 		},
 		{
+			title: '//skillset',
 			content: (
 				<>
 					<h3>let codingSkillset =</h3>
@@ -98,6 +108,7 @@ function Homepage() {
 			),
 		},
 		{
+			title: '//toolbox',
 			content: (
 				<>
 					<h3>Tinkering Toolbox</h3>
@@ -161,6 +172,7 @@ function Homepage() {
 			),
 		},
 		{
+			title: '//about',
 			content: (
 				<>
 					<p className='muted'>
@@ -202,17 +214,21 @@ function Homepage() {
 	return (
 		<div className='homepage'>
 			{panels.map((panel, i) => (
-				<motion.div
-					key={i}
-					ref={(el) => (panelsRef.current[i] = el)}
-					className={`panel ${visibleIndex === i ? 'in-view' : 'behind'}`}
-					style={{ zIndex: panels.length - i }}
-					{...motionPanelProps}
-				>
-					{visibleIndex === i && (
-						<div className='panel-content'>{panel.content}</div>
-					)}
-				</motion.div>
+				<React.Fragment key={i}>
+					<div
+						ref={(el) => (observerRefs.current[i] = el)}
+						className='panel-anchor'
+					/>
+					<motion.div
+						ref={(el) => (panelsRef.current[i] = el)}
+						className={`panel ${visibleIndex === i ? 'in-view' : 'behind'}`}
+						data-title={panel.title}
+						style={{ zIndex: i, top: `${i * 1.5}rem` }}
+						{...motionPanelProps}
+					>
+						<div className='panel-inner'>{panel.content}</div>
+					</motion.div>
+				</React.Fragment>
 			))}
 
 			<Tooltip
