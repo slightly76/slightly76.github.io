@@ -256,23 +256,38 @@ button:hover {
 /* homepage.css */
 
 html, body {
+  /* background-color: #21202e; */
+  font-family: "Cascadia Code", monospace;
+  color: #a277ff;
+  font-size: clamp(0.5rem, 4vw, 1rem);
+  line-height: 1.5;
+  background-image: url('./assets/white-diamond.png');
+  background-repeat: repeat;
+  background-size: auto;
+  background-attachment: fixed;
+  
+
   margin: 0;
   padding: 0;
   height: 100vh;
   overflow: hidden;
-  font-family: sans-serif;
-  background: #121212;
+ 
 }
+
+
+
+
 
 .scroll-lock-wrapper {
   overflow-y: auto;
   overscroll-behavior: none;
   scroll-behavior: smooth;
   width: 100%;
-  max-width: 600px;
+  max-width: 1200px;
   height: 100vh;
   margin: 0 auto;
   position: relative;
+  
 }
 
 .scroll-lock-wrapper::-webkit-scrollbar {
@@ -281,20 +296,22 @@ html, body {
 
 .page {
   width: 100%;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
+  
 }
 
 .card {
-
+  
+  width: 75%;
+  margin: 0 auto;
   border-radius: 8px;
   padding: 1.5rem 1rem;
-  color: #000;
   overflow-y: auto;
   transition: transform 0.2s ease;
-  border-top: 2px solid #ffffff33;
-  background-color: rgba(40, 29, 63, 0.95);
-  box-shadow: 0 0 20px 5px rgba(130, 226, 255, 0.6);
+  border-top: 2px solid #4dffca;
+  background-color: rgba(40, 29, 63, 0.99);
+  /* box-shadow: 0 0 20px 5px rgba(130, 226, 255, 0.6); */
 }
 
 /* Clickable peek label */
@@ -302,14 +319,26 @@ html, body {
   position: absolute;
   top: 0;
   right: 1rem;
-  height: 40px;
+  height: 10px;
+  width: 90px;
   font-size: 0.6rem;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: rgba(130, 226, 255, 0.2);
+  color: #f694ff;
+  margin-top: 4px;
   padding: 2px 4px;
   border-radius: 4px;
   cursor: pointer;
   z-index: 999;
+
+  
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-anchor {
@@ -335,17 +364,21 @@ h2 {
   line-height: 1;
 }
 h3 {
-  font-family: "Silkscreen";
+  font-family: "Cascadia Code";
   color: #f694ff;
   font-size: clamp(0.7rem, 4vw, 1.2rem);
-  line-height: 1.6;
+  line-height: 0.8;
   text-align: left;
+}
+
+.skills-indent {
+  padding-left: 2rem;
 }
 
 p, .homepage p {
   font-family:  "Cascadia Code";
   color: #a277ff;
-  font-size: clamp(0.5rem, 4vw, 0.7rem);
+  font-size: clamp(0.7rem, 4vw, 0.9rem);
   margin: 1.5rem 0 0.1rem;
   text-align: left;
 }

@@ -293,6 +293,7 @@ function App() {
 	const cards = [
 		{
 			title: '//welcome',
+			borderColor: '#4dffca;',
 			content: (
 				<div className='header-panel'>
 					<div className='header-top'>
@@ -324,11 +325,44 @@ function App() {
 			),
 		},
 
-		{ title: 'Card 2', bg: '#f694ff' },
-		{ title: 'Card 3', bg: '#a277ff' },
-		{ title: 'Card 4', bg: '#ffd166' },
-		{ title: 'Card 5', bg: '#f14166' },
-		{ title: 'Card 6', bg: '#06d6a0' },
+		{
+			title: '//skillset',
+			borderColor: '#f694ff',
+			content: (
+				<>
+					<h3>softSkills =</h3>
+					<div className='skills-list'>
+						<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
+						<div className='skills-indent'>
+							<h3>{'JavaScript,'}</h3>
+							<h3>{'Full Stack,'}</h3>
+							<h3>{'Phaser,'}</h3>
+						</div>
+						<h3 style={{ color: '#a277ff' }}>{'},'}</h3>
+						<p></p>
+
+						<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
+						<div className='skills-indent'>
+							<h3>Test Driven Development,</h3>
+							<h3>{'Pair Programming,'}</h3>
+							<h3>{'SCRUM Methodologies,'}</h3>
+							<h3>{'Problem Solving,'}</h3>
+							<h3>{'Active Listening,'}</h3>
+							<h3>{'Empathy,'}</h3>
+							<h3>{'Mentorship,'}</h3>
+							<h3>
+								{'Vibe Coding '} <i>//whisper it</i>
+							</h3>
+						</div>
+						<h3 style={{ color: '#a277ff' }}>{'}'}</h3>
+					</div>
+				</>
+			),
+		},
+		{ title: '//toolbox', borderColor: '#82e2ff' },
+		{ title: '//about me; then', borderColor: '#a277ff' },
+		{ title: '//about me; now', borderColor: '#a277ff' },
+		{ title: '//contact', borderColor: '#4dffca' },
 	];
 
 	const totalStickySpace =
@@ -370,6 +404,7 @@ function App() {
 								className='card'
 								style={{
 									backgroundColor: card.bg,
+									borderTop: `2px solid ${card.borderColor}`,
 									zIndex: index + 1,
 									top: topOffset,
 									minHeight: cardHeight,
@@ -377,14 +412,11 @@ function App() {
 									position: 'sticky',
 								}}
 							>
-								{index !== 0 && (
-									<div
-										className='card-peek'
-										onClick={() => scrollToCard(index)}
-									>
-										⬇️ Go to {card.title}
-									</div>
-								)}
+								{/* {index !== 0 && ( */}
+								<div className='card-peek' onClick={() => scrollToCard(index)}>
+									{card.title}
+								</div>
+								{/* )} */}
 								{card.content ? (
 									card.content
 								) : (
