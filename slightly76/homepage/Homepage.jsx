@@ -382,62 +382,72 @@ function App() {
 	};
 
 	return (
-		<div className='scroll-lock-wrapper' ref={scrollRef}>
-			<div
-				className='page'
-				style={{
-					minHeight: `${totalStickySpace}vh`,
-				}}
-			>
-				{cards.map((card, index) => {
-					const isLast = index === cards.length - 1;
-					const topOffset = `${index * CARD_GAP_VH}vh`;
-					const cardHeight = isLast ? `${FINAL_CARD_HEIGHT_VH}vh` : '95vh';
-
-					return (
-						<React.Fragment key={index}>
-							<div
-								ref={(el) => (anchorsRef.current[index] = el)}
-								className='card-anchor'
-							/>
-							<div
-								className='card'
-								style={{
-									backgroundColor: card.bg,
-									borderTop: `2px solid ${card.borderColor}`,
-									zIndex: index + 1,
-									top: topOffset,
-									minHeight: cardHeight,
-									maxHeight: cardHeight,
-									position: 'sticky',
-								}}
-							>
-								{/* {index !== 0 && ( */}
-								<div className='card-peek' onClick={() => scrollToCard(index)}>
-									{card.title}
-								</div>
-								{/* )} */}
-								{card.content ? (
-									card.content
-								) : (
-									<>
-										<h2>{card.title}</h2>
-										<p>This is {card.title} content.</p>
-									</>
-								)}
-							</div>
-						</React.Fragment>
-					);
-				})}
-
-				{/* Phantom scroll buffer */}
+		<div className='scroll-container' ref={scrollRef}>
+			<div className='scroll-lock-wrapper' ref={scrollRef}>
 				<div
+					className='page'
 					style={{
-						height: '900vh',
-						visibility: 'hidden',
-						pointerEvents: 'none',
+						minHeight: `${totalStickySpace}vh`,
 					}}
-				/>
+				>
+					{cards.map((card, index) => {
+						const isLast = index === cards.length - 1;
+						const topOffset = `${index * CARD_GAP_VH}vh`;
+						const cardHeight = isLast ? `${FINAL_CARD_HEIGHT_VH}vh` : '95vh';
+
+						return (
+							<React.Fragment key={index}>
+								<div
+									ref={(el) => (anchorsRef.current[index] = el)}
+									className='card-anchor'
+								/>
+								<div
+									className='card'
+									style={{
+										backgroundColor: card.bg,
+
+										zIndex: index + 1,
+										top: topOffset,
+										minHeight: cardHeight,
+										maxHeight: cardHeight,
+										position: 'sticky',
+									}}
+								>
+									<div
+										className='card-inner'
+										style={{ borderTop: `4px solid ${card.borderColor}` }}
+									>
+										{/* {index !== 0 && ( */}
+										<div
+											className='card-peek'
+											onClick={() => scrollToCard(index)}
+										>
+											{card.title}
+										</div>
+										{/* )} */}
+										{card.content ? (
+											card.content
+										) : (
+											<>
+												<h2>{card.title}</h2>
+												<p>This is {card.title} content.</p>
+											</>
+										)}
+									</div>
+								</div>
+							</React.Fragment>
+						);
+					})}
+
+					{/* Phantom scroll buffer */}
+					<div
+						style={{
+							height: '900vh',
+							visibility: 'hidden',
+							pointerEvents: 'none',
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	);
