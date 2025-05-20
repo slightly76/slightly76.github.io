@@ -265,7 +265,7 @@ html, body {
   font-family: "Cascadia Code", monospace;
   color: #a277ff;
   font-size: clamp(0.5rem, 4vw, 1.0rem);
-  background-image: url('./assets/white-diamond.png');
+  background-image: url('./assets/bright-squares.png');
   background-repeat: repeat;
   background-size: auto;
   background-attachment: fixed;

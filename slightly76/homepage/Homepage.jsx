@@ -486,9 +486,9 @@ function App() {
 					<span className='glow-highlight pink'>backend & frontend</span>{' '}
 					projects like NC News and even have the{' '}
 					<span className='glow-highlight blue'>confidence</span> to dive into a
-					library like <span className='glow-highlight pink'>Phaser</span> to
-					have fun making games again. This is great, because{' '}
-					<span className='glow-highlight blue'>I love games</span>.
+					library like <span className='glow-highlight pink'>Phaser</span> and
+					have fun making games again, like I did in my youth. This is great,
+					because <span className='glow-highlight blue'>I love games</span>.
 					<br />
 					<br />
 					As you can probably tell, I like to roll up my sleeves and have a go.
