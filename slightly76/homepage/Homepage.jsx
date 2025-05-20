@@ -279,12 +279,12 @@
 
 // export default Homepage;
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './homepage.css';
 
 const CARD_GAP_VH = 3;
 const FINAL_CARD_HEIGHT_VH = 85;
-const EXTRA_SCROLL_BUFFER_VH = 5;
+const EXTRA_SCROLL_BUFFER_VH = 20;
 
 function App() {
 	const scrollRef = useRef(null);
@@ -295,31 +295,82 @@ function App() {
 			title: '//welcome',
 			borderColor: '#4dffca;',
 			content: (
-				<div className='header-panel'>
+				<div
+					className='header-panel glow-highlight'
+					style={{ position: 'relative' }}
+				>
+					{/* <div className='vertical-glow-band' /> */}
+
 					<div className='header-top'>
-						<div className='image-wrapper'>
-							<img
-								src='./assets/me.jpg'
-								className='hover-image base'
-								alt='Me'
-							/>
-							<img
-								src='./assets/mehover.jpg'
-								className='hover-image hover'
-								alt='Me Hovering'
-							/>
-						</div>
 						<div className='header-text'>
 							<h1 className='name-heading'>Chris Askew</h1>
-							<h2 className='accent'>Junior Software</h2>
-							<h2 className='accent'>& Game Dev</h2>
+							<div className='glow-bar' />
+							<div
+								className='image-and-stats'
+								style={{ display: 'flex', alignItems: 'center' }}
+							>
+								<div className='image-wrapper'>
+									<img
+										src='./assets/me.jpg'
+										className='hover-image base'
+										alt='Me'
+									/>
+									<img
+										src='./assets/mehover.jpg'
+										className='hover-image hover'
+										alt='Me Hovering'
+									/>
+								</div>
+
+								<div className='stats-panel'>
+									<div>
+										<span className='label'>*STATS*</span>
+									</div>
+									<br />
+									<div>
+										<span className='label'>LVL:</span> 1
+									</div>
+									<br />
+									<div>
+										<span className='label'>Class:</span> Jnr Dev
+									</div>
+									<br />
+									<div>
+										<span className='label'>HP:</span> 100 / 100
+									</div>
+									<br />
+									<div>
+										<span className='label'>XP:</span> 49 /
+										<span className='infinity-symbol'>∞</span>
+									</div>
+									<br />
+									<div>
+										<span className='label'>Special Moves:</span> Gaming &
+										Snacks
+									</div>
+								</div>
+							</div>
+
+							<div className='glow-bar' />
+							<h2>Junior Software</h2>
+							<h2>& Game Dev</h2>
 						</div>
 					</div>
+					<br />
+					<br />
+
 					<div className='header-slug'>
+						<br />
+						<br />
+
 						<p>
 							At 49 it feels weird calling myself a Junior <i>anything</i>, but
 							here we are.
 						</p>
+						<div class='scroll-hint delayed-hint'>
+							<div class='scroll-text'>GO!</div>
+							<div class='scroll-arrow'>▽</div>
+						</div>
 					</div>
 				</div>
 			),
@@ -330,38 +381,121 @@ function App() {
 			borderColor: '#f694ff',
 			content: (
 				<>
-					<h3>softSkills =</h3>
+					<h3 style={{ color: '#a277ff' }}>softSkills =</h3>
+					<br />
 					<div className='skills-list'>
 						<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
 						<div className='skills-indent'>
 							<h3>{'JavaScript,'}</h3>
 							<h3>{'Full Stack,'}</h3>
 							<h3>{'Phaser,'}</h3>
+							<h3>Test Driven Development,</h3>
 						</div>
 						<h3 style={{ color: '#a277ff' }}>{'},'}</h3>
 						<p></p>
 
 						<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
 						<div className='skills-indent'>
-							<h3>Test Driven Development,</h3>
 							<h3>{'Pair Programming,'}</h3>
 							<h3>{'SCRUM Methodologies,'}</h3>
 							<h3>{'Problem Solving,'}</h3>
+							<h3>{'Collaboration,'}</h3>
+							<h3>{'Adaptability,'}</h3>
 							<h3>{'Active Listening,'}</h3>
 							<h3>{'Empathy,'}</h3>
 							<h3>{'Mentorship,'}</h3>
+							<h3>{'Initiative,'}</h3>
+							<h3>{'Resilience,'}</h3>
+							<h3>{'Set Pieces'}</h3>
+							<h3>{'& Vibe Coding '}</h3>
 							<h3>
-								{'Vibe Coding '} <i>//whisper it</i>
+								<i>//whisper_it</i>
 							</h3>
 						</div>
 						<h3 style={{ color: '#a277ff' }}>{'}'}</h3>
+						<br />
+						<h3 style={{ color: '#a277ff' }}>softSkills++</h3>
 					</div>
 				</>
 			),
 		},
 		{ title: '//toolbox', borderColor: '#82e2ff' },
-		{ title: '//about me; then', borderColor: '#a277ff' },
-		{ title: '//about me; now', borderColor: '#a277ff' },
+		{
+			title: '//about me then',
+			borderColor: '#a277ff',
+			content: (
+				<div className='aboutMe'>
+					<p>
+						For the last 20 years I provided{' '}
+						<span className='glow-highlight blue'>tech support</span> to a
+						flourishing Animation & Design BA(Hons) Degree programme in the UK.
+						Aside from the day to day{' '}
+						<span className='glow-highlight pink'>problem solving</span> and
+						session prep, I loved offering{' '}
+						<span className='glow-highlight blue'>critical feedback</span>,{' '}
+						<span className='glow-highlight blue'>technical mentorship</span>{' '}
+						and <span className='glow-highlight blue'>pastoral care</span> to
+						the students - often{' '}
+						<span className='glow-highlight pink'>supporting colleagues</span>{' '}
+						in adjacent creative disciplines like Film/TV & Graphic Design - and
+						even supplying{' '}
+						<span className='glow-highlight blue'>voice acting</span> for
+						student films.
+						<br />
+						<br />
+						Some of my former students have gone on to win BAFTAs for their work
+						and I'm immensely proud to have beem even a tiny part of their{' '}
+						<span className='glow-highlight blue'>journey</span>.
+						<br />
+						<br />
+						Owing to rampant financial insecurity in Higher Education, I've
+						found myself out of work for the first time since I was a teenager.
+						However, I've grasped the opportunity to pivot towards a{' '}
+						<span className='glow-highlight blue'>new challenge</span> in
+						Software Dev, which is something I always wanted to do when I was
+						younger.
+					</p>
+				</div>
+			),
+		},
+		{
+			title: '//about me now',
+			borderColor: '#a277ff',
+			content: (
+				<p>
+					As you can see from the toolbox card, I'm{' '}
+					<span className='glow-highlight blue'>comfortable</span> with a wide
+					range of various <span className='glow-highlight pink'>tech</span>,
+					both new & old and I relish nothing more than having a{' '}
+					<span className='glow-highlight blue'>tinker</span> with stuff. My
+					partner often mocks me when I fire up a game on my PC only to fiddle
+					with the settings for ages rather than just play the game.
+					<br />
+					<br />
+					Thanks to an intense 13-week JavaScript bootcamp at{' '}
+					<a
+						href='https://northcoders.com/'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						Northcoders
+					</a>
+					, I can now <span className='glow-highlight pink'>create</span> React
+					driven <span className='glow-highlight pink'>websites</span> styled
+					with CSS like this one, work with both{' '}
+					<span className='glow-highlight pink'>backend & frontend</span>{' '}
+					projects like NC News and even have the{' '}
+					<span className='glow-highlight blue'>confidence</span> to dive into a
+					library like <span className='glow-highlight pink'>Phaser</span> to
+					have fun making games again. This is great, because{' '}
+					<span className='glow-highlight blue'>I love games</span>.
+					<br />
+					<br />
+					As you can probably tell, I like to roll up my sleeves and have a go.
+					I'm ready to get stuck in to your next project.
+				</p>
+			),
+		},
 		{ title: '//contact', borderColor: '#4dffca' },
 	];
 
@@ -381,9 +515,29 @@ function App() {
 		});
 	};
 
+	useEffect(() => {
+		const wrapper = scrollRef.current;
+		const lastAnchor = anchorsRef.current[cards.length - 1];
+		if (!wrapper || !lastAnchor) return;
+
+		const onScroll = () => {
+			const maxScrollY =
+				lastAnchor.offsetTop +
+				wrapper.clientHeight -
+				(FINAL_CARD_HEIGHT_VH * window.innerHeight) / 100;
+
+			if (wrapper.scrollTop > maxScrollY) {
+				wrapper.scrollTop = maxScrollY;
+			}
+		};
+
+		wrapper.addEventListener('scroll', onScroll);
+		return () => wrapper.removeEventListener('scroll', onScroll);
+	}, []);
+
 	return (
 		<div className='scroll-container' ref={scrollRef}>
-			<div className='scroll-lock-wrapper' ref={scrollRef}>
+			<div className='scroll-lock-wrapper'>
 				<div
 					className='page'
 					style={{
@@ -393,7 +547,12 @@ function App() {
 					{cards.map((card, index) => {
 						const isLast = index === cards.length - 1;
 						const topOffset = `${index * CARD_GAP_VH}vh`;
-						const cardHeight = isLast ? `${FINAL_CARD_HEIGHT_VH}vh` : '95vh';
+						const cardHeight =
+							index === cards.length - 1
+								? `${FINAL_CARD_HEIGHT_VH}vh`
+								: index === 5 // or whatever index card-4 is
+								? '80vh' // slightly shorter
+								: '95vh';
 
 						return (
 							<React.Fragment key={index}>
@@ -402,10 +561,9 @@ function App() {
 									className='card-anchor'
 								/>
 								<div
-									className='card'
+									className={`card card-${index}`}
 									style={{
 										backgroundColor: card.bg,
-
 										zIndex: index + 1,
 										top: topOffset,
 										minHeight: cardHeight,
@@ -413,26 +571,32 @@ function App() {
 										position: 'sticky',
 									}}
 								>
-									<div
-										className='card-inner'
-										style={{ borderTop: `4px solid ${card.borderColor}` }}
-									>
-										{/* {index !== 0 && ( */}
+									<div className='card-inner-clip'>
 										<div
-											className='card-peek'
-											onClick={() => scrollToCard(index)}
+											className='card-inner'
+											style={{
+												// borderTop: `6px solid ${card.borderColor}`,
+												maxHeight: '100%',
+												overflowY: 'auto',
+											}}
 										>
-											{card.title}
+											{/* {index !== 0 && ( */}
+											<div
+												className='card-peek'
+												onClick={() => scrollToCard(index)}
+											>
+												{card.title}
+											</div>
+											{/* )} */}
+											{card.content ? (
+												card.content
+											) : (
+												<>
+													<h2>{card.title}</h2>
+													<p>This is {card.title} content.</p>
+												</>
+											)}
 										</div>
-										{/* )} */}
-										{card.content ? (
-											card.content
-										) : (
-											<>
-												<h2>{card.title}</h2>
-												<p>This is {card.title} content.</p>
-											</>
-										)}
 									</div>
 								</div>
 							</React.Fragment>
@@ -445,9 +609,11 @@ function App() {
 							height: '900vh',
 							visibility: 'hidden',
 							pointerEvents: 'none',
+							zIndex: -2,
 						}}
 					/>
 				</div>
+				<div className='final-glow-blocker' />
 			</div>
 		</div>
 	);
