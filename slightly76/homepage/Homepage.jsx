@@ -281,6 +281,14 @@
 
 import React, { useRef, useEffect } from 'react';
 import './homepage.css';
+import PhaserLogo from '/assets/logos/phaser-logo.svg?react';
+import AudacityLogo from '/assets/logos/audacity-logo.svg?react';
+import ReasonLogo from '/assets/logos/reason-logo.svg?react';
+import ToonBoomLogo from '/assets/logos/toonboom-logo.svg?react';
+import TiledLogo from '/assets/logos/tiled-logo.svg?react';
+import DiscordLogo from '/assets/logos/discord-logo.svg?react';
+import FigmaLogo from '/assets/logos/figma-logo.svg?react';
+import TrelloLogo from '/assets/logos/trello-logo.svg?react';
 
 const CARD_GAP_VH = 3;
 const FINAL_CARD_HEIGHT_VH = 85;
@@ -323,53 +331,54 @@ function App() {
 								</div>
 
 								<div className='stats-panel'>
-									<div>
+									{/* <div>
 										<span className='label'>*STATS*</span>
+									</div> */}
+									<br />
+									<div>
+										<span className='label'>LVL</span>
+										<br /> 1 (New Game+)
 									</div>
 									<br />
 									<div>
-										<span className='label'>LVL:</span> 1
+										<span className='label'>Class</span>
+										<br /> Jnr Dev
 									</div>
 									<br />
 									<div>
-										<span className='label'>Class:</span> Jnr Dev
+										<span className='label'>HP</span>
+										<br /> 100 / 100
 									</div>
 									<br />
 									<div>
-										<span className='label'>HP:</span> 100 / 100
+										<span className='label'>XP</span>
+										<br /> 49 /<span className='infinity-symbol'>∞</span>
 									</div>
 									<br />
 									<div>
-										<span className='label'>XP:</span> 49 /
-										<span className='infinity-symbol'>∞</span>
-									</div>
-									<br />
-									<div>
-										<span className='label'>Special Moves:</span> Gaming &
-										Snacks
+										<span className='label'>Feats</span>
+										<br />
+										Gaming, Green Ticks & Summoning Rubber Duck 🦆
 									</div>
 								</div>
 							</div>
 
 							<div className='glow-bar' />
-							<h2>Junior Software</h2>
-							<h2>& Game Dev</h2>
-						</div>
-					</div>
-					<br />
-					<br />
+							<div className='career-section'>
+								<h2 className='section-title'>
+									Junior Software
+									<br />& Game Dev
+								</h2>
 
-					<div className='header-slug'>
-						<br />
-						<br />
-
-						<p>
-							At 49 it feels weird calling myself a Junior <i>anything</i>, but
-							here we are.
-						</p>
-						<div class='scroll-hint delayed-hint'>
-							<div class='scroll-text'>GO!</div>
-							<div class='scroll-arrow'>▽</div>
+								<p className='career-subtext'>
+									At 49 it feels weird calling myself a Junior <i>anything</i>,
+									but here we are.
+								</p>
+							</div>
+							<div class='scroll-hint delayed-hint'>
+								<div class='scroll-text'>GO!</div>
+								<div class='scroll-arrow'>▽</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -381,45 +390,115 @@ function App() {
 			borderColor: '#f694ff',
 			content: (
 				<>
-					<h3 style={{ color: '#a277ff' }}>softSkills =</h3>
-					<br />
-					<div className='skills-list'>
-						<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
-						<div className='skills-indent'>
-							<h3>{'JavaScript,'}</h3>
-							<h3>{'Full Stack,'}</h3>
-							<h3>{'Phaser,'}</h3>
-							<h3>Test Driven Development,</h3>
-						</div>
-						<h3 style={{ color: '#a277ff' }}>{'},'}</h3>
-						<p></p>
+					<div className='career-section'>
+						<h3 style={{ color: '#a277ff' }}>softSkills =</h3>
+						<br />
+						<div className='skills-list'>
+							<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
+							<div className='skills-indent'>
+								<h3>{'JavaScript,'}</h3>
+								<h3>{'Full Stack,'}</h3>
+								<h3>{'Phaser,'}</h3>
+								<h3>Test Driven Development,</h3>
+							</div>
+							<h3 style={{ color: '#a277ff' }}>{'},'}</h3>
+							<p></p>
 
-						<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
-						<div className='skills-indent'>
-							<h3>{'Pair Programming,'}</h3>
-							<h3>{'SCRUM Methodologies,'}</h3>
-							<h3>{'Problem Solving,'}</h3>
-							<h3>{'Collaboration,'}</h3>
-							<h3>{'Adaptability,'}</h3>
-							<h3>{'Active Listening,'}</h3>
-							<h3>{'Empathy,'}</h3>
-							<h3>{'Mentorship,'}</h3>
-							<h3>{'Initiative,'}</h3>
-							<h3>{'Resilience,'}</h3>
-							<h3>{'Set Pieces'}</h3>
-							<h3>{'& Vibe Coding '}</h3>
-							<h3>
-								<i>//whisper_it</i>
+							<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
+							<div className='skills-indent'>
+								<h3>{'Pair Programming,'}</h3>
+								<h3>{'SCRUM Methodologies,'}</h3>
+								<h3>{'Problem Solving,'}</h3>
+								<h3>{'Collaboration,'}</h3>
+								<h3>{'Adaptability,'}</h3>
+								<h3>{'Active Listening,'}</h3>
+								<h3>{'Empathy,'}</h3>
+								<h3>{'Mentorship,'}</h3>
+								<h3>{'Initiative,'}</h3>
+								<h3>{'Resilience,'}</h3>
+								<h3>{'Taking Set Pieces'}</h3>
+								<h3>{'& Vibe Coding '}</h3>
+								<h3>
+									<div className='whisper-text'>
+										<i>//whisper_it</i>
+									</div>
+								</h3>
+							</div>
+							<h3 style={{ color: '#a277ff' }}>{'}'}</h3>
+							<br />
+							<h3 style={{ color: '#a277ff' }}>
+								softSkills<span className='plus-glow'>++</span>
 							</h3>
 						</div>
-						<h3 style={{ color: '#a277ff' }}>{'}'}</h3>
-						<br />
-						<h3 style={{ color: '#a277ff' }}>softSkills++</h3>
 					</div>
 				</>
 			),
 		},
-		{ title: '//toolbox', borderColor: '#82e2ff' },
+		{
+			title: '//toolbox',
+			borderColor: '#82e2ff',
+			content: (
+				<>
+					<div className='icon-grid'>
+						<i
+							data-tooltip-id='javascript-tooltip'
+							data-tooltip-content="I'd never touched JavaScript before but thanks to Northcoders I've used it every day since January!"
+							className='devicon-javascript-plain'
+						></i>
+						<i
+							data-tooltip-id='nodejs-tooltip'
+							data-tooltip-content="This JavaScript RTE is another Northcoder's essential."
+							className='devicon-nodejs-plain-wordmark'
+						></i>
+						<i
+							data-tooltip-id='npm-tooltip'
+							data-tooltip-content='My favourite package manager. Other package managers exist but in my experience, NPM stands for No Problem Mate.'
+							className='devicon-npm-original-wordmark'
+						></i>
+						<i
+							data-tooltip-id='jest-tooltip'
+							data-tooltip-content='Jest puts the T in TDD. Love me some green ticks.'
+							className='devicon-jest-plain'
+						></i>
+						<PhaserLogo
+							data-tooltip-id='phaser-tooltip'
+							data-tooltip-content="Phaser is amazing for Game Dev in JS. Nothing else comes close. I can't recommend it enough"
+							className='tech-icon phaser-logo'
+						/>
+						<i
+							data-tooltip-id='react-tooltip'
+							data-tooltip-html='<em>State</em> of the art UI elements with React. See what I did there?'
+							className='devicon-react-original'
+						></i>
+						<i className='devicon-reactrouter-plain'></i>
+						<i className='devicon-postgresql-plain'></i>
+						<i className='devicon-axios-plain'></i>
+						<i className='devicon-css3-plain'></i>
+						<i className='devicon-github-original'></i>
+						<i className='devicon-lodash-plain'></i>
+						<i className='devicon-vite-original'></i>
+						<i className='devicon-supabase-plain'></i>
+						<i className='devicon-vscode-plain'></i>
+						<div className='glow-bar'></div>
+						<i className='devicon-photoshop-plain'></i>
+						<i className='devicon-premierepro-plain'></i>
+						<ReasonLogo className='tech-icon' />
+						<AudacityLogo className='tech-icon audacity-icon' />
+						<ToonBoomLogo className='tech-icon' />
+						<TiledLogo className='tech-icon' />
+						<FigmaLogo className='tech-icon' />
+						<TrelloLogo className='tech-icon' />
+						<DiscordLogo className='tech-icon' />
+						<i className='devicon-slack-plain'></i>
+						<i className='devicon-msdos-line'></i>
+						<i className='devicon-windows8-original'></i>
+						<i className='devicon-apple-original'></i>
+						<i className='devicon-raspberrypi-plain'></i>
+					</div>
+				</>
+			),
+		},
+		{ title: '//projects', borderColor: '#4dffca' },
 		{
 			title: '//about me then',
 			borderColor: '#a277ff',
@@ -433,7 +512,7 @@ function App() {
 						<span className='glow-highlight pink'>problem solving</span> and
 						session prep, I loved offering{' '}
 						<span className='glow-highlight blue'>critical feedback</span>,{' '}
-						<span className='glow-highlight blue'>technical mentorship</span>{' '}
+						<span className='glow-highlight pink'>technical mentorship</span>{' '}
 						and <span className='glow-highlight blue'>pastoral care</span> to
 						the students - often{' '}
 						<span className='glow-highlight pink'>supporting colleagues</span>{' '}
@@ -490,12 +569,13 @@ function App() {
 					have fun making games again, like I did in my youth. This is great,
 					because <span className='glow-highlight blue'>I love games</span>.
 					<br />
-					<br />
-					As you can probably tell, I like to roll up my sleeves and have a go.
-					I'm ready to get stuck in to your next project.
+					<br />I thrive on hands-on problem solving and experimentation. I
+					always ready to roll up my sleeves & have a go and I'm excited to get
+					stuck in to your next project.
 				</p>
 			),
 		},
+
 		{ title: '//contact', borderColor: '#4dffca' },
 	];
 
@@ -517,22 +597,47 @@ function App() {
 
 	useEffect(() => {
 		const wrapper = scrollRef.current;
-		const lastAnchor = anchorsRef.current[cards.length - 1];
-		if (!wrapper || !lastAnchor) return;
+		if (!wrapper) return;
 
-		const onScroll = () => {
-			const maxScrollY =
-				lastAnchor.offsetTop +
-				wrapper.clientHeight -
-				(FINAL_CARD_HEIGHT_VH * window.innerHeight) / 100;
+		let timeoutId = null;
+		let lastStickyCard = null;
+		let lastScrollTop = wrapper.scrollTop;
 
-			if (wrapper.scrollTop > maxScrollY) {
-				wrapper.scrollTop = maxScrollY;
+		const onScrollLock = () => {
+			const scrollY = wrapper.scrollTop;
+
+			for (let i = 0; i < anchorsRef.current.length; i++) {
+				const anchor = anchorsRef.current[i];
+				if (!anchor) continue;
+
+				const anchorTop = anchor.offsetTop;
+				const anchorBottom = anchorTop + wrapper.offsetHeight;
+
+				if (scrollY >= anchorTop && scrollY < anchorBottom) {
+					if (lastStickyCard !== i) {
+						lastStickyCard = i;
+
+						//prevent juddering
+						wrapper.scrollTop = anchorTop;
+
+						//then lock scrolling
+						wrapper.style.overflowY = 'hidden';
+
+						clearTimeout(timeoutId);
+						timeoutId = setTimeout(() => {
+							wrapper.style.overflowY = 'auto';
+						}, 700);
+					}
+					break;
+				}
 			}
 		};
 
-		wrapper.addEventListener('scroll', onScroll);
-		return () => wrapper.removeEventListener('scroll', onScroll);
+		wrapper.addEventListener('scroll', onScrollLock);
+		return () => {
+			wrapper.removeEventListener('scroll', onScrollLock);
+			clearTimeout(timeoutId);
+		};
 	}, []);
 
 	return (
