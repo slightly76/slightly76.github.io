@@ -718,7 +718,8 @@ function App() {
 						new. I relish nothing more than having a{' '}
 						<span className='glow-highlight blue'>tinker</span> with stuff. My
 						partner often mocks me when I fire up a game on my PC only to fiddle
-						with the settings for ages rather than just play the game.
+						with the settings for ages rather than just play the game. Don't get
+						me started on modding ...
 						<br />
 						<br />
 						Thanks to an intense 13-week JavaScript bootcamp at{' '}
@@ -738,11 +739,17 @@ function App() {
 						headfirst into a library like{' '}
 						<span className='glow-highlight pink'>Phaser</span> and enjoy myself
 						making games again, like I did in my youth. This is great, because;{' '}
-						<span className='glow-highlight blue'>I. Love. Games.</span>
+						<span className='glow-highlight blue'>I love games</span>. My Steam
+						library is overflowing, I adore retro gaming and I have over 200
+						boardgames. I. Love. Games.
 						<br />
-						<br />I thrive on hands-on problem solving and experimentation. I'm
-						always ready to roll up my sleeves & have a go and I'm excited to
-						get stuck in to your next project.
+						<br />I thrive on{' '}
+						<span className='glow-highlight blue'>hands-on</span> problem
+						solving and experimentation. I'm always ready to roll up my sleeves
+						& <span className='glow-highlight blue'>have a go</span> and I'm
+						excited to
+						<span className='glow-highlight blue'>get stuck in</span> to your
+						next project.
 					</p>
 				</div>
 			),
