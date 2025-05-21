@@ -278,9 +278,9 @@
 // }
 
 // export default Homepage;
-
-import React, { useRef, useEffect } from 'react';
 import './homepage.css';
+import React, { useRef, useEffect } from 'react';
+import { Tooltip } from 'react-tooltip';
 import PhaserLogo from '/assets/logos/phaser-logo.svg?react';
 import AudacityLogo from '/assets/logos/audacity-logo.svg?react';
 import ReasonLogo from '/assets/logos/reason-logo.svg?react';
@@ -289,6 +289,8 @@ import TiledLogo from '/assets/logos/tiled-logo.svg?react';
 import DiscordLogo from '/assets/logos/discord-logo.svg?react';
 import FigmaLogo from '/assets/logos/figma-logo.svg?react';
 import TrelloLogo from '/assets/logos/trello-logo.svg?react';
+import SteamLogo from '/assets/logos/steam-logo.svg?react';
+import { HiOutlineMailOpen } from 'react-icons/hi';
 
 const CARD_GAP_VH = 3;
 const FINAL_CARD_HEIGHT_VH = 85;
@@ -337,7 +339,7 @@ function App() {
 									<br />
 									<div>
 										<span className='label'>LVL</span>
-										<br /> 1 (New Game+)
+										<br /> 1 (New Career+)
 									</div>
 									<br />
 									<div>
@@ -358,7 +360,8 @@ function App() {
 									<div>
 										<span className='label'>Feats</span>
 										<br />
-										Gaming, Green Ticks & Summoning Rubber Duck 🦆
+										Gaming, Green Ticks & Summoning Rubber Ducks
+										<a href='https://www.vecteezy.com/free-vector/rubber-duck'></a>
 									</div>
 								</div>
 							</div>
@@ -385,64 +388,131 @@ function App() {
 			),
 		},
 
+		// {
+		// 	title: '//skillset',
+		// 	borderColor: '#f694ff',
+		// 	content: (
+		// 		<>
+		// 			<div className='career-section'>
+		// 				<h3 style={{ color: '#a277ff' }}>softSkills =</h3>
+		// 				<br />
+		// 				<div className='skills-list'>
+		// 					<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
+		// 					<div className='skills-indent'>
+		// 						<h3>{'JavaScript,'}</h3>
+		// 						<h3>{'Full Stack,'}</h3>
+		// 						<h3>{'Phaser,'}</h3>
+		// 						<h3>Test Driven Development,</h3>
+		// 					</div>
+		// 					<h3 style={{ color: '#a277ff' }}>{'},'}</h3>
+		// 					<p></p>
+
+		// 					<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
+		// 					<div className='skills-indent'>
+		// 						<h3>{'Pair Programming,'}</h3>
+		// 						<h3>{'SCRUM Methodologies,'}</h3>
+		// 						<h3>{'Problem Solving,'}</h3>
+		// 						<h3>{'Collaboration,'}</h3>
+		// 						<h3>{'Adaptability,'}</h3>
+		// 						<h3>{'Active Listening,'}</h3>
+		// 						<h3>{'Empathy,'}</h3>
+		// 						<h3>{'Mentorship,'}</h3>
+		// 						<h3>{'Initiative,'}</h3>
+		// 						<h3>{'Resilience,'}</h3>
+		// 						<h3>{'Corners / Set Pieces'}</h3>
+		// 						<h3>{'& Vibe Coding '}</h3>
+		// 						<h3>
+		// 							<div className='whisper-text'>
+		// 								<i>//whisper_it</i>
+		// 							</div>
+		// 						</h3>
+		// 					</div>
+		// 					<h3 style={{ color: '#a277ff' }}>{'}'}</h3>
+		// 					<br />
+		// 					<h3 style={{ color: '#a277ff' }}>
+		// 						softSkills<span className='plus-glow'>++</span>
+		// 					</h3>
+		// 				</div>
+		// 			</div>
+		// 		</>
+		// 	),
+		// },
 		{
 			title: '//skillset',
 			borderColor: '#f694ff',
 			content: (
-				<>
-					<div className='career-section'>
-						<h3 style={{ color: '#a277ff' }}>softSkills =</h3>
-						<br />
-						<div className='skills-list'>
-							<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
-							<div className='skills-indent'>
-								<h3>{'JavaScript,'}</h3>
-								<h3>{'Full Stack,'}</h3>
-								<h3>{'Phaser,'}</h3>
-								<h3>Test Driven Development,</h3>
-							</div>
-							<h3 style={{ color: '#a277ff' }}>{'},'}</h3>
-							<p></p>
-
-							<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
-							<div className='skills-indent'>
-								<h3>{'Pair Programming,'}</h3>
-								<h3>{'SCRUM Methodologies,'}</h3>
-								<h3>{'Problem Solving,'}</h3>
-								<h3>{'Collaboration,'}</h3>
-								<h3>{'Adaptability,'}</h3>
-								<h3>{'Active Listening,'}</h3>
-								<h3>{'Empathy,'}</h3>
-								<h3>{'Mentorship,'}</h3>
-								<h3>{'Initiative,'}</h3>
-								<h3>{'Resilience,'}</h3>
-								<h3>{'Taking Set Pieces'}</h3>
-								<h3>{'& Vibe Coding '}</h3>
-								<h3>
-									<div className='whisper-text'>
-										<i>//whisper_it</i>
-									</div>
-								</h3>
-							</div>
-							<h3 style={{ color: '#a277ff' }}>{'}'}</h3>
-							<br />
-							<h3 style={{ color: '#a277ff' }}>
-								softSkills<span className='plus-glow'>++</span>
-							</h3>
+				<div class='soft-skills-container'>
+					<h3 class='skills-title'>let softSkills = {'{'}</h3>
+					<div class='skills-object'>
+						<div class='skills-category'>
+							<h4 class='category-label'>technical: [</h4>
+							<ul class='skills-list'>
+								<li>"JavaScript",</li>
+								<li>"Full Stack",</li>
+								<li>"Phaser",</li>
+								<li>"Test Driven Development",</li>
+								<li>"Problem Solving"</li>
+								<h4 class='category-label'>] , [</h4>
+							</ul>
+						</div>
+						<div class='skills-category'>
+							<h4 class='category-label'>interpersonal:</h4>
+							<ul class='skills-list'>
+								<li>"Pair Programming",</li>
+								<li>"SCRUM Methodologies",</li>
+								<li>"Collaboration",</li>
+								<li>"Adaptability",</li>
+								<li>"Active Listening",</li>
+								<li>"Mentorship",</li>
+								<li>"Initiative",</li>
+								<li>"Resilience",</li>
+								<li>"Set Pieces",</li>
+								<li class='whisper-skill'>
+									"Vibe Coding"{' '}
+									<span class='whisper-comment'>//whisper_it</span>
+								</li>
+								<h4 class='category-label'>]</h4>
+								<h3 class='skills-title'>{'}'}</h3>
+							</ul>
 						</div>
 					</div>
-				</>
+					<pre class='level-up-block'>
+						<span class='keyword'>function</span>{' '}
+						<span class='comment'>levelUp</span>(
+						<span class='comment'>skill</span>,
+						<span class='comment'> category</span>) {'{'}
+						<br />
+						<span class='keyword'>if</span> (!
+						<span class='comment'>softSkills</span>[
+						<span class='comment'>category</span>].includes(
+						<span class='comment'>skill</span>)) {'{'}
+						<br />
+						<span class='comment'>softSkills</span>[
+						<span class='comment'>category</span>].push(
+						<span class='comment'>skill</span>);
+						<br />
+						{'}'}
+						{'}'}
+						<br />
+						<br />
+						<span class='comment'>levelUp</span>("
+						<span class='string'>gainfulEmployment</span>", "
+						<span class='string'>interpersonal</span>");
+					</pre>
+				</div>
 			),
 		},
+
 		{
 			title: '//toolbox',
 			borderColor: '#82e2ff',
 			content: (
 				<>
+					<h2>//techStack</h2>
 					<div className='icon-grid'>
 						<i
 							data-tooltip-id='javascript-tooltip'
-							data-tooltip-content="I'd never touched JavaScript before but thanks to Northcoders I've used it every day since January!"
+							data-tooltip-content="I'd never touched JavaScript before but thanks to Northcoders I've used it literally every day since January!"
 							className='devicon-javascript-plain'
 						></i>
 						<i
@@ -462,38 +532,131 @@ function App() {
 						></i>
 						<PhaserLogo
 							data-tooltip-id='phaser-tooltip'
-							data-tooltip-content="Phaser is amazing for Game Dev in JS. Nothing else comes close. I can't recommend it enough"
-							className='tech-icon phaser-logo'
+							data-tooltip-content="Phaser is amazing for Game Dev in JS. Nothing else comes close. I simply can't recommend it enough!"
+							className='phaser-logo'
 						/>
 						<i
 							data-tooltip-id='react-tooltip'
-							data-tooltip-html='<em>State</em> of the art UI elements with React. See what I did there?'
+							data-tooltip-content='𝑺𝒕𝒂𝒕𝒆 of the art UI elements with React. See what I did there?'
 							className='devicon-react-original'
 						></i>
-						<i className='devicon-reactrouter-plain'></i>
-						<i className='devicon-postgresql-plain'></i>
-						<i className='devicon-axios-plain'></i>
-						<i className='devicon-css3-plain'></i>
-						<i className='devicon-github-original'></i>
-						<i className='devicon-lodash-plain'></i>
-						<i className='devicon-vite-original'></i>
-						<i className='devicon-supabase-plain'></i>
-						<i className='devicon-vscode-plain'></i>
+						<i
+							data-tooltip-id='reactrouter-tooltip'
+							data-tooltip-content='Routing and navigation in React. Used in NC News.'
+							className='devicon-reactrouter-plain'
+						></i>
+						<i
+							data-tooltip-id='postgresql-tooltip'
+							data-tooltip-content='PostgreSQL relational database management system. Used in NC News.'
+							className='devicon-postgresql-plain'
+						></i>
+						<i
+							data-tooltip-id='axios-tooltip'
+							data-tooltip-content="I 𝑝𝑟𝑜𝑚𝑖𝑠𝑒 I've used this to fetch data asynchronously. Used in NC News."
+							className='devicon-axios-plain'
+						></i>
+						<i
+							data-tooltip-id='css-tooltip'
+							data-tooltip-content="Sheets that cascade with style? You're looking at one."
+							className='devicon-css3-plain'
+						></i>
+						<i
+							data-tooltip-id='github-tooltip'
+							data-tooltip-content='Version control I can 𝑐𝑜𝑚𝑚𝑖𝑡 to.'
+							className='devicon-github-original'
+						></i>
+						<i
+							data-tooltip-id='lodash-tooltip'
+							data-tooltip-content='Lodash to the rescue. Hip-Hip Array!'
+							className='devicon-lodash-plain'
+						></i>
+						<i
+							data-tooltip-id='vite-tooltip'
+							data-tooltip-content="Isn't everyone 𝑑𝑒𝑝𝑒𝑛𝑑𝑒𝑛𝑡 on Vite? My go to bundle of joy."
+							className='devicon-vite-original'
+						></i>
+						<i
+							data-tooltip-id='supabase-tooltip'
+							data-tooltip-content='Supabase open source database hosting. BaaS Queen! Used in NC News.'
+							className='devicon-supabase-plain'
+						></i>
+						<i
+							data-tooltip-id='vscode-tooltip'
+							data-tooltip-content='VS Code puts the 𝑔𝑟𝑒𝑎𝑡 in Integrated Development Environment.'
+							className='devicon-vscode-plain'
+						></i>
+
 						<div className='glow-bar'></div>
-						<i className='devicon-photoshop-plain'></i>
-						<i className='devicon-premierepro-plain'></i>
-						<ReasonLogo className='tech-icon' />
-						<AudacityLogo className='tech-icon audacity-icon' />
-						<ToonBoomLogo className='tech-icon' />
-						<TiledLogo className='tech-icon' />
-						<FigmaLogo className='tech-icon' />
-						<TrelloLogo className='tech-icon' />
-						<DiscordLogo className='tech-icon' />
-						<i className='devicon-slack-plain'></i>
-						<i className='devicon-msdos-line'></i>
-						<i className='devicon-windows8-original'></i>
-						<i className='devicon-apple-original'></i>
-						<i className='devicon-raspberrypi-plain'></i>
+
+						<i
+							data-tooltip-id='photoshop-tooltip'
+							data-tooltip-content="The go-to image manipulation tool. Others imitate, but these guys charge. Being comfortable in PS means I'm also down to use Gimp, Pixlr, Aseprite, MSPaint, etc..."
+							className='devicon-photoshop-plain'
+						></i>
+						<i
+							data-tooltip-id='premiere-tooltip'
+							data-tooltip-content='Ditto for video editing. Again, as a result I could also use Final Cut, DaVinci Resolve, maybe even Avid.'
+							className='devicon-premierepro-plain'
+						></i>
+						<ReasonLogo
+							data-tooltip-id='reason-tooltip'
+							data-tooltip-content='Reason is a Digital Audio Workstation (think Photoshop for sound). Its amazing. A veritable noise playground.'
+							className='tech-icon'
+						/>
+						<AudacityLogo
+							data-tooltip-id='audacity-tooltip'
+							data-tooltip-content="If Reason is Photoshop for Sound, then Audacity is MSPaint. Don't mock, it gets the job done."
+							className='tech-icon audacity-icon'
+						/>
+						<ToonBoomLogo
+							data-tooltip-id='toonboom-tooltip'
+							data-tooltip-content="I supported ToonBoom Harmony in a previous job. Look no further for an 'Industry Standard' 2D animation package."
+							className='tech-icon'
+						/>
+						<TiledLogo
+							data-tooltip-id='tiled-tooltip'
+							data-tooltip-content='Tiled is a great, FREE(!), open source level editor. We used it on StackDew Valley.'
+							className='tech-icon'
+						/>
+						<FigmaLogo
+							data-tooltip-id='figma-tooltip'
+							data-tooltip-content='Figma is a collaborative UX/UI design tool. No puns here. Too risky ... 👀'
+							className='tech-icon'
+						/>
+						<TrelloLogo
+							data-tooltip-id='trello-tooltip'
+							data-tooltip-content="Trello is a Kanban style collaborative project management tool. It must work because this website exists. If you don't know what Kanban is, I think they had a hit in '89 with 'I Beg Your Pardon'. The jokes are 𝑏𝑎𝑐𝑘, baby!"
+							className='tech-icon'
+						/>
+						<DiscordLogo
+							data-tooltip-id='discord-tooltip'
+							data-tooltip-content='Communication is key and Discord has it on 𝑙𝑜𝑐𝑘.'
+						/>
+						<i
+							data-tooltip-id='slack-tooltip'
+							data-tooltip-content='Slack makes Teams look like Skype, which made GooglePlus look like Usenet etc ...'
+							className='devicon-slack-plain'
+						></i>
+						<i
+							data-tooltip-id='msdos-tooltip'
+							data-tooltip-content='My familiarity with DOS made terminal feel cosy.'
+							className='devicon-msdos-line'
+						></i>
+						<i
+							data-tooltip-id='windows8-tooltip'
+							data-tooltip-content="I've used every version of Windows from 3.1 to 11."
+							className='devicon-windows8-original'
+						></i>
+						<i
+							data-tooltip-id='apple-tooltip'
+							data-tooltip-content="I'm also familiar with Apple OS from a previous job and was once certified for OSX."
+							className='devicon-apple-original'
+						></i>
+						<i
+							data-tooltip-id='raspberrypi-tooltip'
+							data-tooltip-content='I 𝑑𝑖𝑑 say I like to tinker.'
+							className='devicon-raspberrypi-plain'
+						></i>
 					</div>
 				</>
 			),
@@ -503,7 +666,7 @@ function App() {
 			title: '//about me then',
 			borderColor: '#a277ff',
 			content: (
-				<div className='aboutMe'>
+				<div className='aboutMe career-section'>
 					<p>
 						For the last 20 years I provided{' '}
 						<span className='glow-highlight blue'>tech support</span> to a
@@ -519,7 +682,9 @@ function App() {
 						in adjacent creative disciplines like Film/TV & Graphic Design - and
 						even supplying{' '}
 						<span className='glow-highlight blue'>voice acting</span> for
-						student films.
+						student films. I have a{' '}
+						<span className='glow-highlight blue'>Media Production</span> degree
+						myself, which helped.
 						<br />
 						<br />
 						Some of my former students have gone on to win BAFTAs for their work
@@ -541,43 +706,100 @@ function App() {
 			title: '//about me now',
 			borderColor: '#a277ff',
 			content: (
-				<p>
-					As you can see from the toolbox card, I'm{' '}
-					<span className='glow-highlight blue'>comfortable</span> with a wide
-					range of various <span className='glow-highlight pink'>tech</span>,
-					both new & old and I relish nothing more than having a{' '}
-					<span className='glow-highlight blue'>tinker</span> with stuff. My
-					partner often mocks me when I fire up a game on my PC only to fiddle
-					with the settings for ages rather than just play the game.
-					<br />
-					<br />
-					Thanks to an intense 13-week JavaScript bootcamp at{' '}
-					<a
-						href='https://northcoders.com/'
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						Northcoders
-					</a>
-					, I can now <span className='glow-highlight pink'>create</span> React
-					driven <span className='glow-highlight pink'>websites</span> styled
-					with CSS like this one, work with both{' '}
-					<span className='glow-highlight pink'>backend & frontend</span>{' '}
-					projects like NC News and even have the{' '}
-					<span className='glow-highlight blue'>confidence</span> to dive into a
-					library like <span className='glow-highlight pink'>Phaser</span> and
-					have fun making games again, like I did in my youth. This is great,
-					because <span className='glow-highlight blue'>I love games</span>.
-					<br />
-					<br />I thrive on hands-on problem solving and experimentation. I
-					always ready to roll up my sleeves & have a go and I'm excited to get
-					stuck in to your next project.
-				</p>
+				<div className='aboutMe career-section'>
+					<p>
+						As you can see from the toolbox card, I'm{' '}
+						<span className='glow-highlight blue'>comfortable</span> with a wide
+						range of various disciplines from{' '}
+						<span className='glow-highlight blue'>animation</span>, to{' '}
+						<span className='glow-highlight blue'>video editing</span>, to{' '}
+						<span className='glow-highlight blue'> musical composition</span>{' '}
+						and <span className='glow-highlight pink'>tech</span>, both old &
+						new. I relish nothing more than having a{' '}
+						<span className='glow-highlight blue'>tinker</span> with stuff. My
+						partner often mocks me when I fire up a game on my PC only to fiddle
+						with the settings for ages rather than just play the game.
+						<br />
+						<br />
+						Thanks to an intense 13-week JavaScript bootcamp at{' '}
+						<a
+							href='https://northcoders.com/'
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							Northcoders
+						</a>
+						, I can now <span className='glow-highlight pink'>create</span>{' '}
+						React driven <span className='glow-highlight pink'>websites</span>{' '}
+						styled with CSS like this one, work with both{' '}
+						<span className='glow-highlight pink'>backend & frontend</span>{' '}
+						projects like "NC News" and even have the{' '}
+						<span className='glow-highlight blue'>confidence</span> to dive
+						headfirst into a library like{' '}
+						<span className='glow-highlight pink'>Phaser</span> and enjoy myself
+						making games again, like I did in my youth. This is great, because;{' '}
+						<span className='glow-highlight blue'>I. Love. Games.</span>
+						<br />
+						<br />I thrive on hands-on problem solving and experimentation. I'm
+						always ready to roll up my sleeves & have a go and I'm excited to
+						get stuck in to your next project.
+					</p>
+				</div>
 			),
 		},
 
-		{ title: '//contact', borderColor: '#4dffca' },
+		{
+			title: '//contact me',
+			borderColor: '#4dffca',
+			content: (
+				<div className='career-section'>
+					<p>
+						I'm <i>actively</i> seeking work and I'm open to junior roles,
+						apprenticeships, contract work, and freelance opportunities. If you
+						like what you see and you want to know more, or you just want to
+						chastise me for the tech stack tooltip puns - feel free to get in
+						touch;{' '}
+					</p>
+					<br />
+					<a href='mailto:caskew@hotmail.com'>
+						<HiOutlineMailOpen style={{ marginRight: '0.5rem' }} />
+						Email
+					</a>
+					<br />
+					<br />
+					<a
+						href='https://github.com/slightly76'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						<i className='devicon-github-original'></i> GitHub
+					</a>
+					<br />
+					<br />
+					<a
+						href='https://www.linkedin.com/in/chris-askew-91812619a/'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						<i class='devicon-linkedin-plain'></i> LinkedIn
+					</a>
+					<br />
+					<br />
+					<a
+						href='https://steamcommunity.com/id/slightly76/'
+						target='_blank'
+						rel='noopener noreferrer'
+						className='contact-link'
+					>
+						<SteamLogo className='tech-icon steam-icon' />
+						Steam
+					</a>
+				</div>
+			),
+		},
 	];
+
+	let skipNextScrollLock = false;
 
 	const totalStickySpace =
 		(cards.length - 1) * CARD_GAP_VH +
@@ -588,11 +810,17 @@ function App() {
 		if (!scrollRef.current || !anchorsRef.current[index]) return;
 
 		const targetOffset = anchorsRef.current[index].offsetTop;
+		skipNextScrollLock = true;
 
 		scrollRef.current.scrollTo({
 			top: targetOffset,
 			behavior: 'smooth',
 		});
+
+		//re-enable scroll lock *after* smooth scroll finishes (around 600ms ish)
+		setTimeout(() => {
+			skipNextScrollLock = false;
+		}, 700);
 	};
 
 	useEffect(() => {
@@ -604,6 +832,10 @@ function App() {
 		let lastScrollTop = wrapper.scrollTop;
 
 		const onScrollLock = () => {
+			if (skipNextScrollLock) {
+				return;
+			}
+
 			const scrollY = wrapper.scrollTop;
 
 			for (let i = 0; i < anchorsRef.current.length; i++) {
@@ -620,7 +852,7 @@ function App() {
 						//prevent juddering
 						wrapper.scrollTop = anchorTop;
 
-						//then lock scrolling
+						//lock scrolling temporarily
 						wrapper.style.overflowY = 'hidden';
 
 						clearTimeout(timeoutId);
@@ -720,6 +952,152 @@ function App() {
 				</div>
 				<div className='final-glow-blocker' />
 			</div>
+
+			<Tooltip
+				id='javascript-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='nodejs-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='npm-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='jest-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='phaser-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='react-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='reactrouter-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='postgresql-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='axios-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='css-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='github-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='lodash-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='vite-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='supabase-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='vscode-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='photoshop-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='premiere-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='reason-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='audacity-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='toonboom-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='tiled-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='figma-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='trello-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='discord-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='slack-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='msdos-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='windows8-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='apple-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
+			<Tooltip
+				id='raspberrypi-tooltip'
+				className='custom-tooltip'
+				renderInPortal={true}
+			/>
 		</div>
 	);
 }

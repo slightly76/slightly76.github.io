@@ -327,11 +327,11 @@ html, body {
   position: sticky;
   top: 0;
   z-index: 1;
-  width: 75%;
+  width: 100%;
   min-height: 100vh !important;
   margin: 0 auto;
   margin-bottom: 3vh;
-  background-color: rgba(40, 29, 63, 0.99);
+  background-color: rgba(40, 29, 63, 1);
   box-shadow: inset 0 6px 0 0 #4dffca; 
   overflow: hidden;
   transition: transform 0.2s ease;
@@ -422,6 +422,11 @@ html, body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card-peek:hover {
+  text-shadow: 0 0 4px #f694ff, 0 0 8px #f694ff99;
+  color: #f694ff;
 }
 
 .name-heading {
@@ -653,7 +658,7 @@ html, body {
   width: 280px;
   position: relative;
   font-family: 'Silkscreen', monospace;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   line-height: 1.2;
   color: #82e2ff;
   padding: 1rem 1.5rem;
@@ -781,7 +786,7 @@ h3 {
 .career-subtext {
   font-family: 'Cascadia Code', monospace;
   font-size: clamp(0.7rem, 4vw, 0.9rem);
-  line-height: 1.0;
+  line-height: 1.2;
   color: #a277ff;
   margin-top: 1rem;
 }
@@ -857,6 +862,86 @@ h3 {
   animation: whisperGlow 6s ease-in-out infinite;
 }
 
+.whisper-comment {
+  color: #4dffca;
+}
+
+
+
+.plus-glow {
+  animation: softPulse 4s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    color: #a277ff;
+    text-shadow: none;
+  }
+  50% {
+    color: #f694ff;
+    text-shadow: 0 0 6px #f694ff66;
+  }
+}
+
+.soft-skills-container {
+  font-family: "Cascadia Code", monospace;
+  background: rgba(40, 29, 63, 0.95);
+  color: #a277ff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(77, 255, 202, 0.3);
+  max-width: 90%;
+  margin: 1rem auto;
+}
+
+.skills-title {
+  color: #f694ff;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.skills-object {
+  padding-left: 1rem;
+}
+
+.skills-category {
+  margin-bottom: 1rem;
+}
+
+.category-label {
+  color: #4dffca;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.skills-list {
+  list-style-type: none;
+  padding-left: 1.5rem;
+  color: #a277ff;
+}
+
+.skills-list li {
+  margin-bottom: 0.2rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.whisper-skill {
+  opacity: 0.7;
+  animation: whisperGlow 6s ease-in-out infinite;
+}
+
+.comment {
+  color: #f694ff;
+}
+
+.level-up {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  color: #82e2ff;
+  font-style: italic;
+}
+
 @keyframes whisperGlow {
   0%, 79% {
     opacity: 0;
@@ -887,21 +972,30 @@ h3 {
     text-shadow: none;
   }
 }
-
-.plus-glow {
-  animation: softPulse 4s ease-in-out infinite;
-}
-
-@keyframes softPulse {
-  0%, 100% {
+  .level-up-block {
+    background-color: #1c1b2a;
     color: #a277ff;
-    text-shadow: none;
+    padding: 1rem;
+    border-left: 4px solid #4dffca;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+    white-space: pre-wrap;
+    border-radius: 4px;
   }
-  50% {
+
+  .level-up-block .keyword {
+    color: #569cd6; 
+  }
+  
+  .level-up-block .string {
     color: #f694ff;
-    text-shadow: 0 0 6px #f694ff66;
   }
-}
+  
+  .level-up-block .comment {
+    color: #4dffca;; 
+    
+  }
 
 
 .icon-grid {
@@ -927,20 +1021,30 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  fill: #a277ff; /*for the svgs*/
 }
 
 .icon-grid i:hover,
-.icon-grid img.tech-icon:hover {
+.icon-grid .tech-icon:hover {
   transform: scale(1.2);
   color: #4dffca;
+  fill: #4dffca; /*for the svgs*/
 }
 
+/*make Phaser logo bigger cos its teeny*/
 .phaser-logo {
-  transform: scale(1.2) translateX(-0.2rem) translateY(0.2rem);
+  transform: scale(1.6) translateX(-0.2rem) translateY(0.2rem);
 }
+
+/*special scaling rules for Phaser logo*/
 .phaser-logo:hover {
-  transform: scale(1.4) translateX(-0.2rem) translateY(0.2rem);
+  transform: scale(1.8) translateX(-0.2rem) translateY(0.2rem);
+  color: #4dffca;
+  fill: #4dffca;
 }
+
+
+
 
 .grid-divider {
   grid-column: span 3;
@@ -953,6 +1057,7 @@ h3 {
 
 .custom-tooltip {
   background-color: #281d3f !important;
+  opacity: 1 !important;
   color: #4dffca !important;
   font-family: 'Cascadia Code', monospace !important;
   font-size: 0.6rem !important;
@@ -960,7 +1065,10 @@ h3 {
   padding: 0.5rem !important;
   max-width: 200px !important;
   box-shadow: 0 0 20px 5px rgba(246, 148, 255, 0.6) !important;
+  z-index: 9999 !important;
 }
+
+
 
 
 @media (max-width: 768px) {
@@ -968,11 +1076,7 @@ h3 {
     flex-direction: column;
   }
 
-  .panel {
-    width: 90vw;
-    max-width: 600px;
-    margin: 2rem auto;
-  }
+
 
   .icon-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -1005,6 +1109,17 @@ a:hover {
   text-decoration: underline;
 }
 
+a svg {
+  vertical-align: middle;
+  display: inline;
+  transition: color 0.3s ease;
+}
+
+a:hover svg {
+  text-decoration: underline;
+  color: #82e2ff; /* Match your hover color */
+}
+
 .infinity-symbol {
   all: unset;
   font-size: 2.0em; 
@@ -1017,10 +1132,10 @@ a:hover {
 }
 
 
-.card-5 {
+/* .card-5 {
    
-  width: 75% !important;
-}
+  width: 85% !important;
+} */
 
 
 
@@ -1042,14 +1157,17 @@ a:hover {
 .card-5::after {
   animation: sweep 10s ease-in-out infinite;
 }
+.card-6::after {
+  animation: sweep 10s ease-in-out infinite;
+}
 
 
-.card-0 { border-top-color: #4dffca;  }
+/* .card-0 { border-top-color: #4dffca;  }
 .card-1 { border-top-color: #f694ff;  }
 .card-2 { border-top-color: #82e2ff;  }
 .card-3 { border-top-color: #a277ff;  }
 .card-4 { border-top-color: #a277ff;  }
-.card-5 { border-top-color: #4dffca;  }
+.card-5 { border-top-color: #4dffca;  } */
 
 @keyframes softGlow {
   0%, 100% {
@@ -1099,24 +1217,30 @@ a:hover {
   line-height: 1;
 }
 
-
-/* debug section*/
-/* .card-0 { outline: 1px solid red; }
-.card-1 { outline: 1px solid orange; }
-.card-2 { outline: 1px solid yellow; }
-.card-3 { outline: 1px solid green; }
-.card-4 { outline: 1px solid blue; }
-.card-5 { outline: 1px solid purple; }
-
-.card-4 {
-  background-color: rgba(0, 0, 255, 0.05); 
-
-.card-5 {
-  background-color: rgba(255, 0, 255, 0.05);
-
-.card {
-  outline: 1px dashed rgba(255, 255, 255, 0.1);
+.contact-link {
+  display: flex;
+  align-items: center;
+  color: #4dffca;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
-.card-inner {
-  outline: 1px solid rgba(0, 255, 0, 0.2);
-}  */
+
+.contact-link:hover {
+  color: #82e2ff;
+  text-decoration: underline;
+}
+
+.contact-link svg {
+  width: 0.9rem;
+  height: 1.0rem;
+  margin-right: 0.5rem;
+  fill: #4dffca;
+  transition: fill 0.3s ease;
+}
+
+.contact-link:hover svg {
+  fill: #82e2ff;
+}
+
