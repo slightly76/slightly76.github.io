@@ -1060,10 +1060,10 @@ h3 {
   opacity: 1 !important;
   color: #4dffca !important;
   font-family: 'Cascadia Code', monospace !important;
-  font-size: 0.6rem !important;
+  font-size: 0.8rem !important;
   border-radius: 4px !important;
   padding: 0.5rem !important;
-  max-width: 200px !important;
+  max-width: 250px !important;
   box-shadow: 0 0 20px 5px rgba(246, 148, 255, 0.6) !important;
   z-index: 9999 !important;
 }
