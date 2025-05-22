@@ -438,7 +438,7 @@ function App() {
 		// 	),
 		// },
 		{
-			title: '//skillset',
+			title: '//skillSet',
 			borderColor: '#f694ff',
 			content: (
 				<div class='soft-skills-container'>
@@ -504,7 +504,7 @@ function App() {
 		},
 
 		{
-			title: '//toolbox',
+			title: '//techStack',
 			borderColor: '#82e2ff',
 			content: (
 				<>
@@ -663,7 +663,7 @@ function App() {
 		},
 		{ title: '//projects', borderColor: '#4dffca' },
 		{
-			title: '//about me then',
+			title: '//aboutMeThen',
 			borderColor: '#a277ff',
 			content: (
 				<div className='aboutMe career-section'>
@@ -703,7 +703,7 @@ function App() {
 			),
 		},
 		{
-			title: '//about me now',
+			title: '//aboutMeNow',
 			borderColor: '#a277ff',
 			content: (
 				<div className='aboutMe career-section'>
@@ -756,7 +756,7 @@ function App() {
 		},
 
 		{
-			title: '//contact me',
+			title: '//contactMe',
 			borderColor: '#4dffca',
 			content: (
 				<div className='career-section'>
@@ -837,13 +837,14 @@ function App() {
 		let timeoutId = null;
 		let lastStickyCard = null;
 		let lastScrollTop = wrapper.scrollTop;
+		let scrollingUp = false;
 
 		const onScrollLock = () => {
-			if (skipNextScrollLock) {
-				return;
-			}
+			if (skipNextScrollLock) return;
 
 			const scrollY = wrapper.scrollTop;
+			scrollingUp = scrollY < lastScrollTop;
+			lastScrollTop = scrollY;
 
 			for (let i = 0; i < anchorsRef.current.length; i++) {
 				const anchor = anchorsRef.current[i];
@@ -856,16 +857,46 @@ function App() {
 					if (lastStickyCard !== i) {
 						lastStickyCard = i;
 
-						//prevent juddering
+						// Prevent judder
 						wrapper.scrollTop = anchorTop;
 
-						//lock scrolling temporarily
+						// Lock scroll
 						wrapper.style.overflowY = 'hidden';
-
 						clearTimeout(timeoutId);
 						timeoutId = setTimeout(() => {
 							wrapper.style.overflowY = 'auto';
 						}, 700);
+
+						const currentCard = document.querySelector(`.card-${i}`);
+
+						// animation for scrolling back up
+						if (currentCard && scrollingUp) {
+							// document.querySelectorAll('.card').forEach((el, idx) => {
+							// 	if (idx !== i) el.style.visibility = 'hidden';
+							// });
+
+							currentCard.classList.add('card-reveal-prep');
+
+							setTimeout(() => {
+								currentCard.classList.add('fade-in-up');
+
+								setTimeout(() => {
+									currentCard.classList.remove('fade-in-up');
+									currentCard.classList.remove('card-reveal-prep');
+									document.querySelectorAll('.card').forEach((el) => {
+										el.style.visibility = 'visible';
+									});
+								}, 400);
+							}, 50);
+						}
+					}
+
+					// animation for scrolling down
+					if (currentCard && !scrollingUp) {
+						currentCard.classList.add('card-settle-in');
+						setTimeout(() => {
+							currentCard.classList.remove('card-settle-in');
+						}, 500);
 					}
 					break;
 				}
