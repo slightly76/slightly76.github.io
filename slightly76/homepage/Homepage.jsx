@@ -683,11 +683,6 @@ function App() {
 									target='_blank'
 									rel='noopener noreferrer'
 									className='project-block-link'
-									whileHover={{
-										scale: 1.03,
-										boxShadow:
-											'0 0 12px #4dffca, 0 0 32px rgba(77, 255, 202, 0.4)',
-									}}
 									whileTap={{ scale: 0.98 }}
 								>
 									<motion.div className='project-block'>
@@ -928,10 +923,6 @@ function App() {
 
 						// animation for scrolling back up
 						if (currentCard && scrollingUp) {
-							// document.querySelectorAll('.card').forEach((el, idx) => {
-							// 	if (idx !== i) el.style.visibility = 'hidden';
-							// });
-
 							currentCard.classList.add('card-reveal-prep');
 
 							setTimeout(() => {
@@ -946,14 +937,17 @@ function App() {
 								}, 400);
 							}, 50);
 						}
-					}
 
-					// animation for scrolling down
-					if (currentCard && !scrollingUp) {
-						currentCard.classList.add('card-settle-in');
-						setTimeout(() => {
-							currentCard.classList.remove('card-settle-in');
-						}, 500);
+						// animation for scrolling down
+						if (currentCard && !scrollingUp) {
+							currentCard.classList.add('card-settle-in');
+							currentCard.classList.add('fade-in-up');
+
+							setTimeout(() => {
+								currentCard.classList.remove('fade-in-up');
+								currentCard.classList.remove('card-settle-in');
+							}, 500);
+						}
 					}
 					break;
 				}
