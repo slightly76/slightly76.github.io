@@ -281,6 +281,7 @@
 import './homepage.css';
 import React, { useRef, useEffect } from 'react';
 import { Tooltip } from 'react-tooltip';
+import { motion } from 'framer-motion';
 import PhaserLogo from '/assets/logos/phaser-logo.svg?react';
 import AudacityLogo from '/assets/logos/audacity-logo.svg?react';
 import ReasonLogo from '/assets/logos/reason-logo.svg?react';
@@ -300,6 +301,38 @@ function App() {
 	const scrollRef = useRef(null);
 	const anchorsRef = useRef([]);
 
+	const projects = [
+		{
+			title: 'StackDew Valley',
+			video:
+				'https://private-user-images.githubusercontent.com/190609385/437542251-f85c06b9-780b-4257-944d-644af83a77c1.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDc5MjQ5MzEsIm5iZiI6MTc0NzkyNDYzMSwicGF0aCI6Ii8xOTA2MDkzODUvNDM3NTQyMjUxLWY4NWMwNmI5LTc4MGItNDI1Ny05NDRkLTY0NGFmODNhNzdjMS5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTIyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUyMlQxNDM3MTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kODY0YmI5MDA4OGQxNDI5ZWM3OWM1YWJmOWIyYzY1M2NlYjViZjQ5NWNmNGJiNWIzMjYyNTBkNDAzODU5OGE0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.BYbRv25-8bm_w41NmZP2B6uqZMDqZqXL2b_l2qFmp7M',
+			description:
+				"A 'cosy' pixel-art farming game where you nurture bootcamp students known as Devlings via mini-games then take them to battle in the fearsome job market! This is an evolving, group project.",
+			link: 'https://stackdew.netlify.app/',
+			tech: ['Phaser', 'Firebase', 'Node', 'Tiled', 'GROUP PROJECT!'],
+		},
+		{
+			title: 'NC News',
+			description:
+				'A full-stack Reddit-style article app with comments, votes, and user profiles.',
+			link: 'https://nc-news-front.vercel.app/',
+			tech: ['Express', 'PostgreSQL', 'Axiom', 'React', 'CSS'],
+		},
+		{
+			title: 'Portfolio Website',
+			description: 'This website wot I made.',
+			link: 'https://github.com/slightly76',
+			tech: [
+				'HTML',
+				'React',
+				'React Router',
+				'React Tooltip',
+				'CSS',
+				'Framer Motion',
+			],
+		},
+	];
+
 	const cards = [
 		{
 			title: '//welcome',
@@ -309,11 +342,9 @@ function App() {
 					className='header-panel glow-highlight'
 					style={{ position: 'relative' }}
 				>
-					{/* <div className='vertical-glow-band' /> */}
-
 					<div className='header-top'>
 						<div className='header-text'>
-							<h1 className='name-heading'>Chris Askew</h1>
+							<h1 className='marquee-wrapper name-heading'>Chris Askew</h1>
 							<div className='glow-bar' />
 							<div
 								className='image-and-stats'
@@ -372,7 +403,7 @@ function App() {
 									Junior Software
 									<br />& Game Dev
 								</h2>
-
+								<br />
 								<p className='career-subtext'>
 									At 49 it feels weird calling myself a Junior <i>anything</i>,
 									but here we are.
@@ -388,118 +419,88 @@ function App() {
 			),
 		},
 
-		// {
-		// 	title: '//skillset',
-		// 	borderColor: '#f694ff',
-		// 	content: (
-		// 		<>
-		// 			<div className='career-section'>
-		// 				<h3 style={{ color: '#a277ff' }}>softSkills =</h3>
-		// 				<br />
-		// 				<div className='skills-list'>
-		// 					<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
-		// 					<div className='skills-indent'>
-		// 						<h3>{'JavaScript,'}</h3>
-		// 						<h3>{'Full Stack,'}</h3>
-		// 						<h3>{'Phaser,'}</h3>
-		// 						<h3>Test Driven Development,</h3>
-		// 					</div>
-		// 					<h3 style={{ color: '#a277ff' }}>{'},'}</h3>
-		// 					<p></p>
-
-		// 					<h3 style={{ color: '#a277ff' }}>{'{'}</h3>
-		// 					<div className='skills-indent'>
-		// 						<h3>{'Pair Programming,'}</h3>
-		// 						<h3>{'SCRUM Methodologies,'}</h3>
-		// 						<h3>{'Problem Solving,'}</h3>
-		// 						<h3>{'Collaboration,'}</h3>
-		// 						<h3>{'Adaptability,'}</h3>
-		// 						<h3>{'Active Listening,'}</h3>
-		// 						<h3>{'Empathy,'}</h3>
-		// 						<h3>{'Mentorship,'}</h3>
-		// 						<h3>{'Initiative,'}</h3>
-		// 						<h3>{'Resilience,'}</h3>
-		// 						<h3>{'Corners / Set Pieces'}</h3>
-		// 						<h3>{'& Vibe Coding '}</h3>
-		// 						<h3>
-		// 							<div className='whisper-text'>
-		// 								<i>//whisper_it</i>
-		// 							</div>
-		// 						</h3>
-		// 					</div>
-		// 					<h3 style={{ color: '#a277ff' }}>{'}'}</h3>
-		// 					<br />
-		// 					<h3 style={{ color: '#a277ff' }}>
-		// 						softSkills<span className='plus-glow'>++</span>
-		// 					</h3>
-		// 				</div>
-		// 			</div>
-		// 		</>
-		// 	),
-		// },
 		{
 			title: '//skillSet',
 			borderColor: '#f694ff',
 			content: (
-				<div class='soft-skills-container'>
-					<h3 class='skills-title'>let softSkills = {'{'}</h3>
-					<div class='skills-object'>
-						<div class='skills-category'>
-							<h4 class='category-label'>technical: [</h4>
-							<ul class='skills-list'>
-								<li>"JavaScript",</li>
-								<li>"Full Stack",</li>
-								<li>"Phaser",</li>
-								<li>"Test Driven Development",</li>
-								<li>"Problem Solving"</li>
-								<h4 class='category-label'>] , [</h4>
-							</ul>
+				<>
+					<h2>//skillSet</h2>
+
+					<div className='soft-skills-container'>
+						<div className='code-line'>
+							<span className='keyword'>let</span>{' '}
+							<span className='comment'>softSkills</span> = {'{'}
 						</div>
-						<div class='skills-category'>
-							<h4 class='category-label'>interpersonal:</h4>
-							<ul class='skills-list'>
-								<li>"Pair Programming",</li>
-								<li>"SCRUM Methodologies",</li>
-								<li>"Collaboration",</li>
-								<li>"Adaptability",</li>
-								<li>"Active Listening",</li>
-								<li>"Mentorship",</li>
-								<li>"Initiative",</li>
-								<li>"Resilience",</li>
-								<li>"Set Pieces",</li>
-								<li class='whisper-skill'>
-									"Vibe Coding"{' '}
-									<span class='whisper-comment'>//whisper_it</span>
-								</li>
-								<h4 class='category-label'>]</h4>
-								<h3 class='skills-title'>{'}'}</h3>
-							</ul>
+						<div class='skills-object'>
+							<div class='skills-category'>
+								<h4 class='category-label'>technical: [</h4>
+								<ul class='skills-list'>
+									<li>"JavaScript",</li>
+									<li>"Full Stack",</li>
+									<li>"Phaser",</li>
+									<li>"Test Driven Development",</li>
+									<li>"Problem Solving"</li>
+									<h4 class='category-label'>] , [</h4>
+								</ul>
+							</div>
+							<div class='skills-category'>
+								<h4 class='category-label'>interpersonal:</h4>
+								<ul class='skills-list'>
+									<li>"Pair Programming",</li>
+									<li>"SCRUM Methodologies",</li>
+									<li>"Collaboration",</li>
+									<li>"Adaptability",</li>
+									<li>"Active Listening",</li>
+									<li>
+										"Attention to{' '}
+										<span
+											title='Keen eye there...'
+											style={{
+												cursor: 'help',
+												pointerEvents: 'auto',
+											}}
+										>
+											Derail"
+										</span>
+									</li>
+									<li>"Mentorship",</li>
+									<li>"Initiative",</li>
+									<li>"Resilience",</li>
+
+									<li class='whisper-skill'>
+										"Vibe Coding"{' '}
+										<span class='whisper-comment'>//whisper_it</span>
+									</li>
+									<h4 class='category-label'>]</h4>
+									<span>{'}'}</span>
+								</ul>
+							</div>
 						</div>
+						<pre class='level-up-block'>
+							<span class='keyword'>function</span>{' '}
+							<span class='comment'>levelUp</span>(
+							<span class='comment'>skill</span>,
+							<span class='comment'> category</span>) {'{'}
+							<br />
+							<span class='keyword'>if</span> (!
+							<span class='comment'>softSkills</span>[
+							<span class='comment'>category</span>].includes(
+							<span class='comment'>skill</span>)) {'{'}
+							<br />
+							<span class='comment'>softSkills</span>[
+							<span class='comment'>category</span>].push(
+							<span class='comment'>skill</span>);
+							<br />
+							{'}'}
+							{'}'}
+							<br />
+							<br />
+							<span class='comment'>levelUp</span>("
+							<span class='string'>gainfulEmployment</span>", "
+							<span class='string'>interpersonal</span>");
+						</pre>
 					</div>
-					<pre class='level-up-block'>
-						<span class='keyword'>function</span>{' '}
-						<span class='comment'>levelUp</span>(
-						<span class='comment'>skill</span>,
-						<span class='comment'> category</span>) {'{'}
-						<br />
-						<span class='keyword'>if</span> (!
-						<span class='comment'>softSkills</span>[
-						<span class='comment'>category</span>].includes(
-						<span class='comment'>skill</span>)) {'{'}
-						<br />
-						<span class='comment'>softSkills</span>[
-						<span class='comment'>category</span>].push(
-						<span class='comment'>skill</span>);
-						<br />
-						{'}'}
-						{'}'}
-						<br />
-						<br />
-						<span class='comment'>levelUp</span>("
-						<span class='string'>gainfulEmployment</span>", "
-						<span class='string'>interpersonal</span>");
-					</pre>
-				</div>
+				</>
 			),
 		},
 
@@ -661,97 +662,149 @@ function App() {
 				</>
 			),
 		},
-		{ title: '//projects', borderColor: '#4dffca' },
+		{
+			title: '//projects',
+			borderColor: '#4dffca',
+			content: (
+				<>
+					<h2>//currentProjects</h2>
+
+					<div className='carousel-container'>
+						<motion.div
+							className='carousel-inner'
+							drag='x'
+							dragConstraints={{ left: -1000, right: 0 }}
+							whileTap={{ cursor: 'grabbing' }}
+						>
+							{projects.map((project, index) => (
+								<motion.a
+									key={index}
+									href={project.link}
+									target='_blank'
+									rel='noopener noreferrer'
+									className='project-block-link'
+									whileHover={{
+										scale: 1.03,
+										boxShadow:
+											'0 0 12px #4dffca, 0 0 32px rgba(77, 255, 202, 0.4)',
+									}}
+									whileTap={{ scale: 0.98 }}
+								>
+									<motion.div className='project-block'>
+										<h3 className='project-title glow-highlight pink'>
+											{project.title}
+										</h3>
+										<p className='project-desc'>{project.description}</p>
+										<p className='project-tech'>
+											Built with: {project.tech.join(', ')}
+										</p>
+									</motion.div>
+								</motion.a>
+							))}
+						</motion.div>
+					</div>
+				</>
+			),
+		},
 		{
 			title: '//aboutMeThen',
 			borderColor: '#a277ff',
 			content: (
-				<div className='aboutMe career-section'>
-					<p>
-						For the last 20 years I provided{' '}
-						<span className='glow-highlight blue'>tech support</span> to a
-						flourishing Animation & Design BA(Hons) Degree programme in the UK.
-						Aside from the day to day{' '}
-						<span className='glow-highlight pink'>problem solving</span> and
-						session prep, I loved offering{' '}
-						<span className='glow-highlight blue'>critical feedback</span>,{' '}
-						<span className='glow-highlight pink'>technical mentorship</span>{' '}
-						and <span className='glow-highlight blue'>pastoral care</span> to
-						the students - often{' '}
-						<span className='glow-highlight pink'>supporting colleagues</span>{' '}
-						in adjacent creative disciplines like Film/TV & Graphic Design - and
-						even supplying{' '}
-						<span className='glow-highlight blue'>voice acting</span> for
-						student films. I have a{' '}
-						<span className='glow-highlight blue'>Media Production</span> degree
-						myself, which helped.
-						<br />
-						<br />
-						Some of my former students have gone on to win BAFTAs for their work
-						and I'm immensely proud to have beem even a tiny part of their{' '}
-						<span className='glow-highlight blue'>journey</span>.
-						<br />
-						<br />
-						Owing to rampant financial insecurity in Higher Education, I've
-						found myself out of work for the first time since I was a teenager.
-						However, I've grasped the opportunity to pivot towards a{' '}
-						<span className='glow-highlight blue'>new challenge</span> in
-						Software Dev, which is something I always wanted to do when I was
-						younger.
-					</p>
-				</div>
+				<>
+					<h2>//aboutMeThen</h2>
+					<div className='aboutMe career-section'>
+						<p>
+							For the last 20 years I provided{' '}
+							<span className='glow-highlight blue'>tech support</span> to a
+							flourishing Animation & Design BA(Hons) Degree programme in the
+							UK. Aside from the day to day{' '}
+							<span className='glow-highlight pink'>problem solving</span> and
+							session prep, I loved offering{' '}
+							<span className='glow-highlight blue'>critical feedback</span>,{' '}
+							<span className='glow-highlight pink'>technical mentorship</span>{' '}
+							and <span className='glow-highlight blue'>pastoral care</span> to
+							the students - often{' '}
+							<span className='glow-highlight pink'>supporting colleagues</span>{' '}
+							in adjacent creative disciplines like Film/TV & Graphic Design -
+							and even supplying{' '}
+							<span className='glow-highlight blue'>voice acting</span> for
+							student films. I have a{' '}
+							<span className='glow-highlight blue'>Media Production</span>{' '}
+							degree myself, which helped.
+							<br />
+							<br />
+							Some of my former students have gone on to win BAFTAs for their
+							work and I'm immensely proud to have beem even a tiny part of
+							their <span className='glow-highlight blue'>journey</span>.
+							<br />
+							<br />
+							Owing to rampant financial insecurity in Higher Education, I've
+							found myself out of work for the first time since I was a
+							teenager. However, I've grasped the opportunity to pivot towards a{' '}
+							<span className='glow-highlight blue'>new challenge</span> in
+							<span className='glow-highlight pink'> Software Dev</span>, which
+							is something I always wanted to do when I was younger.
+						</p>
+					</div>
+				</>
 			),
 		},
 		{
 			title: '//aboutMeNow',
 			borderColor: '#a277ff',
 			content: (
-				<div className='aboutMe career-section'>
-					<p>
-						As you can see from the toolbox card, I'm{' '}
-						<span className='glow-highlight blue'>comfortable</span> with a wide
-						range of various disciplines from{' '}
-						<span className='glow-highlight blue'>animation</span>, to{' '}
-						<span className='glow-highlight blue'>video editing</span>, to{' '}
-						<span className='glow-highlight blue'> musical composition</span>{' '}
-						and <span className='glow-highlight pink'>tech</span>, both old &
-						new. I relish nothing more than having a{' '}
-						<span className='glow-highlight blue'>tinker</span> with stuff. My
-						partner often mocks me when I fire up a game on my PC only to fiddle
-						with the settings for ages rather than just play the game. Don't get
-						me started on modding ...
-						<br />
-						<br />
-						Thanks to an intense 13-week JavaScript bootcamp at{' '}
-						<a
-							href='https://northcoders.com/'
-							target='_blank'
-							rel='noopener noreferrer'
-						>
-							Northcoders
-						</a>
-						, I can now <span className='glow-highlight pink'>create</span>{' '}
-						React driven <span className='glow-highlight pink'>websites</span>{' '}
-						styled with CSS like this one, work with both{' '}
-						<span className='glow-highlight pink'>backend & frontend</span>{' '}
-						projects like "NC News" and even have the{' '}
-						<span className='glow-highlight blue'>confidence</span> to dive
-						headfirst into a library like{' '}
-						<span className='glow-highlight pink'>Phaser</span> and enjoy myself
-						making games again, like I did in my youth. This is great, because;{' '}
-						<span className='glow-highlight blue'>I love games</span>. My Steam
-						library is overflowing, I adore retro gaming and I have over 200
-						boardgames. I. Love. Games.
-						<br />
-						<br />I thrive on{' '}
-						<span className='glow-highlight blue'>hands-on</span> problem
-						solving and experimentation. I'm always ready to roll up my sleeves
-						& <span className='glow-highlight blue'>have a go</span> and I'm
-						excited to
-						<span className='glow-highlight blue'>get stuck in</span> to your
-						next project.
-					</p>
-				</div>
+				<>
+					<h2>//aboutMeNow</h2>
+					<div className='aboutMe career-section'>
+						<p>
+							As you can see from the toolbox card, I'm{' '}
+							<span className='glow-highlight pink'>comfortable</span> with a
+							wide range of various disciplines from{' '}
+							<span className='glow-highlight blue'>animation</span>, to{' '}
+							<span className='glow-highlight blue'>video editing</span>, to{' '}
+							<span className='glow-highlight blue'> musical composition</span>{' '}
+							and <span className='glow-highlight pink'>tech</span>, both old &
+							new. I relish nothing more than having a{' '}
+							<span className='glow-highlight pink'>tinker</span> with stuff. My
+							partner often mocks me when I fire up a game on my PC only to
+							fiddle with the settings for ages rather than just play the game.
+							Don't get me started on modding ...
+							<br />
+							<br />
+							Thanks to an intense 13-week JavaScript bootcamp at{' '}
+							<a
+								href='https://northcoders.com/'
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								Northcoders
+							</a>
+							, I can now{' '}
+							<span className='glow-highlight pink'>
+								create React driven websites
+							</span>{' '}
+							styled with <span className='glow-highlight pink'>CSS</span> like
+							this one, work with both{' '}
+							<span className='glow-highlight pink'>backend & frontend</span>{' '}
+							projects like "NC News" and even have the{' '}
+							<span className='glow-highlight pink'>confidence</span> to dive
+							headfirst into a library like{' '}
+							<span className='glow-highlight pink'>Phaser</span> and enjoy
+							myself making games again, like I did in my youth. This is great,
+							because; I love games. My Steam library is overflowing, I adore
+							retro gaming and I have over 200 boardgames.{' '}
+							<span className='glow-highlight blue'>I. Love. Games.</span>
+							<br />
+							<br />I thrive on{' '}
+							<span className='glow-highlight pink'>hands-on</span> problem
+							solving and experimentation. I'm always ready to roll up my
+							sleeves & <span className='glow-highlight pink'>have a go</span>{' '}
+							and I'm excited to
+							<span className='glow-highlight pink'> get stuck in</span> to your
+							next project.
+						</p>
+					</div>
+				</>
 			),
 		},
 
@@ -759,49 +812,53 @@ function App() {
 			title: '//contactMe',
 			borderColor: '#4dffca',
 			content: (
-				<div className='career-section'>
-					<p>
-						I'm <i>actively</i> seeking work and I'm open to junior roles,
-						apprenticeships, contract work, and freelance opportunities. If you
-						like what you see and you want to know more, or you just want to
-						chastise me for the tech stack tooltip puns - feel free to get in
-						touch;{' '}
-					</p>
-					<br />
-					<a href='mailto:caskew@hotmail.com'>
-						<HiOutlineMailOpen style={{ marginRight: '0.5rem' }} />
-						Email
-					</a>
-					<br />
-					<br />
-					<a
-						href='https://github.com/slightly76'
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<i className='devicon-github-original'></i> GitHub
-					</a>
-					<br />
-					<br />
-					<a
-						href='https://www.linkedin.com/in/chris-askew-91812619a/'
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<i class='devicon-linkedin-plain'></i> LinkedIn
-					</a>
-					<br />
-					<br />
-					<a
-						href='https://steamcommunity.com/id/slightly76/'
-						target='_blank'
-						rel='noopener noreferrer'
-						className='contact-link'
-					>
-						<SteamLogo className='tech-icon steam-icon' />
-						Steam
-					</a>
-				</div>
+				<>
+					<h2>//contactMe</h2>
+					<div className='career-section'>
+						<p>
+							I'm <i>actively</i> seeking work and I'm open to junior roles,
+							apprenticeships, contract work, and freelance opportunities. If
+							you like what you see and you want to know more, or you just want
+							to chastise me for the tech stack tooltip puns - feel free to get
+							in touch;{' '}
+						</p>
+						<br />
+						<a href='mailto:caskew@hotmail.com' className='contact-link'>
+							<HiOutlineMailOpen className='contact-icon' />
+							Email
+						</a>
+						<br />
+						<a
+							href='https://github.com/slightly76'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='contact-link'
+						>
+							<i className='devicon-github-original contact-icon'></i>
+							GitHub
+						</a>
+						<br />
+						<a
+							href='https://www.linkedin.com/in/chris-askew-91812619a/'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='contact-link'
+						>
+							<i className='devicon-linkedin-plain contact-icon'></i>
+							LinkedIn
+						</a>
+						<br />
+						<a
+							href='https://steamcommunity.com/id/slightly76/'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='contact-link'
+						>
+							<SteamLogo className='contact-icon' />
+							Steam
+						</a>
+					</div>
+				</>
 			),
 		},
 	];
