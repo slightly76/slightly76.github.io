@@ -279,9 +279,10 @@
 
 // export default Homepage;
 import './homepage.css';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { Tooltip } from 'react-tooltip';
-import { motion } from 'framer-motion';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { motion, useMotionValue, animate } from 'framer-motion';
 import PhaserLogo from '/assets/logos/phaser-logo.svg?react';
 import AudacityLogo from '/assets/logos/audacity-logo.svg?react';
 import ReasonLogo from '/assets/logos/reason-logo.svg?react';
@@ -293,6 +294,289 @@ import TrelloLogo from '/assets/logos/trello-logo.svg?react';
 import SteamLogo from '/assets/logos/steam-logo.svg?react';
 import { HiOutlineMailOpen } from 'react-icons/hi';
 
+const CARD_WIDTH = 300 + 32;
+const DUPLICATION_FACTOR = 16;
+
+const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
+	const totalCards = projects.length;
+	const duplicatedProjects = Array(DUPLICATION_FACTOR).fill(projects).flat();
+	const startIndex = totalCards;
+	const trackRef = useRef(null);
+	const cardRef = useRef(null);
+
+	const [cardWidth, setCardWidth] = useState(CARD_WIDTH);
+	const [index, setIndex] = useState(startIndex);
+	const x = useMotionValue(0);
+
+	// Flag to skip animation on first mount
+	const hasMounted = useRef(false);
+
+	const scrollToIndex = (newIndex, animateScroll = true) => {
+		const container = trackRef.current?.parentElement;
+		if (!container) return;
+
+		const containerWidth = container.offsetWidth;
+		const ALIGN_NUDGE = 16;
+
+		const offset =
+			-cardWidth * newIndex +
+			(containerWidth / 2 - cardWidth / 2) +
+			ALIGN_NUDGE;
+
+		if (animateScroll) {
+			animate(x, offset, { type: 'spring', stiffness: 250, damping: 30 });
+		} else {
+			x.set(offset); // skip animation
+		}
+		setIndex(newIndex);
+	};
+
+	const scrollLeft = () => scrollToIndex(index - 1);
+	const scrollRight = () => scrollToIndex(index + 1);
+
+	useLayoutEffect(() => {
+		if (!trackRef.current || !cardRef.current) return;
+
+		const gap = parseFloat(getComputedStyle(trackRef.current).gap) || 0;
+		const width = cardRef.current.offsetWidth;
+		const fullCardWidth = width + gap;
+		setCardWidth(fullCardWidth);
+
+		const container = trackRef.current.parentElement;
+		const containerWidth = container?.offsetWidth || window.innerWidth;
+		const resetIndex = totalCards * Math.floor(DUPLICATION_FACTOR / 2);
+		const initialOffset =
+			-fullCardWidth * resetIndex + (containerWidth / 2 - fullCardWidth / 2);
+
+		// Set position without animation on first mount
+		x.set(initialOffset);
+		setIndex(resetIndex);
+		hasMounted.current = true;
+	}, []);
+
+	useEffect(() => {
+		if (!hasMounted.current) return;
+
+		const resetIndex = totalCards * Math.floor(DUPLICATION_FACTOR / 2);
+		const modIndex = index % totalCards;
+
+		if (index <= totalCards || index >= totalCards * (DUPLICATION_FACTOR - 1)) {
+			const container = trackRef.current?.parentElement;
+			const containerWidth = container?.offsetWidth || window.innerWidth;
+			const resetOffset =
+				-cardWidth * (resetIndex + modIndex) +
+				(containerWidth / 2 - cardWidth / 2);
+
+			const timer = setTimeout(() => {
+				x.set(resetOffset);
+				setIndex(resetIndex + modIndex);
+			}, 300);
+
+			return () => clearTimeout(timer);
+		}
+	}, [index, x, totalCards]);
+
+	useEffect(() => {
+		if (!hasMounted.current) return;
+
+		videoRefs.current.forEach((video, i) => {
+			if (!video) return;
+
+			// Only allow video on the currently focused project
+			if (i % totalCards !== index % totalCards && !video.paused) {
+				video.pause();
+			}
+		});
+	}, [index]);
+
+	return (
+		<div className='carousel-vertical-wrapper'>
+			<div className='carousel-container'>
+				<motion.div
+					className='carousel-track'
+					ref={trackRef}
+					style={{
+						display: 'flex',
+						gap: '2rem',
+						x,
+					}}
+				>
+					{duplicatedProjects.map((project, i) => {
+						const isFocused = i === index;
+
+						return (
+							<motion.div
+								key={i}
+								ref={i === startIndex ? cardRef : null}
+								className={`project-card ${isFocused ? 'focused' : ''}`}
+								initial={{ scale: 0.9, opacity: 0.7 }}
+								// whileInView={{ scale: 1, opacity: 1 }}
+								// viewport={{ amount: 0.5 }}
+								animate={{
+									scale: isFocused ? 1 : 0.9,
+									opacity: isFocused ? 1 : 0.7,
+								}}
+								transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+								style={{ flex: '0 0 auto', width: '300px' }}
+							>
+								<div className='project-block'>
+									<h3 className='project-title glow-highlight pink'>
+										<a
+											href={project.livelink}
+											target='_blank'
+											rel='noopener noreferrer'
+										>
+											{project.title}
+										</a>
+									</h3>
+
+									{project.video && (
+										<figure className='project-video-figure'>
+											<video
+												ref={(el) => (videoRefs.current[i] = el)}
+												className='project-media'
+												controls
+												playsInline
+												preload='metadata'
+												poster={project.image || undefined}
+											>
+												<source src={project.video} type='video/mp4' />
+												Your browser does not support the video tag.
+											</video>
+											{project.videoText && (
+												<figcaption className='video-caption'>
+													{project.videoText}
+												</figcaption>
+											)}
+										</figure>
+									)}
+
+									<p className='project-desc'>{project.description}</p>
+
+									<div className='project-links'></div>
+
+									<p className='project-tech'>
+										<i
+											className='devicon-github-original github-icon'
+											title='View on GitHub'
+											onClick={(e) => {
+												e.stopPropagation();
+												window.open(
+													project.githublink,
+													'_blank',
+													'noopener,noreferrer'
+												);
+											}}
+										></i>
+										<br />
+										Built with: {project.tech.join(', ')}
+									</p>
+								</div>
+							</motion.div>
+						);
+					})}
+				</motion.div>
+			</div>
+
+			<div className='carousel-button-row'>
+				<button className='carousel-btn' onClick={scrollLeft}>
+					<FaArrowLeft />
+				</button>
+				<button className='carousel-btn' onClick={scrollRight}>
+					<FaArrowRight />
+				</button>
+			</div>
+		</div>
+	);
+};
+
+function useTypewriter(lines, delay = 50, linePause = 700) {
+	const [displayedText, setDisplayedText] = useState('');
+	const [currentLine, setCurrentLine] = useState(0);
+	const [currentChar, setCurrentChar] = useState(0);
+	const [isDeleting, setIsDeleting] = useState(false);
+	const [deleteCount, setDeleteCount] = useState(0);
+	const [buffer, setBuffer] = useState('');
+	const [pauseBeforeDelete, setPauseBeforeDelete] = useState(false);
+
+	useEffect(() => {
+		if (currentLine >= lines.length) return;
+
+		const fullLine = lines[currentLine];
+
+		if (pauseBeforeDelete) {
+			const pause = setTimeout(() => {
+				setPauseBeforeDelete(false);
+				setIsDeleting(true);
+			}, 500); // Pause before correction starts (ms)
+			return () => clearTimeout(pause);
+		}
+
+		if (isDeleting) {
+			if (deleteCount > 0) {
+				const timeout = setTimeout(() => {
+					setBuffer((prev) => prev.slice(0, -1));
+					setDeleteCount(deleteCount - 1);
+				}, delay * 3);
+				return () => clearTimeout(timeout);
+			} else {
+				setIsDeleting(false);
+			}
+		}
+
+		if (currentChar < fullLine.length) {
+			const nextChar = fullLine[currentChar];
+
+			if (nextChar === '[' && fullLine.slice(currentChar).match(/^\[<-\d+\]/)) {
+				const match = fullLine.slice(currentChar).match(/^\[<-(\d+)\]/);
+				if (match) {
+					const count = parseInt(match[1], 10);
+					setPauseBeforeDelete(true); // <-- trigger the pause
+					setDeleteCount(count);
+					setCurrentChar(currentChar + match[0].length);
+				}
+			} else {
+				const timeout = setTimeout(() => {
+					setBuffer((prev) => prev + nextChar);
+					setCurrentChar(currentChar + 1);
+				}, delay);
+				return () => clearTimeout(timeout);
+			}
+		} else {
+			const timeout = setTimeout(() => {
+				setDisplayedText((prev) => prev + buffer + '\n');
+				setCurrentLine((prev) => prev + 1);
+				setCurrentChar(0);
+				setBuffer('');
+			}, linePause);
+			return () => clearTimeout(timeout);
+		}
+	}, [
+		lines,
+		currentLine,
+		currentChar,
+		delay,
+		linePause,
+		isDeleting,
+		deleteCount,
+		pauseBeforeDelete,
+	]);
+
+	return displayedText + buffer;
+}
+
+const terminalLines = [
+	'> load REBOOT_CAREER.EXE',
+	'Please wait.',
+	'.',
+	'input role:',
+	'> Junior Softwrae & Game D[<-12]are & Game Dev',
+	'Loading.',
+	'.',
+	'.',
+	'Warning: At 49 it feels weird calling yourself a Junior *anything*, but here you are ...',
+];
+
 const CARD_GAP_VH = 3;
 const FINAL_CARD_HEIGHT_VH = 85;
 const EXTRA_SCROLL_BUFFER_VH = 20;
@@ -301,27 +585,49 @@ function App() {
 	const scrollRef = useRef(null);
 	const anchorsRef = useRef([]);
 
+	const videoRefs = useRef([]);
+
+	const [hp, setHp] = useState(99);
+
+	const output = useTypewriter(terminalLines, 55, 800);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setHp((prevHp) => {
+				let next = prevHp + (Math.random() > 0.5 ? 1 : -1);
+				return Math.max(1, Math.min(99, next));
+			});
+		}, 250);
+
+		return () => clearInterval(interval);
+	}, []);
+
+	const [activeCardIndex, setActiveCardIndex] = useState(null);
+
 	const projects = [
 		{
 			title: 'StackDew Valley',
-			video:
-				'https://private-user-images.githubusercontent.com/190609385/437542251-f85c06b9-780b-4257-944d-644af83a77c1.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDc5MjQ5MzEsIm5iZiI6MTc0NzkyNDYzMSwicGF0aCI6Ii8xOTA2MDkzODUvNDM3NTQyMjUxLWY4NWMwNmI5LTc4MGItNDI1Ny05NDRkLTY0NGFmODNhNzdjMS5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTIyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUyMlQxNDM3MTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kODY0YmI5MDA4OGQxNDI5ZWM3OWM1YWJmOWIyYzY1M2NlYjViZjQ5NWNmNGJiNWIzMjYyNTBkNDAzODU5OGE0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.BYbRv25-8bm_w41NmZP2B6uqZMDqZqXL2b_l2qFmp7M',
+			video: '../assets/stackdew_trailer.mp4',
+			videoText: 'StackDew Valley early trailer',
 			description:
-				"A 'cosy' pixel-art farming game where you nurture bootcamp students known as Devlings via mini-games then take them to battle in the fearsome job market! This is an evolving, group project.",
-			link: 'https://stackdew.netlify.app/',
+				"A 'cosy' pixel-art farming game where you nurture bootcamp students known as Devlings via mini-games then take them to battle in the fearsome job market! This is an evolving, group project that was made as part of the Northcoders bootcamp (and hence references Northcoders team members etc).",
+			livelink: 'https://stackdew.netlify.app/',
+			githublink: 'xxx',
 			tech: ['Phaser', 'Firebase', 'Node', 'Tiled', 'GROUP PROJECT!'],
 		},
 		{
 			title: 'NC News',
 			description:
-				'A full-stack Reddit-style article app with comments, votes, and user profiles.',
-			link: 'https://nc-news-front.vercel.app/',
+				"A full-stack Reddit-style article app with comments, votes, and user profiles. This project was part of the Northcoders bootcamp and was the first time we'd married frontend to backend. The site is slow to spin up sometimes and is undergoing a bit of a visual overhaul.",
+			livelink: 'https://slightly76-does-nc-news.netlify.app/',
+			githublink: 'https://github.com/slightly76/nc-news',
 			tech: ['Express', 'PostgreSQL', 'Axiom', 'React', 'CSS'],
 		},
 		{
 			title: 'Portfolio Website',
 			description: 'This website wot I made.',
-			link: 'https://github.com/slightly76',
+			livelink: 'https://github.com/slightly76',
+			githublink: 'xxx',
 			tech: [
 				'HTML',
 				'React',
@@ -332,6 +638,8 @@ function App() {
 			],
 		},
 	];
+
+	const duplicatedProjects = [...projects, ...projects];
 
 	const cards = [
 		{
@@ -346,74 +654,74 @@ function App() {
 						<div className='header-text'>
 							<h1 className='marquee-wrapper name-heading'>Chris Askew</h1>
 							<div className='glow-bar' />
-							<div
-								className='image-and-stats'
-								style={{ display: 'flex', alignItems: 'center' }}
-							>
-								<div className='image-wrapper'>
-									<img
-										src='./assets/me.jpg'
-										className='hover-image base'
-										alt='Me'
-									/>
-									<img
-										src='./assets/mehover.jpg'
-										className='hover-image hover'
-										alt='Me Hovering'
-									/>
+							<div className='image-and-stats'>
+								<div className='crt-container'>
+									<div className='crt-inner'>
+										<div className='image-wrapper'>
+											<img
+												src='./assets/me.jpg'
+												className='hover-image base'
+												alt='Me'
+											/>
+											<img
+												src='./assets/mehover.jpg'
+												className='hover-image hover'
+												alt='Me Hovering'
+											/>
+										</div>
+									</div>
 								</div>
 
-								<div className='stats-panel'>
-									{/* <div>
+								<div className='crt-container'>
+									<div className='crt-inner'>
+										<div className='stats-panel'>
+											{/* <div>
 										<span className='label'>*STATS*</span>
 									</div> */}
-									<br />
-									<div>
-										<span className='label'>LVL</span>
-										<br /> 1 (New Career+)
-									</div>
-									<br />
-									<div>
-										<span className='label'>Class</span>
-										<br /> Jnr Dev
-									</div>
-									<br />
-									<div>
-										<span className='label'>HP</span>
-										<br /> 100 / 100
-									</div>
-									<br />
-									<div>
-										<span className='label'>XP</span>
-										<br /> 49 /<span className='infinity-symbol'>∞</span>
-									</div>
-									<br />
-									<div>
-										<span className='label'>Feats</span>
-										<br />
-										Gaming, Green Ticks & Summoning Rubber Ducks
-										<a href='https://www.vecteezy.com/free-vector/rubber-duck'></a>
+											<br />
+											<div>
+												<span className='label'>LVL</span>
+												<br /> 1 (New Career+)
+											</div>
+											<br />
+											<div>
+												<span className='label'>Class</span>
+												<br /> Jnr Dev
+											</div>
+											<br />
+											<div>
+												<span className='label'>HP</span>
+												<br /> {hp} / 100
+											</div>
+											<br />
+											<div>
+												<span className='label'>XP</span>
+												<br /> 49 /<span className='infinity-symbol'>∞</span>
+											</div>
+											<br />
+											<div>
+												<span className='label'>Feats</span>
+												<br />
+												Gaming, Green Ticks & Summoning Rubber Ducks
+												<a href='https://www.vecteezy.com/free-vector/rubber-duck'></a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 
 							<div className='glow-bar' />
-							<div className='career-section'>
-								<h2 className='section-title'>
-									Junior Software
-									<br />& Game Dev
-								</h2>
-								<br />
-								<p className='career-subtext'>
-									At 49 it feels weird calling myself a Junior <i>anything</i>,
-									but here we are.
-								</p>
-							</div>
-							<div class='scroll-hint delayed-hint'>
-								<div class='scroll-text'>GO!</div>
-								<div class='scroll-arrow'>▽</div>
+
+							<div className='crt-container terminal-crt'>
+								<div className='crt-inner'>
+									<pre className='terminal-output'>{output}</pre>
+								</div>
 							</div>
 						</div>
+					</div>
+					<div className='scroll-hint delayed-hint'>
+						<div className='scroll-text'>GO!</div>
+						<div className='scroll-arrow'>▽</div>
 					</div>
 				</div>
 			),
@@ -431,21 +739,21 @@ function App() {
 							<span className='keyword'>let</span>{' '}
 							<span className='comment'>softSkills</span> = {'{'}
 						</div>
-						<div class='skills-object'>
-							<div class='skills-category'>
-								<h4 class='category-label'>technical: [</h4>
-								<ul class='skills-list'>
+						<div className='skills-object'>
+							<div className='skills-category'>
+								<h4 className='category-label'>technical: [</h4>
+								<ul className='skills-list'>
 									<li>"JavaScript",</li>
 									<li>"Full Stack",</li>
 									<li>"Phaser",</li>
 									<li>"Test Driven Development",</li>
 									<li>"Problem Solving"</li>
-									<h4 class='category-label'>] , [</h4>
+									<h4 className='category-label'>] , [</h4>
 								</ul>
 							</div>
-							<div class='skills-category'>
-								<h4 class='category-label'>interpersonal:</h4>
-								<ul class='skills-list'>
+							<div className='skills-category'>
+								<h4 className='category-label'>interpersonal:</h4>
+								<ul className='skills-list'>
 									<li>"Pair Programming",</li>
 									<li>"SCRUM Methodologies",</li>
 									<li>"Collaboration",</li>
@@ -467,37 +775,37 @@ function App() {
 									<li>"Initiative",</li>
 									<li>"Resilience",</li>
 
-									<li class='whisper-skill'>
+									<li className='whisper-skill'>
 										"Vibe Coding"{' '}
-										<span class='whisper-comment'>//whisper_it</span>
+										<span className='whisper-comment'>//whisper_it</span>
 									</li>
-									<h4 class='category-label'>]</h4>
+									<h4 className='category-label'>]</h4>
 									<span>{'}'}</span>
 								</ul>
 							</div>
 						</div>
-						<pre class='level-up-block'>
-							<span class='keyword'>function</span>{' '}
-							<span class='comment'>levelUp</span>(
-							<span class='comment'>skill</span>,
-							<span class='comment'> category</span>) {'{'}
+						<pre className='level-up-block'>
+							<span className='keyword'>function</span>{' '}
+							<span className='comment'>levelUp</span>(
+							<span className='comment'>skill</span>,
+							<span className='comment'> category</span>) {'{'}
 							<br />
-							<span class='keyword'>if</span> (!
-							<span class='comment'>softSkills</span>[
-							<span class='comment'>category</span>].includes(
-							<span class='comment'>skill</span>)) {'{'}
+							<span className='keyword'>if</span> (!
+							<span className='comment'>softSkills</span>[
+							<span className='comment'>category</span>].includes(
+							<span className='comment'>skill</span>)) {'{'}
 							<br />
-							<span class='comment'>softSkills</span>[
-							<span class='comment'>category</span>].push(
-							<span class='comment'>skill</span>);
+							<span className='comment'>softSkills</span>[
+							<span className='comment'>category</span>].push(
+							<span className='comment'>skill</span>);
 							<br />
 							{'}'}
 							{'}'}
 							<br />
 							<br />
-							<span class='comment'>levelUp</span>("
-							<span class='string'>gainfulEmployment</span>", "
-							<span class='string'>interpersonal</span>");
+							<span className='comment'>levelUp</span>("
+							<span className='string'>gainfulEmployment</span>", "
+							<span className='string'>interpersonal</span>");
 						</pre>
 					</div>
 				</>
@@ -596,7 +904,7 @@ function App() {
 						></i>
 						<i
 							data-tooltip-id='premiere-tooltip'
-							data-tooltip-content='Ditto for video editing. Again, as a result I could also use Final Cut, DaVinci Resolve, maybe even Avid.'
+							data-tooltip-content='Ditto for video editing. Used it a lot over the last 20 years. Again, as a result I can also use Final Cut, DaVinci Resolve, even Avid if needed.'
 							className='devicon-premierepro-plain'
 						></i>
 						<ReasonLogo
@@ -611,7 +919,7 @@ function App() {
 						/>
 						<ToonBoomLogo
 							data-tooltip-id='toonboom-tooltip'
-							data-tooltip-content="I supported ToonBoom Harmony in a previous job. Look no further for an 'Industry Standard' 2D animation package."
+							data-tooltip-content="I supported ToonBoom Harmony in my previous job. Look no further for an 'Industry Standard' 2D animation package."
 							className='tech-icon'
 						/>
 						<TiledLogo
@@ -635,22 +943,22 @@ function App() {
 						/>
 						<i
 							data-tooltip-id='slack-tooltip'
-							data-tooltip-content='Slack makes Teams look like Skype, which made GooglePlus look like Usenet etc ...'
+							data-tooltip-content='Slack makes Teams look like Skype, which made GooglePlus look like mIRC'
 							className='devicon-slack-plain'
 						></i>
 						<i
 							data-tooltip-id='msdos-tooltip'
-							data-tooltip-content='My familiarity with DOS made terminal feel cosy.'
+							data-tooltip-content='My familiarity with DOS makes terminal feel kinda cosy.'
 							className='devicon-msdos-line'
 						></i>
 						<i
 							data-tooltip-id='windows8-tooltip'
-							data-tooltip-content="I've used every version of Windows from 3.1 to 11."
+							data-tooltip-content="I've used every version of Windows from 3.1 to 11. Ten is best. Fight me."
 							className='devicon-windows8-original'
 						></i>
 						<i
 							data-tooltip-id='apple-tooltip'
-							data-tooltip-content="I'm also familiar with Apple OS from a previous job and was once certified for OSX."
+							data-tooltip-content="I'm also familiar with Apple OS from a previous role and was once certified for OSX."
 							className='devicon-apple-original'
 						></i>
 						<i
@@ -667,47 +975,23 @@ function App() {
 			borderColor: '#4dffca',
 			content: (
 				<>
-					<h2>//currentProjects</h2>
-
-					<div className='carousel-container'>
-						<motion.div
-							className='carousel-inner'
-							drag='x'
-							dragConstraints={{ left: -1000, right: 0 }}
-							whileTap={{ cursor: 'grabbing' }}
-						>
-							{projects.map((project, index) => (
-								<motion.a
-									key={index}
-									href={project.link}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='project-block-link'
-									whileTap={{ scale: 0.98 }}
-								>
-									<motion.div className='project-block'>
-										<h3 className='project-title glow-highlight pink'>
-											{project.title}
-										</h3>
-										<p className='project-desc'>{project.description}</p>
-										<p className='project-tech'>
-											Built with: {project.tech.join(', ')}
-										</p>
-									</motion.div>
-								</motion.a>
-							))}
-						</motion.div>
-					</div>
+					<h2 style={{ marginBottom: '2rem' }}>//currentProjects</h2>
+					<InfiniteCarousel
+						projects={projects}
+						isActive={activeCardIndex === 3}
+						videoRefs={videoRefs}
+					/>
 				</>
 			),
 		},
+
 		{
 			title: '//aboutMeThen',
 			borderColor: '#a277ff',
 			content: (
 				<>
 					<h2>//aboutMeThen</h2>
-					<div className='aboutMe career-section'>
+					<div className='aboutMe career-section' style={{ marginTop: '2rem' }}>
 						<p>
 							For the last 20 years I provided{' '}
 							<span className='glow-highlight blue'>tech support</span> to a
@@ -750,7 +1034,7 @@ function App() {
 			content: (
 				<>
 					<h2>//aboutMeNow</h2>
-					<div className='aboutMe career-section'>
+					<div className='aboutMe career-section' style={{ marginTop: '2rem' }}>
 						<p>
 							As you can see from the toolbox card, I'm{' '}
 							<span className='glow-highlight pink'>comfortable</span> with a
@@ -809,7 +1093,7 @@ function App() {
 			content: (
 				<>
 					<h2>//contactMe</h2>
-					<div className='career-section'>
+					<div className='career-section' style={{ marginTop: '2rem' }}>
 						<p>
 							I'm <i>actively</i> seeking work and I'm open to junior roles,
 							apprenticeships, contract work, and freelance opportunities. If
@@ -906,8 +1190,12 @@ function App() {
 				const anchorBottom = anchorTop + wrapper.offsetHeight;
 
 				if (scrollY >= anchorTop && scrollY < anchorBottom) {
+					videoRefs.current.forEach((ref) => {
+						if (ref && !ref.paused) ref.pause();
+					});
 					if (lastStickyCard !== i) {
 						lastStickyCard = i;
+						setActiveCardIndex(i);
 
 						// Prevent judder
 						wrapper.scrollTop = anchorTop;
