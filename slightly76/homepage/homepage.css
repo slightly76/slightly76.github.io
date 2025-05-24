@@ -18,6 +18,7 @@ html, body {
   line-height: 1.5;
 }
 
+
 /* Main scroll container */
 .scroll-container {
   position: relative;
@@ -204,19 +205,6 @@ html, body {
   animation: trailFlash 0.6s ease-out;
 }
 
-/* @keyframes settleIn {
-	0% {
-		transform: translateY(20px) scale(0.97);
-		opacity: 0;
-		box-shadow: 0 0 20px rgba(130,226, 255, 0.2);
-	}
-	100% {
-		transform: translateY(0) scale(1);
-		opacity: 1;
-		box-shadow: 0 0 12px rgba(130, 226, 255, 0.15);
-	}
-} */
-
 /*anim for scrolling back up through cards*/
 .card-reveal-prep {
 	opacity: 1;
@@ -224,28 +212,6 @@ html, body {
 	transform: none;
 	filter: brightness(1.1) saturate(1.1);
 }
-
-/* .card.fade-in-up {
-	animation: electricPop 0.35s ease-out forwards;
-}
-
-@keyframes electricPop {
-	0% {
-		filter: brightness(1.2) saturate(1.4);
-		transform: scale(1.015);
-		box-shadow: 0 0 20px #82e2ff, 0 0 60px #4dffca;
-	}
-	50% {
-		filter: brightness(1.1) saturate(1.2);
-		transform: scale(1.003);
-		box-shadow: 0 0 10px #4dffca;
-	}
-	100% {
-		filter: none;
-		transform: none;
-		box-shadow: none;
-	}
-} */
 
 .card.fade-in-up::before {
 	animation: electricPopTopBorder 0.35s ease-out forwards;
@@ -1251,6 +1217,7 @@ a:hover svg {
     width: 80%;
     height: 1px;
   }
+
   .project-block-link {
     width: 90vw;
     max-width: none;
@@ -1397,9 +1364,10 @@ a:hover svg {
   justify-content: space-between;
   scroll-snap-align: center;
   border-radius: 12px;
-  height: 510px;
+  height: 575px;
   width: 300px;
   overflow: hidden;
+  font-size: 0.7rem;
   /* padding: 1rem;
   width: 300px;
   transform-origin: center;
@@ -1433,8 +1401,6 @@ a:hover svg {
 	transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-
 .project-block-wrapper {
 	flex: 0 0 60vw;
 	transition: transform 0.3s ease, opacity 0.3s ease;
@@ -1455,17 +1421,61 @@ a:hover svg {
   border-bottom: none !important;
 } 
 
+.project-title-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	text-decoration: none;
+	color: inherit;
+}
+
+.browser-icon {
+	color: #4dffca; 
+	font-size: 1.3em;
+}
+
+.github-icon {
+  align-self: flex-end;
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: #4dffca;
+  cursor: pointer;
+  padding-top: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.github-icon:hover {
+  transform: scale(1.2);
+  color: #82e2ff;
+}
+
 .project-media {
   width: 100%;
   max-height: 200px;
   border-radius: 8px;
-  margin-bottom: 1rem;
   object-fit: cover;
-  background: black;
+  /* background: black; */
 }
 
 .project-media:hover {
   box-shadow: 0 0 8px rgba(130, 226, 255, 0.6);
+}
+
+.project-screenshot {
+	width: 30%;
+	max-width: 50%;
+	max-height: 180px;
+  align-self: center;
+	border-radius: 0.5rem;
+	margin: 0.5rem 0;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+	object-fit: contain;
+  filter: contrast(1.1) saturate(1.2);
+	image-rendering: pixelated;
+  border: 2px solid #4dffca;
+	box-shadow: 0 0 8px #4dffca55, 0 0 16px #82e2ff33;
 }
 
 
@@ -1482,22 +1492,7 @@ a:hover svg {
   margin-top: 0.5rem;
 }
 
-.github-icon {
-  align-self: flex-end;
-  margin-bottom: 0;
-  font-size: 1.5rem;
-  color: #4dffca;
-  cursor: pointer;
-  padding-top: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
 
-.github-icon:hover {
-  transform: scale(1.2);
-  color: #82e2ff;
-}
 
 .project-tech {
   align-self: flex-end;
@@ -1507,17 +1502,50 @@ a:hover svg {
   text-overflow: ellipsis;
 }
 
-
-
-
-
 .video-caption {
   font-size: 0.7rem;
-  color: #a277ff;
-  margin-top: -1.0rem;
+  color: #f694ff;
   text-align: center;
   font-family: "Cascadia Code", monospace;
   opacity: 0.8;
+ 
+}
+
+.video-crt-wrapper {
+	position: relative;
+	border: 2px solid #4dffca;
+	border-radius: 12px;
+	box-shadow:
+		inset 0 0 20px rgba(130, 226, 255, 0.2),
+		0 0 10px rgba(130, 226, 255, 0.3);
+	background: radial-gradient(ellipse at center, rgba(40, 29, 63, 0.9), rgba(20, 10, 40, 0.95));
+	overflow: hidden;
+	padding: 0.3rem;
+}
+
+.video-crt-wrapper::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1;
+	border-radius: 12px;
+	background: repeating-linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0.02),
+		rgba(255, 255, 255, 0.02) 1px,
+		transparent 2px,
+		transparent 4px
+	);
+}
+
+.video-caption.outside-caption {
+	margin-top: 0.5rem;
+	font-size: 0.7rem;
+	color: #f694ff;
+	text-align: center;
+	font-family: "Cascadia Code", monospace;
+	opacity: 0.8;
 }
 
 
@@ -1531,14 +1559,6 @@ a:hover svg {
   animation: none !important;
   
 }
-
-
-/* .card-5 {
-   
-  width: 85% !important;
-} */
-
-
 
 .card-0::after {
   animation: sweep 6s ease-in-out infinite;
