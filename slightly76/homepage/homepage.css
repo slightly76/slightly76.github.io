@@ -388,6 +388,7 @@ html, body {
 }
 
 
+
 .image-wrapper {
   position: relative;
   padding: 1rem 1.5rem;
@@ -450,6 +451,142 @@ html, body {
   50%      { opacity: 0.3; transform: scaleX(1.2); }
 }
 
+.image-and-stats-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	position: relative;
+	gap: 2rem;
+	width: 820px; /* Try this to account for 280px + 280px + EQ padding on both sides */
+	margin: 0 auto; /* Center the container */
+  width: min(90vw, 820px);
+}
+
+.stats-and-eq {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  width: fit-content;
+ 
+}
+
+.eq-bars-wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0; /* behind panel */
+}
+
+.eq-bars.left-eq {
+  position: absolute;
+  top: 0;
+  left: -250px; /* Match the width so it's offset like the right side */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.eq-bars.left-eq .eq-bar {
+  /* Just keep the visual effects */
+  transform-origin: right;
+  filter: blur(18px) brightness(1.8);
+  box-shadow:
+    0 0 12px #4dffca,
+    0 0 24px #4dffca88,
+    0 0 36px #4dffca55;
+}
+
+.eq-bars.left-eq::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(to left, rgba(40, 29, 63, 1), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.eq-bars.right-eq {
+  /* position: relative; */
+  top: 0;
+  right: 0px; /* snap to the far right of the container */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  height: 100%;
+  width: 100px;
+  pointer-events: none;
+  /* margin-left: -12px; */
+  z-index: -1;
+}
+
+.eq-bars.right-eq::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(40, 29, 63, 1), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.eq-bars.right-eq .eq-bar {
+  transform-origin: left;
+  filter: blur(18px) brightness(1.8);
+  box-shadow:
+    0 0 12px #4dffca,
+    0 0 24px #4dffca88,
+    0 0 36px #4dffca55;
+}
+
+.eq-bar {
+  height: 8px;
+  width: 100%;
+  background-color: #4dffca;
+  border-radius: 4px;
+  opacity: 0.4;
+  animation: pulseBar 4s ease-in-out infinite;
+  transform-origin: right; /* or left depending on side */
+  filter: blur(6px) brightness(1.8);
+  box-shadow:
+    0 0 12px #4dffca,
+    0 0 24px #4dffca88,
+    0 0 36px #4dffca55;
+}
+
+
+@keyframes pulseBar {
+	0%, 100% {
+		transform: scaleX(0.4);
+		opacity: 0.3;
+	}
+	50% {
+		transform: scaleX(1.2);
+		opacity: 1;
+	}
+}
+
+.eq-bar.bar-1 { background-color: #a277ff; animation-delay: 0.2s; }
+.eq-bar.bar-2 { background-color: #f694ff; animation-delay: 0.4s; }
+.eq-bar.bar-3 { background-color: #82e2ff; animation-delay: 0.6s; }
+.eq-bar.bar-4 { background-color: #4dffca; animation-delay: 0.8s; }
+.eq-bar.bar-5 { background-color: #a277ff; animation-delay: 1s; }
+
+
 .hover-image {
   position: absolute;
   top: 50%;
@@ -473,9 +610,8 @@ html, body {
     justify-content: center;
     align-items: flex-start; 
     gap: 1rem;
-    
+        
   }
-
 
 .image-and-stats:hover .hover-image.hover {
   opacity: 1;
@@ -487,6 +623,9 @@ html, body {
 
 .crt-container {
   width: 260px;
+  display: flex;
+  align-items: stretch;
+  position: relative;
  
 }
 
@@ -494,11 +633,14 @@ html, body {
 .stats-panel {
   width: 100%;
   max-width: 260px;
+  z-index: 3;
 }
 
 .crt-inner {
   transform: perspective(800px) rotateX(2deg) rotateY(-2deg);
   filter: contrast(1.1) saturate(1.2);
+  flex-grow: 1;
+  position: relative;
   
 }
 
@@ -754,6 +896,7 @@ html, body {
 .stats-panel {
   box-sizing: border-box;
   padding: 0;
+  padding-right: 0;
   height: 280px;
   width: 280px;
   position: relative;
@@ -786,7 +929,7 @@ html, body {
     transparent 1px,
     transparent 3px
   );
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
 }
 

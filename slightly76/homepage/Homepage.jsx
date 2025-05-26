@@ -342,7 +342,7 @@ function App() {
 				let next = prevHp + (Math.random() > 0.5 ? 1 : -1);
 				return Math.max(1, Math.min(99, next));
 			});
-		}, 250);
+		}, 1000);
 
 		return () => clearInterval(interval);
 	}, []);
@@ -401,58 +401,75 @@ function App() {
 						<div className='header-text'>
 							<h1 className='marquee-wrapper name-heading'>Chris Askew</h1>
 							<div className='glow-bar' />
-							<div className='image-and-stats'>
-								<div className='crt-container'>
-									<div className='crt-inner'>
-										<div className='image-wrapper'>
-											<img
-												src='./assets/me.jpg'
-												className='hover-image base'
-												alt='Me'
-											/>
-											<img
-												src='./assets/mehover.jpg'
-												className='hover-image hover'
-												alt='Me Hovering'
-											/>
+
+							{/* ✅ Correct wrapper for both image + stats */}
+							<div className='image-and-stats-wrapper'>
+								<div className='panel-with-bars image-panel'>
+									{/* EQ Bars go here */}
+
+									<div className='eq-bars horizontal-bars left-eq'>
+										{[...Array(6)].map((_, i) => (
+											<div key={i} className={`eq-bar bar-${i}`} />
+										))}
+									</div>
+
+									<div className='crt-container'>
+										<div className='crt-inner'>
+											<div className='image-wrapper'>
+												<img
+													src='./assets/me.jpg'
+													className='hover-image base'
+													alt='Me'
+												/>
+												<img
+													src='./assets/mehover.jpg'
+													className='hover-image hover'
+													alt='Me Hovering'
+												/>
+											</div>
 										</div>
 									</div>
 								</div>
 
-								<div className='crt-container'>
-									<div className='crt-inner'>
-										<div className='stats-panel'>
-											{/* <div>
-										<span className='label'>*STATS*</span>
-									</div> */}
-											<br />
-											<div>
-												<span className='label'>LVL</span>
-												<br /> 1 (New Career+)
-											</div>
-											<br />
-											<div>
-												<span className='label'>Class</span>
-												<br /> Jnr Dev
-											</div>
-											<br />
-											<div>
-												<span className='label'>HP</span>
-												<br /> {hp} / 100
-											</div>
-											<br />
-											<div>
-												<span className='label'>XP</span>
-												<br /> 49 /<span className='infinity-symbol'>∞</span>
-											</div>
-											<br />
-											<div>
-												<span className='label'>Feats</span>
+								{/* RIGHT: Stats */}
+								<div className='stats-and-eq'>
+									<div className='crt-container'>
+										<div className='crt-inner'>
+											<div className='stats-panel'>
 												<br />
-												Gaming, Green Ticks & Summoning Rubber Ducks
-												<a href='https://www.vecteezy.com/free-vector/rubber-duck'></a>
+												<div>
+													<span className='label'>LVL</span>
+													<br /> 1 (New Career+)
+												</div>
+												<br />
+												<div>
+													<span className='label'>Class</span>
+													<br /> Jnr Dev
+												</div>
+												<br />
+												<div>
+													<span className='label'>HP</span>
+													<br /> {hp} / 100
+												</div>
+												<br />
+												<div>
+													<span className='label'>XP</span>
+													<br /> 49 /<span className='infinity-symbol'>∞</span>
+												</div>
+												<br />
+												<div>
+													<span className='label'>Feats</span>
+													<br />
+													Gaming, Green Ticks & Summoning Rubber Ducks
+													<a href='https://www.vecteezy.com/free-vector/rubber-duck'></a>
+												</div>
 											</div>
 										</div>
+									</div>
+									<div className='eq-bars horizontal-bars right-eq'>
+										{[...Array(6)].map((_, i) => (
+											<div key={i} className={`eq-bar bar-${i}`} />
+										))}
 									</div>
 								</div>
 							</div>
@@ -466,6 +483,7 @@ function App() {
 							</div>
 						</div>
 					</div>
+
 					<div className='scroll-hint delayed-hint'>
 						<div className='scroll-text'>GO!</div>
 						<div className='scroll-arrow'>▽</div>
