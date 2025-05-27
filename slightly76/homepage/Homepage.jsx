@@ -760,7 +760,21 @@ function App() {
 				<>
 					<h2>//aboutMeThen</h2>
 					<div className='aboutMe career-section' style={{ marginTop: '2rem' }}>
-						<p>
+						<div className='sprite-wrapper'>
+							<img
+								src='./assets/spriteME.png'
+								className='hover-sprite base'
+								alt='Me as a sprite'
+							/>
+							<img
+								src='./assets/spriteMEHOVER.png'
+								className='hover-sprite hover'
+								alt='Me Hovering as a sprite'
+							/>
+							<div className='sprite-crt-overlay'></div>
+						</div>
+
+						<p className='about-text'>
 							For the last 20 years I provided{' '}
 							<span className='glow-highlight blue'>tech support</span> to a
 							flourishing Animation & Design BA(Hons) Degree programme in the
@@ -770,14 +784,16 @@ function App() {
 							<span className='glow-highlight blue'>critical feedback</span>,{' '}
 							<span className='glow-highlight pink'>technical mentorship</span>{' '}
 							and <span className='glow-highlight blue'>pastoral care</span> to
-							the students - often{' '}
-							<span className='glow-highlight pink'>supporting colleagues</span>{' '}
+							the students. I often{' '}
+							<span className='glow-highlight pink'>supported colleagues</span>{' '}
 							in adjacent creative disciplines like Film/TV & Graphic Design -
 							and even supplying{' '}
 							<span className='glow-highlight blue'>voice acting</span> for
 							student films. I have a{' '}
-							<span className='glow-highlight blue'>Media Production</span>{' '}
-							degree myself, which helped.
+							<span className='glow-highlight blue'>
+								Media Production BA(Hons)
+							</span>{' '}
+							degree myself, which definitely came in handy.
 							<br />
 							<br />
 							Some of my former students have gone on to win BAFTAs for their
@@ -785,12 +801,13 @@ function App() {
 							their <span className='glow-highlight blue'>journey</span>.
 							<br />
 							<br />
-							Owing to rampant financial insecurity in Higher Education, I've
-							found myself out of work for the first time since I was a
-							teenager. However, I've grasped the opportunity to pivot towards a{' '}
+							Unfortunately, owing to rampant financial insecurity in Higher
+							Education, I've found myself out of work for the first time since
+							I was a teenager. However, I've grasped the opportunity to pivot
+							towards a{' '}
 							<span className='glow-highlight blue'>new challenge</span> in
-							<span className='glow-highlight pink'> Software Dev</span>, which
-							is something I always wanted to do when I was younger.
+							<span className='glow-highlight pink'> Software & Game Dev</span>,
+							which is something I always wanted to do when I was younger.
 						</p>
 					</div>
 				</>
@@ -803,7 +820,24 @@ function App() {
 				<>
 					<h2>//aboutMeNow</h2>
 					<div className='aboutMe career-section' style={{ marginTop: '2rem' }}>
-						<p>
+						<div className='sprite-marquee'>
+							<div className='sprite-wrapper'>
+								<img
+									src='./assets/spriteME.png'
+									className='hover-sprite base'
+									alt='Me as a sprite'
+								/>
+								<img
+									src='./assets/spriteMEHOVER.png'
+									className='hover-sprite hover'
+									alt='Me Hovering as a sprite'
+								/>
+								<div className='sprite-glint'></div>
+								<div className='sprite-crt-overlay'></div>
+							</div>
+						</div>
+
+						<p className='about-text2'>
 							As you can see from the toolbox card, I'm{' '}
 							<span className='glow-highlight pink'>comfortable</span> with a
 							wide range of various disciplines from{' '}
@@ -835,7 +869,7 @@ function App() {
 							<span className='glow-highlight pink'>backend & frontend</span>{' '}
 							projects like "NC News" and even have the{' '}
 							<span className='glow-highlight pink'>confidence</span> to dive
-							headfirst into a library like{' '}
+							head-first into a library like{' '}
 							<span className='glow-highlight pink'>Phaser</span> and enjoy
 							myself making games again, like I did in my youth. This is great,
 							because; I love games. My Steam library is overflowing, I adore
@@ -862,7 +896,23 @@ function App() {
 				<>
 					<h2>//contactMe</h2>
 					<div className='career-section' style={{ marginTop: '2rem' }}>
-						<p>
+						<div className='sprite-hireme-wrapper'>
+							<div className='sprite-wrapper'>
+								<img
+									src='./assets/spriteME.png'
+									className='hover-sprite base'
+									alt='Me as a sprite'
+								/>
+								<img
+									src='./assets/spriteMEHOVER.png'
+									className='hover-sprite hover'
+									alt='Me Hovering as a sprite'
+								/>
+								<div className='sprite-crt-overlay'></div>
+							</div>
+							<div className='hireme-label'>◄ HIRE ME !!!</div>
+						</div>
+						<p className='contact-text'>
 							I'm <i>actively</i> seeking work and I'm open to junior roles,
 							apprenticeships, contract work, and freelance opportunities. If
 							you like what you see and you want to know more, or you just want
