@@ -9,14 +9,47 @@ html, body {
   font-family: "Cascadia Code", monospace;
   color: #a277ff;
   font-size: clamp(0.5rem, 4vw, 1.0rem);
-  background-image: url('./assets/bright-squares.png');
-  background-repeat: repeat;
-  background-size: auto;
-  background-attachment: fixed;
+   background-color: rgba(40, 29, 63, 1);
+  /* background-image: url('./assets/gplay.png');
+  background-size: auto; */
   overflow: hidden;
   overflow-x: hidden;
   line-height: 1.5;
+  opacity: 1;
 }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: url('./assets/gplay.png') repeat;
+  opacity: 0.10;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.015),
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+/* body {
+  background-color: rgba(40, 29, 63, 1);
+  background-image: url('./assets/noise.png');
+  background-repeat: repeat;
+  background-size: auto;
+  opacity: 1;
+} */
 
 
 /* Main scroll container */
@@ -468,6 +501,7 @@ html, body {
   align-items: stretch;
   position: relative;
   width: fit-content;
+  z-index: 3;
  
 }
 
@@ -481,18 +515,24 @@ html, body {
   z-index: 0; /* behind panel */
 }
 
+.panel-with-bars,
+.stats-and-eq {
+  position: relative;
+}
+
 .eq-bars.left-eq {
   position: absolute;
   top: 0;
-  left: -250px; /* Match the width so it's offset like the right side */
+  left: -140px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-end;
   height: 100%;
-  width: 100%;
+  width: 180px;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
+
 }
 
 .eq-bars.left-eq .eq-bar {
@@ -509,27 +549,27 @@ html, body {
   content: '';
   position: absolute;
   top: 0;
-  right: 0;
-  width: 20px;
-  height: 100%;
+  left: 0; /* this remains, since we're masking from right edge in */
+  width: 120px;
+  /* height: 140%; */
   background: linear-gradient(to left, rgba(40, 29, 63, 1), transparent);
   pointer-events: none;
   z-index: 2;
 }
 
 .eq-bars.right-eq {
-  /* position: relative; */
+  position: absolute;
   top: 0;
-  right: 0px; /* snap to the far right of the container */
+  right: -140px; /* snap to the far right of the container */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
   height: 100%;
-  width: 100px;
+  width: 180px;
   pointer-events: none;
   /* margin-left: -12px; */
-  z-index: -1;
+  z-index: -2;
 }
 
 .eq-bars.right-eq::before {
@@ -541,7 +581,7 @@ html, body {
   height: 100%;
   background: linear-gradient(to right, rgba(40, 29, 63, 1), transparent);
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
 }
 
 .eq-bars.right-eq .eq-bar {
@@ -580,6 +620,10 @@ html, body {
 	}
 }
 
+.eq-bar {
+  height: 12px;
+}
+
 .eq-bar.bar-1 { background-color: #a277ff; animation-delay: 0.2s; }
 .eq-bar.bar-2 { background-color: #f694ff; animation-delay: 0.4s; }
 .eq-bar.bar-3 { background-color: #82e2ff; animation-delay: 0.6s; }
@@ -607,19 +651,21 @@ html, body {
 
 .image-and-stats {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: flex-start; 
     gap: 1rem;
+    overflow: visible;
         
   }
 
-.image-and-stats:hover .hover-image.hover {
-  opacity: 1;
-}
-
-.image-and-stats:hover .hover-image.base {
-  opacity: 0;
-}
+  .image-and-stats-wrapper:hover .hover-image.hover {
+    opacity: 1;
+  }
+  
+  .image-and-stats-wrapper:hover .hover-image.base {
+    opacity: 0;
+  }
 
 .crt-container {
   width: 260px;
@@ -633,7 +679,8 @@ html, body {
 .stats-panel {
   width: 100%;
   max-width: 260px;
-  z-index: 3;
+  z-index: 4;
+ 
 }
 
 .crt-inner {
@@ -671,13 +718,6 @@ html, body {
 	width: fit-content;
 	margin: 2rem auto;
 }
-
-/* .terminal-crt {
-	width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin: 2rem auto;
-} */
 
 .terminal-crt {
   position: relative;
@@ -1134,7 +1174,7 @@ a:hover svg {
 .whisper-text {
   color: #f694ff;
   opacity: 0;
-  animation: whisperGlow 6s ease-in-out infinite;
+  animation: whisperGlow 8s ease-in-out infinite;
 }
 
 .whisper-comment {
@@ -1205,7 +1245,7 @@ a:hover svg {
 
 .whisper-skill {
   opacity: 0.7;
-  animation: whisperGlow 6s ease-in-out infinite;
+  animation: whisperGlow 8s ease-in-out infinite;
 }
 
 .comment {
@@ -1375,6 +1415,43 @@ a:hover svg {
     padding: 1rem;
     width: 100%;
   }
+
+  .image-and-stats-wrapper {
+    flex-direction: row;
+    gap: 0.25rem;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .image-wrapper,
+  .stats-panel {
+    flex: 1 1 0;
+    width: 50%;
+    max-width: 100%;
+    min-width: 170px;
+    aspect-ratio: 1 / 2;
+    height: auto;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    height: auto !important;
+    max-height: 280px;
+  }
+
+  .image-wrapper {
+    height: auto !important;  /* override the default 280px */
+  }
+
+  .crt-container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .eq-bars.left-eq,
+  .eq-bars.right-eq {
+    display: none;
+  }
+
+
 }
 
 .carousel-wrapper {

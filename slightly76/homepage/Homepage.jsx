@@ -436,7 +436,10 @@ function App() {
 									<div className='crt-container'>
 										<div className='crt-inner'>
 											<div className='stats-panel'>
+												<span className='label'>-=STATS=-</span>
 												<br />
+												<br />
+
 												<div>
 													<span className='label'>LVL</span>
 													<br /> 1 (New Career+)
@@ -513,11 +516,11 @@ function App() {
 									<li>"Phaser",</li>
 									<li>"Test Driven Development",</li>
 									<li>"Problem Solving"</li>
-									<h4 className='category-label'>] , [</h4>
+									<h4 className='category-label'>] , </h4>
 								</ul>
 							</div>
 							<div className='skills-category'>
-								<h4 className='category-label'>interpersonal:</h4>
+								<h4 className='category-label'>interpersonal: [</h4>
 								<ul className='skills-list'>
 									<li>"Pair Programming",</li>
 									<li>"SCRUM Methodologies",</li>
@@ -527,7 +530,7 @@ function App() {
 									<li>
 										"Attention to{' '}
 										<span
-											title='Nice catch...'
+											title='Nice catch!'
 											style={{
 												cursor: 'help',
 												pointerEvents: 'auto',
@@ -539,12 +542,12 @@ function App() {
 									<li>"Mentorship",</li>
 									<li>"Initiative",</li>
 									<li>"Resilience",</li>
-
 									<li className='whisper-skill'>
 										"Vibe Coding"{' '}
 										<span className='whisper-comment'>//whisper_it</span>
 									</li>
 									<h4 className='category-label'>]</h4>
+									<br />
 									<span>{'}'}</span>
 								</ul>
 							</div>
@@ -869,7 +872,7 @@ function App() {
 						<br />
 						<a href='mailto:caskew@hotmail.com' className='contact-link'>
 							<HiOutlineMailOpen className='contact-icon' />
-							Email
+							Email caskew@hotmail.com
 						</a>
 						<br />
 						<a
@@ -899,7 +902,8 @@ function App() {
 							className='contact-link'
 						>
 							<SteamLogo className='contact-icon' />
-							Steam
+							Steam (although I also play a lot of GamePass and emulated retro
+							stuff)
 						</a>
 					</div>
 				</>
