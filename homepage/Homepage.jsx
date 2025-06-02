@@ -14,6 +14,8 @@ import TrelloLogo from '/assets/logos/trello-logo.svg?react';
 import SteamLogo from '/assets/logos/steam-logo.svg?react';
 import { HiOutlineMailOpen } from 'react-icons/hi';
 import { TbBrowserCheck } from 'react-icons/tb';
+import { PiReadCvLogoBold } from 'react-icons/pi';
+import { FaRegEye } from 'react-icons/fa';
 
 const CARD_WIDTH = 300 + 32;
 const DUPLICATION_FACTOR = 16;
@@ -29,7 +31,7 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 	const [index, setIndex] = useState(startIndex);
 	const x = useMotionValue(0);
 
-	// Flag to skip animation on first mount
+	//flag to skip animation on first mount
 	const hasMounted = useRef(false);
 
 	const scrollToIndex = (newIndex, animateScroll = true) => {
@@ -47,7 +49,7 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 		if (animateScroll) {
 			animate(x, offset, { type: 'spring', stiffness: 250, damping: 30 });
 		} else {
-			x.set(offset); // skip animation
+			x.set(offset); //skip animation
 		}
 		setIndex(newIndex);
 	};
@@ -69,7 +71,7 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 		const initialOffset =
 			-fullCardWidth * resetIndex + (containerWidth / 2 - fullCardWidth / 2);
 
-		// Set position without animation on first mount
+		//set position without animation on first mount
 		x.set(initialOffset);
 		setIndex(resetIndex);
 		hasMounted.current = true;
@@ -103,7 +105,7 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 		videoRefs.current.forEach((video, i) => {
 			if (!video) return;
 
-			// Only allow video on the currently focused project
+			//only allow video on the currently focus project
 			if (i % totalCards !== index % totalCards && !video.paused) {
 				video.pause();
 			}
@@ -131,8 +133,6 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 								ref={i === startIndex ? cardRef : null}
 								className={`project-card ${isFocused ? 'focused' : ''}`}
 								initial={{ scale: 0.9, opacity: 0.7 }}
-								// whileInView={{ scale: 1, opacity: 1 }}
-								// viewport={{ amount: 0.5 }}
 								animate={{
 									scale: isFocused ? 1 : 0.9,
 									opacity: isFocused ? 1 : 0.7,
@@ -148,7 +148,7 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 											rel='noopener noreferrer'
 											className='project-title-link'
 										>
-											<TbBrowserCheck className='browser-icon' />
+											<FaRegEye className='browser-icon' />
 											{project.title}
 										</a>
 									</h3>
@@ -200,7 +200,7 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 												);
 											}}
 										></i>
-										<TbBrowserCheck
+										<FaRegEye
 											className='browser-icon'
 											title='View Live Project'
 											onClick={(e) => {
@@ -253,7 +253,7 @@ function useTypewriter(lines, delay = 50, linePause = 700) {
 			const pause = setTimeout(() => {
 				setPauseBeforeDelete(false);
 				setIsDeleting(true);
-			}, 500); // Pause before correction starts (ms)
+			}, 500);
 			return () => clearTimeout(pause);
 		}
 
@@ -276,7 +276,7 @@ function useTypewriter(lines, delay = 50, linePause = 700) {
 				const match = fullLine.slice(currentChar).match(/^\[<-(\d+)\]/);
 				if (match) {
 					const count = parseInt(match[1], 10);
-					setPauseBeforeDelete(true); // <-- trigger the pause
+					setPauseBeforeDelete(true);
 					setDeleteCount(count);
 					setCurrentChar(currentChar + match[0].length);
 				}
@@ -372,7 +372,7 @@ function App() {
 			title: 'Portfolio Website',
 			screenshot: '../assets/website.png',
 			description:
-				"This very website. I hope you like it. For reference, this is the third website I've ever made. The previous one was made using Adobe GoLive. My first site was written in notepad and was best viewed in Netscape Navigator. So, be gentle...",
+				"This very website. I hope you like it. I'm already working on a restructure of its inner workings. For reference, this is the third website I've ever made. The previous one was made using Adobe GoLive. My first every site was written in notepad and best viewed in Netscape Navigator. So, be gentle...",
 			livelink: 'https://github.com/slightly76',
 			githublink: 'https://github.com/slightly76',
 			tech: [
@@ -402,11 +402,8 @@ function App() {
 							<h1 className='marquee-wrapper name-heading'>Chris Askew</h1>
 							<div className='glow-bar' />
 
-							{/* ✅ Correct wrapper for both image + stats */}
 							<div className='image-and-stats-wrapper'>
 								<div className='panel-with-bars image-panel'>
-									{/* EQ Bars go here */}
-
 									<div className='eq-bars horizontal-bars left-eq'>
 										{[...Array(6)].map((_, i) => (
 											<div key={i} className={`eq-bar bar-${i}`} />
@@ -431,7 +428,6 @@ function App() {
 									</div>
 								</div>
 
-								{/* RIGHT: Stats */}
 								<div className='stats-and-eq'>
 									<div className='crt-container'>
 										<div className='crt-inner'>
@@ -945,7 +941,18 @@ function App() {
 							LinkedIn
 						</a>
 						<br />
-						<a
+						{
+							<a
+								href='https://docs.google.com/document/d/18RB1J6eTGvqjeQwB0QmqbRDql3ookEUhyEXZ0_wOQwo/edit?usp=sharing/preview'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='contact-link'
+							>
+								<PiReadCvLogoBold className='contact-icon' />
+								My CV
+							</a>
+						}
+						{/* <a
 							href='https://steamcommunity.com/id/slightly76/'
 							target='_blank'
 							rel='noopener noreferrer'
@@ -954,7 +961,7 @@ function App() {
 							<SteamLogo className='contact-icon' />
 							Steam (although I also play a lot of GamePass and emulated retro
 							stuff)
-						</a>
+						</a> */}
 					</div>
 				</>
 			),
@@ -969,20 +976,39 @@ function App() {
 		EXTRA_SCROLL_BUFFER_VH;
 
 	const scrollToCard = (index) => {
-		if (!scrollRef.current || !anchorsRef.current[index]) return;
+		const wrapper = scrollRef.current;
+		const card = document.querySelector(`.card-${index}`);
 
-		const targetOffset = anchorsRef.current[index].offsetTop;
-		skipNextScrollLock = true;
+		if (!wrapper || !card) {
+			console.warn('scrollToCard failed:', { wrapper, card, index });
+			return;
+		}
 
-		scrollRef.current.scrollTo({
-			top: targetOffset,
-			behavior: 'smooth',
+		//get bounding boxes relative to the viewport
+		const wrapperRect = wrapper.getBoundingClientRect();
+		const cardRect = card.getBoundingClientRect();
+
+		//how far the card is from the top of the scroll container?
+		const relativeOffset = cardRect.top - wrapperRect.top;
+
+		//get sticky offset in pixels
+		const stickyOffset = parseFloat(getComputedStyle(card).top) || 0;
+
+		//calculate the scroll target
+		const scrollTarget = wrapper.scrollTop + relativeOffset - stickyOffset;
+
+		console.log({
+			cardRectTop: cardRect.top,
+			wrapperRectTop: wrapperRect.top,
+			relativeOffset,
+			stickyOffset,
+			scrollTarget,
 		});
 
-		//re-enable scroll lock *after* smooth scroll finishes (around 600ms ish)
-		setTimeout(() => {
-			skipNextScrollLock = false;
-		}, 700);
+		wrapper.scrollTo({
+			top: scrollTarget,
+			behavior: 'smooth',
+		});
 	};
 
 	useEffect(() => {
@@ -997,68 +1023,61 @@ function App() {
 		const onScrollLock = () => {
 			if (skipNextScrollLock) return;
 
-			const scrollY = wrapper.scrollTop;
-			scrollingUp = scrollY < lastScrollTop;
-			lastScrollTop = scrollY;
+			cancelAnimationFrame(timeoutId);
+			timeoutId = requestAnimationFrame(() => {
+				const scrollY = wrapper.scrollTop;
+				scrollingUp = scrollY < lastScrollTop;
+				lastScrollTop = scrollY;
 
-			for (let i = 0; i < anchorsRef.current.length; i++) {
-				const anchor = anchorsRef.current[i];
-				if (!anchor) continue;
+				for (let i = 0; i < anchorsRef.current.length; i++) {
+					const anchor = anchorsRef.current[i];
+					if (!anchor) continue;
 
-				const anchorTop = anchor.offsetTop;
-				const anchorBottom = anchorTop + wrapper.offsetHeight;
+					const anchorTop = anchor.offsetTop;
+					const anchorBottom = anchorTop + wrapper.offsetHeight;
 
-				if (scrollY >= anchorTop && scrollY < anchorBottom) {
-					videoRefs.current.forEach((ref) => {
-						if (ref && !ref.paused) ref.pause();
-					});
-					if (lastStickyCard !== i) {
-						lastStickyCard = i;
-						setActiveCardIndex(i);
+					if (scrollY >= anchorTop && scrollY < anchorBottom) {
+						videoRefs.current.forEach((ref) => {
+							if (ref && !ref.paused) ref.pause();
+						});
+						if (lastStickyCard !== i) {
+							lastStickyCard = i;
+							setActiveCardIndex(i);
 
-						// Prevent judder
-						wrapper.scrollTop = anchorTop;
-
-						// Lock scroll
-						wrapper.style.overflowY = 'hidden';
-						clearTimeout(timeoutId);
-						timeoutId = setTimeout(() => {
-							wrapper.style.overflowY = 'auto';
-						}, 700);
-
-						const currentCard = document.querySelector(`.card-${i}`);
-
-						// animation for scrolling back up
-						if (currentCard && scrollingUp) {
-							currentCard.classList.add('card-reveal-prep');
+							wrapper.scrollTop = anchorTop;
+							wrapper.style.overflowY = 'hidden';
 
 							setTimeout(() => {
-								currentCard.classList.add('fade-in-up');
+								wrapper.style.overflowY = 'auto';
+							}, 700);
 
+							const currentCard = document.querySelector(`.card-${i}`);
+							if (currentCard && scrollingUp) {
+								currentCard.classList.add('card-reveal-prep');
+								setTimeout(() => {
+									currentCard.classList.add('fade-in-up');
+									setTimeout(() => {
+										currentCard.classList.remove('fade-in-up');
+										currentCard.classList.remove('card-reveal-prep');
+										document.querySelectorAll('.card').forEach((el) => {
+											el.style.visibility = 'visible';
+										});
+									}, 400);
+								}, 50);
+							}
+							if (currentCard && !scrollingUp) {
+								currentCard.classList.add('card-settle-in');
+								currentCard.classList.add('fade-in-up');
 								setTimeout(() => {
 									currentCard.classList.remove('fade-in-up');
-									currentCard.classList.remove('card-reveal-prep');
-									document.querySelectorAll('.card').forEach((el) => {
-										el.style.visibility = 'visible';
-									});
-								}, 400);
-							}, 50);
+									currentCard.classList.remove('card-settle-in');
+								}, 500);
+							}
 						}
-
-						// animation for scrolling down
-						if (currentCard && !scrollingUp) {
-							currentCard.classList.add('card-settle-in');
-							currentCard.classList.add('fade-in-up');
-
-							setTimeout(() => {
-								currentCard.classList.remove('fade-in-up');
-								currentCard.classList.remove('card-settle-in');
-							}, 500);
-						}
+						break;
 					}
-					break;
 				}
-			}
+			});
 		};
 
 		wrapper.addEventListener('scroll', onScrollLock);
@@ -1067,6 +1086,10 @@ function App() {
 			clearTimeout(timeoutId);
 		};
 	}, []);
+
+	const setAnchorRef = (index) => (el) => {
+		if (el) anchorsRef.current[index] = el;
+	};
 
 	return (
 		<div className='scroll-container' ref={scrollRef}>
@@ -1083,22 +1106,19 @@ function App() {
 						const cardHeight =
 							index === cards.length - 1
 								? `${FINAL_CARD_HEIGHT_VH}vh`
-								: index === 5 // or whatever index card-4 is
-								? '80vh' // slightly shorter
+								: index === 5
+								? '80vh'
 								: '95vh';
 
 						return (
 							<React.Fragment key={index}>
-								<div
-									ref={(el) => (anchorsRef.current[index] = el)}
-									className='card-anchor'
-								/>
+								<div ref={setAnchorRef(index)} className='card-anchor' />
 								<div
 									className={`card card-${index}`}
 									style={{
 										backgroundColor: card.bg,
 										zIndex: index + 1,
-										top: topOffset,
+										top: `${index * 3}vh`,
 										minHeight: cardHeight,
 										maxHeight: cardHeight,
 										position: 'sticky',
@@ -1108,19 +1128,17 @@ function App() {
 										<div
 											className='card-inner'
 											style={{
-												// borderTop: `6px solid ${card.borderColor}`,
 												maxHeight: '100%',
 												overflowY: 'auto',
 											}}
 										>
-											{/* {index !== 0 && ( */}
 											<div
 												className='card-peek'
 												onClick={() => scrollToCard(index)}
 											>
 												{card.title}
 											</div>
-											{/* )} */}
+
 											{card.content ? (
 												card.content
 											) : (

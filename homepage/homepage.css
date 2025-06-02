@@ -10,8 +10,7 @@ html, body {
   color: #a277ff;
   font-size: clamp(0.5rem, 4vw, 1.0rem);
    background-color: rgba(40, 29, 63, 1);
-  /* background-image: url('./assets/gplay.png');
-  background-size: auto; */
+ 
   overflow: hidden;
   overflow-x: hidden;
   line-height: 1.5;
@@ -50,7 +49,7 @@ body::after {
 /* Main scroll container */
 .scroll-container {
   position: relative;
-  /* scroll-snap-type: y mandatory; */
+ 
   top: 0;
   left: 0;
   height: 100vh;
@@ -60,7 +59,7 @@ body::after {
   z-index: 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  /* scrollbar-color: rgba(255, 255, 255, 0.2) transparent; */
+ 
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -73,7 +72,13 @@ body::after {
   background: transparent;
 }
 
-/* Card stack container */
+.scroll-wrapper {
+  height: 100vh;       
+  overflow-y: auto;
+  position: relative;
+}
+
+
 .scroll-lock-wrapper {
   width: 100%;
   max-width: 1200px;
@@ -81,7 +86,7 @@ body::after {
   position: relative;
 }
 
-/* Inner stack area */
+
 .page {
   width: 100%;
   max-width: 1200px;
@@ -89,17 +94,20 @@ body::after {
 }
 
 .card-anchor {
-  height: 0;
+  height: 1px;
   margin: 0;
   padding: 0;
+  visibility: hidden;
+ 
 }
 
 .card {
   scroll-snap-align: start;
   isolation: isolate;
   will-change: transform;
+ 
   position: sticky;
-  top: 0;
+ 
   z-index: 1;
   width: 100%;
   min-height: 100vh !important;
@@ -115,14 +123,11 @@ body::after {
 .card-inner {
   padding: 1.5rem 1rem;
   padding-top: 2rem;
-  /* border-top: 4px solid #4dffca; */
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   max-height: 100%;
   overflow-y: auto;
-
-  /* position: relative;
-  z-index: 1;*/
+ 
 
 }
 
@@ -165,7 +170,7 @@ body::after {
 .card-inner-clip {
   position: relative;
   border-radius: 8px;
-  overflow: hidden; /* This is key */
+  overflow: hidden;
   height: 100%;
 }
 
@@ -199,16 +204,6 @@ body::after {
   text-overflow: ellipsis;
 }
 
-.card-peek:hover {
-  text-shadow: 0 0 4px #f694ff, 0 0 8px #f694ff99;
-  color: #f694ff;
-}
-
-/* anim for scrolling down through new cards
-.card-settle-in {
-	animation: settleIn 0.3s ease-out forwards;
-} */
-
 .card.card-settle-in::after {
   content: '';
   position: absolute;
@@ -235,7 +230,6 @@ body::after {
   animation: trailFlash 0.6s ease-out;
 }
 
-/*anim for scrolling back up through cards*/
 .card-reveal-prep {
 	opacity: 1;
 	z-index: 9999;
@@ -290,7 +284,6 @@ body::after {
   }
 }
 
-/*resolve other animations before any card transitions etc*/
 .card.fade-in-up .animated-child,
 .card.fade-in-up .stats-panel,
 .card.fade-in-up .glow-bar {
@@ -429,7 +422,6 @@ body::after {
   overflow: hidden;
   background: radial-gradient(ellipse at center, rgba(40,29,63,0.9) 0%, rgba(20,10,40,0.95) 100%);
   border: 2px solid #4dffca;
-  /* background: rgba(0, 0, 0, 0.3); */
   box-shadow:
   inset 0 0 20px rgba(130, 226, 255, 0.2),
   0 0 10px rgba(130, 226, 255, 0.3);
@@ -441,7 +433,6 @@ body::after {
   animation: glowPulse 3s infinite ease-in-out;
   box-shadow:
   0 0 8px rgba(130, 226, 255, 0.3);        
-  /* overflow: hidden;  */
   z-index: 1; 
 } 
 
@@ -487,8 +478,8 @@ body::after {
 	align-items: stretch;
 	position: relative;
 	gap: 2rem;
-	width: 820px; /* Try this to account for 280px + 280px + EQ padding on both sides */
-	margin: 0 auto; /* Center the container */
+	width: 820px; 
+	margin: 0 auto;
   width: min(90vw, 820px);
 }
 
@@ -509,7 +500,7 @@ body::after {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  z-index: 0; /* behind panel */
+  z-index: 0; 
 }
 
 .panel-with-bars,
@@ -533,7 +524,7 @@ body::after {
 }
 
 .eq-bars.left-eq .eq-bar {
-  /* Just keep the visual effects */
+  
   transform-origin: right;
   filter: blur(18px) brightness(1.8);
   box-shadow:
@@ -546,9 +537,8 @@ body::after {
   content: '';
   position: absolute;
   top: 0;
-  left: 0; /* this remains, since we're masking from right edge in */
+  left: 0; 
   width: 120px;
-  /* height: 140%; */
   background: linear-gradient(to left, rgba(40, 29, 63, 1), transparent);
   pointer-events: none;
   z-index: 2;
@@ -557,7 +547,7 @@ body::after {
 .eq-bars.right-eq {
   position: absolute;
   top: 0;
-  right: -140px; /* snap to the far right of the container */
+  right: -140px; 
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -565,7 +555,7 @@ body::after {
   height: 100%;
   width: 180px;
   pointer-events: none;
-  /* margin-left: -12px; */
+ 
   z-index: -2;
 }
 
@@ -597,7 +587,7 @@ body::after {
   border-radius: 4px;
   opacity: 0.4;
   animation: pulseBar 4s ease-in-out infinite;
-  transform-origin: right; /* or left depending on side */
+  transform-origin: right; 
   filter: blur(6px) brightness(1.8);
   box-shadow:
     0 0 12px #4dffca,
@@ -728,7 +718,6 @@ body::after {
     inset 0 0 20px rgba(130, 226, 255, 0.2),
     0 0 10px rgba(130, 226, 255, 0.3);
   overflow: hidden;
-  /* padding: 0.5rem; */
   background: radial-gradient(ellipse at center, rgba(40,29,63,0.9), rgba(20,10,40,0.95));
   filter: contrast(1.1) saturate(1.2);
 }
@@ -755,7 +744,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 3; /* above everything inside */
+  z-index: 3; 
   pointer-events: none;
   border-radius: 18px;
   background: repeating-linear-gradient(
@@ -1095,6 +1084,14 @@ a:hover svg {
   max-width: 90%;
   margin: 1rem auto;
   font-size: 0.9rem;
+   background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.015),
+    rgba(0, 0, 0, 0.2) 70%
+  );
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(77, 255, 202, 0.2);
+  
 }
 
 .skills-title {
@@ -1275,6 +1272,8 @@ a:hover svg {
 @media (max-width: 768px) {
   .header-top {
     flex-direction: column;
+    }
+
   }
   
 
@@ -1325,7 +1324,7 @@ a:hover svg {
   }
 
   .image-wrapper {
-    height: auto !important;  /* override the default 280px */
+    height: auto !important;
   }
 
   .crt-container {
@@ -1339,17 +1338,13 @@ a:hover svg {
   }
 
 
-}
+
 
 .carousel-wrapper {
-  /* overflow: hidden; */
   width: 100%;
   gap: 1rem;
   scrollbar-width: none;
-  /* position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem; */
+ 
 }
 
 .carousel-vertical-wrapper {
@@ -1361,21 +1356,12 @@ a:hover svg {
 
 .carousel-container {
   
-  /* overflow-x: hidden; */
-  /* overflow: hidden; */
+ 
   scrollbar-width: none;
   width: 100vw;
   padding: 0;
   margin: 0;
-  /* position: relative;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  display: flex;
-  justify-content: center;
-  scroll-snap-type: x mandatory; */
-  /* margin-bottom: 2rem;
 
-  -webkit-overflow-scrolling: touch;*/
 }
 
 
@@ -1387,9 +1373,6 @@ a:hover svg {
   will-change: transform;
   overflow: visible;
   
-  /* gap: 1rem;
-  padding: 0 10vw;
-  scroll-snap-type: x mandatory; */
 }
 
 .carousel-button-row {
@@ -1431,13 +1414,7 @@ a:hover svg {
 
 .carousel-inner {
   display: flex;
-  /* gap: 2vh; */
-  /* padding: 0 10vw; */
-  /* box-sizing: border-box;
-  cursor: grab;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  overflow: visible; */
+
  
  }
 
@@ -1449,7 +1426,6 @@ a:hover svg {
   border: 2px solid #4dffca;
   border-radius: 12px;
   padding: 1rem;
-  /* box-shadow: 0 0 10px rgba(130, 226, 255, 0.3); */
   transition: all 0.3s ease;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -1551,7 +1527,7 @@ a:hover svg {
   max-height: 200px;
   border-radius: 8px;
   object-fit: cover;
-  /* background: black; */
+ 
 }
 
 .project-media:hover {
@@ -1796,7 +1772,7 @@ a:hover svg {
   content: '';
   position: absolute;
   margin-top: 23px;
-  inset: -24px; /* expand beyond content instead of using padding */
+  inset: -24px;
   background: repeating-conic-gradient(
     from 0deg,
     #f694ff 0deg 10deg,
@@ -1817,7 +1793,6 @@ a:hover svg {
   
 }
 
-/* Container with animated border */
 .sprite-hireme-wrapper {
   position: relative;
   display: flex;
@@ -1858,7 +1833,7 @@ a:hover svg {
 .hireme-label {
   position: absolute;
   top: 35%;
-  left: 68%; /* slightly to the right of the sprite */
+  left: 68%; 
   transform: translateY(-50%);
   
   background: rgba(40, 29, 63, 1);
@@ -1884,7 +1859,7 @@ a:hover svg {
   }
 }
 
-/* Enhance CRT flicker */
+
 .sprite-crt-overlay {
   position: absolute;
   top: 5;
@@ -1971,3 +1946,40 @@ a:hover svg {
   height: 1em;
   fill: currentColor;
 }
+
+@media (max-width: 768px) {
+  .sprite-wrapper {
+    transform: scale(1.5);
+    margin: 5px auto 45px;
+  }
+
+  .about-text,
+  .about-text2,
+  .contact-text {
+    margin-top: 1.0rem; 
+    font-size:0.7rem;
+  }
+
+  .career-section {
+    padding: 1rem;
+  }
+
+  .sprite-hireme-wrapper::before {
+    width: 160px;
+    height: 160px;
+    top: -25px;
+    left: 78px;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .hireme-label {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    top: 35%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    border-width: 2px;
+    white-space: nowrap;
+  }
+
+ }
