@@ -835,7 +835,7 @@ function App() {
 						<div className='sprite-marquee'>
 							<div className='sprite-wrapper'>
 								<img
-									src='./assets/spriteME.png'
+									src='/assets/spriteME.png'
 									className='hover-sprite base'
 									alt='Me as a sprite'
 								/>
@@ -911,7 +911,7 @@ function App() {
 						<div className='sprite-hireme-wrapper'>
 							<div className='sprite-wrapper'>
 								<img
-									src='./assets/spriteME.png'
+									src='/assets/spriteME.png'
 									className='hover-sprite base'
 									alt='Me as a sprite'
 								/>
