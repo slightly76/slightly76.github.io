@@ -1778,6 +1778,16 @@ a:hover svg {
   opacity: 0;
 }
 
+.dummy-sprite-marquee {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: fit-content;
+  z-index: 0;
+}
+
 .sprite-marquee {
   position: relative;
   display: flex;
