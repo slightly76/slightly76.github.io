@@ -1708,7 +1708,7 @@ a:hover svg {
   position: relative;
   width: 64px;
   height: 64px;
-  margin: 50px auto 100px;
+  margin: 50px auto 80px;
   transform: scale(3.0);
   z-index: 1;
 }
@@ -1778,7 +1778,7 @@ a:hover svg {
   opacity: 0;
 }
 
-.dummy-sprite-marquee {
+/* .dummy-sprite-marquee {
   position: relative;
   display: flex;
   justify-content: center;
@@ -1787,7 +1787,7 @@ a:hover svg {
   width: fit-content;
   z-index: 0;
   
-}
+} */
 
 .sprite-marquee {
   position: relative;
@@ -1802,7 +1802,7 @@ a:hover svg {
 .dummy-sprite-marquee::before {
   content: '';
   position: absolute;
-  margin-top: 23px;
+  margin-top: 20px;
   inset: -24px;
   border-radius: 20px;
   z-index: -1;
