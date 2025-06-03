@@ -11,7 +11,7 @@ import TiledLogo from '/assets/logos/tiled-logo.svg?react';
 import DiscordLogo from '/assets/logos/discord-logo.svg?react';
 import FigmaLogo from '/assets/logos/figma-logo.svg?react';
 import TrelloLogo from '/assets/logos/trello-logo.svg?react';
-import SteamLogo from '/assets/logos/steam-logo.svg?react';
+// import SteamLogo from '/assets/logos/steam-logo.svg?react';
 import { HiOutlineMailOpen } from 'react-icons/hi';
 // import { TbBrowserCheck } from 'react-icons/tb';
 import { PiReadCvLogoBold } from 'react-icons/pi';
@@ -352,7 +352,7 @@ function App() {
 	const projects = [
 		{
 			title: 'StackDew Valley',
-			video: '../assets/stackdew_trailer.mp4',
+			video: '/assets/stackdew_trailer.mp4',
 			videoText: 'StackDew Valley early trailer',
 			description:
 				"A 'cosy' pixel-art farming game where you nurture bootcamp students known as Devlings via mini-games then take them to battle in the fearsome job market! This is an evolving, group project that was made as part of the Northcoders bootcamp (and hence references Northcoders team members etc).",
@@ -379,7 +379,7 @@ function App() {
 		},
 		{
 			title: 'Portfolio Website',
-			screenshot: '../assets/website.png',
+			screenshot: '/assets/website.png',
 			description:
 				"This very website. I hope you like it. I'm already working on a restructure of its inner workings if not! For reference, this is the third website I've ever made and the first one that's 'mobile first'. The previous one was made using Adobe GoLive and my first ever site was written in notepad & best viewed in Netscape Navigator. So, be gentle...",
 			livelink: 'https://github.com/slightly76',
@@ -430,12 +430,12 @@ function App() {
 										<div className='crt-inner'>
 											<div className='image-wrapper'>
 												<img
-													src='./assets/me.jpg'
+													src='/assets/me.jpg'
 													className='hover-image base'
 													alt='Me'
 												/>
 												<img
-													src='./assets/mehover.jpg'
+													src='/assets/mehover.jpg'
 													className='hover-image hover'
 													alt='Me Hovering'
 												/>
@@ -774,12 +774,12 @@ function App() {
 					<div className='aboutMe career-section' style={{ marginTop: '2rem' }}>
 						<div className='sprite-wrapper'>
 							<img
-								src='./assets/spriteME.png'
+								src='/assets/spriteME.png'
 								className='hover-sprite base'
 								alt='Me as a sprite'
 							/>
 							<img
-								src='./assets/spriteMEHOVER.png'
+								src='/assets/spriteMEHOVER.png'
 								className='hover-sprite hover'
 								alt='Me Hovering as a sprite'
 							/>
@@ -840,7 +840,7 @@ function App() {
 									alt='Me as a sprite'
 								/>
 								<img
-									src='./assets/spriteMEHOVER.png'
+									src='/assets/spriteMEHOVER.png'
 									className='hover-sprite hover'
 									alt='Me Hovering as a sprite'
 								/>
@@ -916,7 +916,7 @@ function App() {
 									alt='Me as a sprite'
 								/>
 								<img
-									src='./assets/spriteMEHOVER.png'
+									src='/assets/spriteMEHOVER.png'
 									className='hover-sprite hover'
 									alt='Me Hovering as a sprite'
 								/>

@@ -23,7 +23,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: url('./assets/gplay.png') repeat;
+  background: url('/assets/gplay.png') repeat;
   opacity: 0.10;
   
 }
