@@ -503,10 +503,12 @@ body::after {
   z-index: 0; 
 }
 
+
 .panel-with-bars,
 .stats-and-eq {
   position: relative;
 }
+
 
 .eq-bars.left-eq {
   position: absolute;
@@ -521,7 +523,10 @@ body::after {
   pointer-events: none;
   z-index: -1;
 
+
+
 }
+
 
 .eq-bars.left-eq .eq-bar {
   
@@ -593,6 +598,8 @@ body::after {
     0 0 12px #4dffca,
     0 0 24px #4dffca88,
     0 0 36px #4dffca55;
+
+ 
 }
 
 
@@ -1332,10 +1339,10 @@ a:hover svg {
     max-width: none;
   }
 
-  .eq-bars.left-eq,
+  /* .eq-bars.left-eq,
   .eq-bars.right-eq {
     display: none;
-  }
+  } */
 
 
 
@@ -1983,3 +1990,4 @@ a:hover svg {
   }
 
  }
+

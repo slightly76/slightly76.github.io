@@ -13,7 +13,7 @@ import FigmaLogo from '/assets/logos/figma-logo.svg?react';
 import TrelloLogo from '/assets/logos/trello-logo.svg?react';
 import SteamLogo from '/assets/logos/steam-logo.svg?react';
 import { HiOutlineMailOpen } from 'react-icons/hi';
-import { TbBrowserCheck } from 'react-icons/tb';
+// import { TbBrowserCheck } from 'react-icons/tb';
 import { PiReadCvLogoBold } from 'react-icons/pi';
 import { FaRegEye } from 'react-icons/fa';
 
@@ -363,16 +363,25 @@ function App() {
 		{
 			title: 'NC News',
 			description:
-				"A full-stack Reddit-style article app with comments, votes, and user profiles. This project was part of the Northcoders bootcamp and was the first time we'd married frontend to backend. The site is slow to spin up sometimes and is undergoing a bit of a visual overhaul.",
+				"A full-stack Reddit-style article app with comments, votes, and user profiles. This project was part of the Northcoders bootcamp and was the first time we'd married frontend to backend. The site is slow to spin up sometimes because of the free data and app hosting being used. It's also currently undergoing a bit of a visual overhaul too.",
 			livelink: 'https://slightly76-does-nc-news.netlify.app/',
 			githublink: 'https://github.com/slightly76/nc-news',
-			tech: ['Express', 'PostgreSQL', 'Axiom', 'React', 'CSS'],
+			tech: [
+				'Express',
+				'PostgreSQL',
+				'Axiom',
+				'React',
+				'React Router',
+				'CSS',
+				'Supabase',
+				'Render',
+			],
 		},
 		{
 			title: 'Portfolio Website',
 			screenshot: '../assets/website.png',
 			description:
-				"This very website. I hope you like it. I'm already working on a restructure of its inner workings. For reference, this is the third website I've ever made. The previous one was made using Adobe GoLive. My first every site was written in notepad and best viewed in Netscape Navigator. So, be gentle...",
+				"This very website. I hope you like it. I'm already working on a restructure of its inner workings. For reference, this is the third website I've ever made. The previous one was made using Adobe GoLive. My first ever site was written in notepad and best viewed in Netscape Navigator. So, be gentle...",
 			livelink: 'https://github.com/slightly76',
 			githublink: 'https://github.com/slightly76',
 			tech: [
