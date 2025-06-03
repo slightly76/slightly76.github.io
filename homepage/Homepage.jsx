@@ -772,18 +772,20 @@ function App() {
 				<>
 					<h2>//aboutMeThen</h2>
 					<div className='aboutMe career-section' style={{ marginTop: '2rem' }}>
-						<div className='sprite-wrapper'>
-							<img
-								src='/assets/spriteME.png'
-								className='hover-sprite base'
-								alt='Me as a sprite'
-							/>
-							<img
-								src='/assets/spriteMEHOVER.png'
-								className='hover-sprite hover'
-								alt='Me Hovering as a sprite'
-							/>
-							<div className='sprite-crt-overlay'></div>
+						<div className='dummy-sprite-marquee'>
+							<div className='sprite-wrapper'>
+								<img
+									src='/assets/spriteME.png'
+									className='hover-sprite base'
+									alt='Me as a sprite'
+								/>
+								<img
+									src='/assets/spriteMEHOVER.png'
+									className='hover-sprite hover'
+									alt='Me Hovering as a sprite'
+								/>
+								<div className='sprite-crt-overlay'></div>
+							</div>
 						</div>
 
 						<p className='about-text'>

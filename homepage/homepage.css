@@ -1786,6 +1786,7 @@ a:hover svg {
   margin: 0 auto;
   width: fit-content;
   z-index: 0;
+  
 }
 
 .sprite-marquee {
@@ -1796,6 +1797,18 @@ a:hover svg {
   margin: 0 auto;
   width: fit-content;
   z-index: 0;
+}
+
+.dummy-sprite-marquee::before {
+  content: '';
+  position: absolute;
+  margin-top: 23px;
+  inset: -24px;
+  border-radius: 20px;
+  z-index: -1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 2px #f694ff);
+  filter: blur(24px);
 }
 
 .sprite-marquee::before {
