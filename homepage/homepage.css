@@ -10,13 +10,22 @@ html, body {
   height: 100%;
   font-family: "Cascadia Code", monospace;
   color: #a277ff;
-  font-size: clamp(0.5rem, 2vw, 1rem);
+  font-size: clamp(0.75rem, 1.15vw, 1rem);
   background-color: rgba(40, 29, 63, 1);
  
   overflow: hidden;
   overflow-x: hidden;
   line-height: 1.5;
   opacity: 1;
+}
+
+html {
+  font-size: 16px;
+}
+
+* {
+  outline: 1px solid rgba(255, 0, 0, 0.2);
+  font-size: inherit;
 }
 
 body::before {
