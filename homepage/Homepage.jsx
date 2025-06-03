@@ -16,7 +16,7 @@ import { HiOutlineMailOpen } from 'react-icons/hi';
 // import { TbBrowserCheck } from 'react-icons/tb';
 import { PiReadCvLogoBold } from 'react-icons/pi';
 import { FaRegEye } from 'react-icons/fa';
-import './homepage/homepage.css';
+import './homepage.css';
 
 const CARD_WIDTH = 300 + 32;
 const DUPLICATION_FACTOR = 16;
