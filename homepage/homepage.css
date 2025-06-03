@@ -5,7 +5,9 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+
   font-family: "Cascadia Code", monospace;
   color: #a277ff;
   font-size: clamp(0.5rem, 4vw, 1.0rem);
