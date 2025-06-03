@@ -1281,6 +1281,11 @@ a:hover svg {
     flex-direction: column;
     }
 
+    .eq-bars.left-eq,
+  .eq-bars.right-eq {
+    display: none;
+  }
+
   }
   
 
@@ -1339,10 +1344,7 @@ a:hover svg {
     max-width: none;
   }
 
-  /* .eq-bars.left-eq,
-  .eq-bars.right-eq {
-    display: none;
-  } */
+  
 
 
 
@@ -1542,8 +1544,8 @@ a:hover svg {
 }
 
 .project-screenshot {
-	width: 30%;
-	max-width: 50%;
+	width: 25%;
+	max-width: 45%;
 	max-height: 180px;
   align-self: center;
 	border-radius: 0.5rem;

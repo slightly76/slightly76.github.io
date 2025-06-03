@@ -356,8 +356,8 @@ function App() {
 			videoText: 'StackDew Valley early trailer',
 			description:
 				"A 'cosy' pixel-art farming game where you nurture bootcamp students known as Devlings via mini-games then take them to battle in the fearsome job market! This is an evolving, group project that was made as part of the Northcoders bootcamp (and hence references Northcoders team members etc).",
-			livelink: 'https://stackdew.netlify.app/',
-			githublink: 'xxx',
+			livelink: 'https://stackdewvalley-686c6.web.app/',
+			githublink: 'https://github.com/Stackdew/stackdew-valley',
 			tech: ['Phaser', 'Firebase', 'Node', 'Tiled', 'GROUP PROJECT!'],
 		},
 		{
@@ -381,7 +381,7 @@ function App() {
 			title: 'Portfolio Website',
 			screenshot: '../assets/website.png',
 			description:
-				"This very website. I hope you like it. I'm already working on a restructure of its inner workings. For reference, this is the third website I've ever made. The previous one was made using Adobe GoLive. My first ever site was written in notepad and best viewed in Netscape Navigator. So, be gentle...",
+				"This very website. I hope you like it. I'm already working on a restructure of its inner workings if not! For reference, this is the third website I've ever made and the first one that's 'mobile first'. The previous one was made using Adobe GoLive and my first ever site was written in notepad & best viewed in Netscape Navigator. So, be gentle...",
 			livelink: 'https://github.com/slightly76',
 			githublink: 'https://github.com/slightly76',
 			tech: [
@@ -392,6 +392,13 @@ function App() {
 				'CSS',
 				'Framer Motion',
 			],
+		},
+		{
+			title: 'Coming soon',
+			description:
+				"Aside from improving this site, re-dressing (CSSing?) NC News and updating StackDew Valley I'm also scratching the surface of Unity and C#, lining up some fun with GB Studio and maybe even Pico8. The longer I'm unemployed, the more varied and possibly stupid my plans get. So watch this space!",
+
+			tech: ['Unity', 'C#', 'GB Studio', 'PICO 8', 'plus much much more...'],
 		},
 	];
 
@@ -920,9 +927,10 @@ function App() {
 						<p className='contact-text'>
 							I'm <i>actively</i> seeking work and I'm open to junior roles,
 							apprenticeships, contract work, and freelance opportunities. If
-							you like what you see and you want to know more, or you just want
-							to chastise me for the tech stack tooltip puns - feel free to get
-							in touch;{' '}
+							you like what you see and you want to know more, or you want to
+							chastise me for the tech stack tooltip puns - feel free to get in
+							touch! I'm genuinely eager to hear what people think of my site.
+							Constructive criticism is always welcome.
 						</p>
 						<br />
 						<a href='mailto:caskew@hotmail.com' className='contact-link'>
@@ -961,16 +969,6 @@ function App() {
 								My CV
 							</a>
 						}
-						{/* <a
-							href='https://steamcommunity.com/id/slightly76/'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='contact-link'
-						>
-							<SteamLogo className='contact-icon' />
-							Steam (although I also play a lot of GamePass and emulated retro
-							stuff)
-						</a> */}
 					</div>
 				</>
 			),
@@ -1005,14 +1003,6 @@ function App() {
 
 		//calculate the scroll target
 		const scrollTarget = wrapper.scrollTop + relativeOffset - stickyOffset;
-
-		console.log({
-			cardRectTop: cardRect.top,
-			wrapperRectTop: wrapperRect.top,
-			relativeOffset,
-			stickyOffset,
-			scrollTarget,
-		});
 
 		wrapper.scrollTo({
 			top: scrollTarget,
