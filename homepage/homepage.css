@@ -1850,7 +1850,7 @@ a:hover svg {
   width: 300px;
   height: 300px;
   top:-13%;
-  left: 378px;
+  left: calc(35% + 10px);
   transform: translate(-50%, -50%) rotate(0deg);
   border-radius: 50%;
   background: repeating-conic-gradient(
@@ -2011,7 +2011,8 @@ a:hover svg {
     width: 160px;
     height: 160px;
     top: -25px;
-    left: 78px;
+    /* left: 78px; */
+    left: 25%;
     transform: translate(-50%, -50%) rotate(0deg);
   }
 
