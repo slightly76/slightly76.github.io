@@ -1704,13 +1704,14 @@ a:hover svg {
   }
 }
 
-.sprite-wrapper {
+.sprite-hireme {
   position: relative;
   width: 64px;
   height: 64px;
   margin: 50px auto 80px;
-  transform: scale(3.0);
+  transform: scale(3);
   z-index: 1;
+
 }
 
 
@@ -1770,11 +1771,11 @@ a:hover svg {
   z-index: 2;
 }
 
-.sprite-wrapper:hover .hover-sprite.hover {
+.sprite-hireme:hover .hover-sprite.hover {
   opacity: 1;
 }
 
-.sprite-wrapper:hover .hover-sprite.base {
+.sprite-hireme:hover .hover-sprite.base {
   opacity: 0;
 }
 
@@ -1836,6 +1837,9 @@ a:hover svg {
   
 }
 
+
+
+
 .sprite-hireme-wrapper {
   position: relative;
   display: flex;
@@ -1844,15 +1848,16 @@ a:hover svg {
   margin-bottom: 2rem;
 }
 
-.sprite-hireme-wrapper::before {
+.sprite-hireme::before {
   content: '';
   position: absolute;
-  width: 300px;
-  height: 300px;
-  top:-13%;
-  left: calc(35% + 10px);
+  top: -5%;
+  left:-23%;
+  width: 96px; 
+  height: 96px;
   transform: translate(-50%, -50%) rotate(0deg);
   border-radius: 50%;
+
   background: repeating-conic-gradient(
     from 0deg,
     #ff3cac 0deg 10deg,
@@ -1861,11 +1866,9 @@ a:hover svg {
     transparent 30deg 40deg
   );
   animation: wildMarquee 2s linear infinite;
+  filter: blur(6px);
   z-index: 0;
-  filter: drop-shadow(0 0 2px #f694ff);
-  filter: blur(16px);
   pointer-events: none;
-
 }
 
 @keyframes wildMarquee {
@@ -1991,7 +1994,7 @@ a:hover svg {
 }
 
 @media (max-width: 768px) {
-  .sprite-wrapper {
+  .sprite-hireme {
     transform: scale(1.5);
     margin: 5px auto 45px;
   }
@@ -2005,15 +2008,6 @@ a:hover svg {
 
   .career-section {
     padding: 1rem;
-  }
-
-  .sprite-hireme-wrapper::before {
-    width: 160px;
-    height: 160px;
-    top: -25px;
-    /* left: 78px; */
-    left: 25%;
-    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   .hireme-label {

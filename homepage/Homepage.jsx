@@ -911,7 +911,7 @@ function App() {
 					<h2>//contactMe</h2>
 					<div className='career-section' style={{ marginTop: '2rem' }}>
 						<div className='sprite-hireme-wrapper'>
-							<div className='sprite-wrapper'>
+							<div className='sprite-hireme'>
 								<img
 									src='/assets/spriteME.png'
 									className='hover-sprite base'
