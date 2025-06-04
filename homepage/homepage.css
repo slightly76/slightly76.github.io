@@ -1905,6 +1905,15 @@ a:hover svg {
   }
 }
 
+.sprite-wrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 50px auto 80px;
+  transform: scale(3.0);
+  z-index: 1;
+}
+
 
 .sprite-crt-overlay {
   position: absolute;
