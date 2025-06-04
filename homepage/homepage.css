@@ -1779,17 +1779,6 @@ a:hover svg {
   opacity: 0;
 }
 
-/* .dummy-sprite-marquee {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: fit-content;
-  z-index: 0;
-  
-} */
-
 .sprite-marquee {
   position: relative;
   display: flex;
@@ -2006,6 +1995,14 @@ a:hover svg {
   .sprite-hireme {
     transform: scale(1.5);
     margin: 5px auto 45px;
+  }
+
+  .sprite-wrapper {
+    transform: scale(1.5);
+  }
+
+  .sprite-marquee::before {
+    inset: -1px;
   }
 
   .about-text,
