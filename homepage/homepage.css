@@ -1771,6 +1771,14 @@ a:hover svg {
   z-index: 2;
 }
 
+.sprite-wrapper:hover .hover-sprite.hover {
+  opacity: 1;
+}
+
+.sprite-wrapper:hover .hover-sprite.base {
+  opacity: 0;
+}
+
 .sprite-hireme:hover .hover-sprite.hover {
   opacity: 1;
 }
@@ -1778,6 +1786,7 @@ a:hover svg {
 .sprite-hireme:hover .hover-sprite.base {
   opacity: 0;
 }
+
 
 .sprite-marquee {
   position: relative;
