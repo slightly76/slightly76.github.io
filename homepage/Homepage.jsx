@@ -362,6 +362,7 @@ function App() {
 		},
 		{
 			title: 'NC News',
+			screenshot: '/assets/ncnews.png',
 			description:
 				"A full-stack Reddit-style article app with comments, votes, and user profiles. This project was part of the Northcoders bootcamp and was the first time we'd married frontend to backend. The site is slow to spin up sometimes because of the free data and app hosting being used. It's also currently undergoing a bit of a visual overhaul too.",
 			livelink: 'https://slightly76-does-nc-news.netlify.app/',
@@ -375,6 +376,7 @@ function App() {
 				'CSS',
 				'Supabase',
 				'Render',
+				'Netlify',
 			],
 		},
 		{
