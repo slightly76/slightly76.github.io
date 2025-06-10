@@ -1940,8 +1940,8 @@ a:hover svg {
     transparent 3px
   );
   animation:
-    rgbShift 1s infinite ease-in-out,
-    flickerFlash 0.8s infinite ease-in-out;
+    rgbShift 1s infinite ease-in-out;
+    /* flickerFlash 0.8s infinite ease-in-out; */
   pointer-events: none;
   z-index: 9;
 }
