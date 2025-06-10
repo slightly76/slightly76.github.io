@@ -1032,7 +1032,7 @@ a:hover svg {
 
 .delayed-hint {
   opacity: 0;
-  animation: flashIntro 6s steps(1, end) 25s forwards;
+  animation: flashIntro 2s steps(1, end) 25s forwards;
   
 }
 
@@ -1940,8 +1940,8 @@ a:hover svg {
     transparent 3px
   );
   animation:
-    rgbShift 1s infinite ease-in-out;
-    /* flickerFlash 0.8s infinite ease-in-out; */
+    rgbShift 1s infinite ease-in-out,
+    flickerFlash 0.8s infinite ease-in-out;
   pointer-events: none;
   z-index: 9;
 }
