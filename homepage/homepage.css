@@ -1008,7 +1008,7 @@ a:hover svg {
 
 .scroll-hint {
   position: fixed;
-  bottom: 15px;          
+  margin-top: auto;
   left: 50%;            
   transform: translateX(-50%);
   display: flex;
@@ -1057,7 +1057,7 @@ a:hover svg {
 
 @keyframes bounceArrow {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
+  50% { transform: translateY(48px); }
 }
 
 
@@ -1567,6 +1567,19 @@ a:hover svg {
 	image-rendering: pixelated;
   border: 2px solid #4dffca;
 	box-shadow: 0 0 8px #4dffca55, 0 0 16px #82e2ff33;
+}
+
+.project-screenshot:hover,
+.project-screenshot:focus {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.project-card a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .project-desc {

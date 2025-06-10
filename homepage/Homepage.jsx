@@ -153,11 +153,18 @@ const InfiniteCarousel = ({ projects, isActive, videoRefs }) => {
 										</a>
 									</h3>
 									{project.screenshot && (
-										<img
-											src={project.screenshot}
-											alt={`${project.title} screenshot`}
-											className='project-screenshot'
-										/>
+										<a
+											href={project.livelink}
+											target='_blank'
+											rel='noopener noreferrer'
+											className='project-title-link'
+										>
+											<img
+												src={project.screenshot}
+												alt={`${project.title} screenshot`}
+												className='project-screenshot'
+											/>
+										</a>
 									)}
 
 									{project.video && (
@@ -384,8 +391,8 @@ function App() {
 			screenshot: '/assets/website.png',
 			description:
 				"This very website. I hope you like it. I'm already working on a restructure of its inner workings if not! For reference, this is the third website I've ever made and the first one that's 'mobile first'. The previous one was made using Adobe GoLive and my first ever site was written in notepad & best viewed in Netscape Navigator. So, be gentle...",
-			livelink: 'https://github.com/slightly76',
-			githublink: 'https://github.com/slightly76',
+			livelink: 'https:slightly76.github.io',
+			githublink: 'https://github.com/slightly76/slightly76.github.io',
 			tech: [
 				'HTML',
 				'React',
